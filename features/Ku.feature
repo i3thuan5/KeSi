@@ -23,6 +23,13 @@ Feature: Ku 句物件
         Then 第"1"句taibun是 "我是"
           And 第"2"句taibun是 "Ke-si"
 
+
+  Scenario: 藉分詞建立句物件
+       Given 分詞 "我｜Guá 是｜sī Ke-si｜Ke-si"
+       When 建立句物件
+        Then taibun是 "我是 Ke-si"
+
+
   Scenario: 全羅文 ē-īng-eh kā 轉做其他書寫
        Given 一句 "Guá sī Ke-si"
        When 建立句物件
