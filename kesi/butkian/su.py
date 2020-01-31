@@ -1,15 +1,10 @@
 # -*- coding: utf-8 -*-
-from 臺灣言語工具.解析整理.型態錯誤 import 型態錯誤
-from 臺灣言語工具.基本物件.公用變數 import 分字符號
-from 臺灣言語工具.基本物件.公用變數 import 分詞符號
-from 臺灣言語工具.基本物件.公用變數 import 無音
-from 臺灣言語工具.基本物件.公用變數 import 分型音符號
-from 臺灣言語工具.基本物件.功能 import 功能
-from 臺灣言語工具.基本物件.公用變數 import 輕聲符號
-from 臺灣言語工具.基本物件.公用變數 import 敢是拼音字元
+from kesi.butkian.kongiong import 輕聲符號, 分字符號, 敢是拼音字元, 分詞符號, 分型音符號, 無音
+from kesi.butkian.kongling import KongLing
+from kesi.kaisik.tsho_ngoo import 型態錯誤
 
 
-class 詞(功能):
+class Su(KongLing):
     內底字 = None
 
     def __init__(self, 字陣列=[]):
@@ -28,7 +23,7 @@ class 詞(功能):
                        .format(str(字陣列), 問題))
 
     def __eq__(self, 別个):
-        return isinstance(別个, 詞) and self.內底字 == 別个.內底字
+        return isinstance(別个, Su) and self.內底字 == 別个.內底字
 
     def __hash__(self):
         return hash(tuple(self.內底字))
@@ -132,7 +127,7 @@ class 詞(功能):
 
     def 轉音(self, 音標工具, 函式='預設音標'):
         # 逐个函式攏愛產生新的物件
-        新詞物件 = 詞()
+        新詞物件 = Su()
         for 字物件 in self.內底字:
             新詞物件.內底字.append(字物件.轉音(音標工具, 函式))
         return 新詞物件

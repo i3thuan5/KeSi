@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
-from 臺灣言語工具.基本物件.公用變數 import 分字符號
-from 臺灣言語工具.基本物件.公用變數 import 分詞符號
 from kesi.butkian.kongling import KongLing
+from kesi.kaisik.tsho_ngoo import 解析錯誤, 型態錯誤
+from kesi.butkian.kongiong import 分字符號, 分詞符號
+from kesi.butkian.tsoo import Tsoo
 
 
 class Tsip(KongLing):
@@ -12,17 +13,17 @@ class Tsip(KongLing):
         try:
             self.內底組 = []
             for 組物件 in 組陣列:
-                if not isinstance(組物件, 組):
+                if not isinstance(組物件, Tsoo):
                     raise 型態錯誤(
                         '組陣列內底有毋是組的：組陣列＝{0}，組物件＝{1}'.format(str(組陣列), str(組物件))
                     )
-                self.內底組.append(組(組物件.內底詞))
+                self.內底組.append(Tsoo(組物件.內底詞))
         except TypeError as 問題:
             raise 型態錯誤('傳入來的組陣列毋法度疊代：{0}，問題：{1}'
                        .format(str(組陣列), 問題))
 
     def __eq__(self, 別个):
-        return isinstance(別个, 集) and self.內底組 == 別个.內底組
+        return isinstance(別个, Tsip) and self.內底組 == 別个.內底組
 
     def __str__(self):
         return '集：{0}'.format(self.內底組)
@@ -80,7 +81,7 @@ class Tsip(KongLing):
 
     def 轉音(self, 音標工具, 函式='預設音標'):
         # 逐个函式攏愛產生新的物件
-        新集物件 = 集()
+        新集物件 = Tsip()
         for 組物件 in self.內底組:
             新集物件.內底組.append(組物件.轉音(音標工具, 函式))
         return 新集物件

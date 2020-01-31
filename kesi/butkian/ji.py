@@ -1,15 +1,11 @@
 # -*- coding: utf-8 -*-
-from 臺灣言語工具.基本物件.公用變數 import 無音
-from 臺灣言語工具.解析整理.型態錯誤 import 型態錯誤
-from 臺灣言語工具.解析整理.解析錯誤 import 解析錯誤
-from 臺灣言語工具.基本物件.公用變數 import 標點符號
-from 臺灣言語工具.基本物件.公用變數 import 分字符號
-from 臺灣言語工具.基本物件.公用變數 import 分詞符號
-from 臺灣言語工具.基本物件.功能 import 功能
-from 臺灣言語工具.基本物件.詞 import 詞
+from kesi.butkian.kongiong import 無音, 標點符號, 分字符號, 分詞符號
+from kesi.butkian.kongling import KongLing
+from kesi.kaisik.tsho_ngoo import 解析錯誤, 型態錯誤
+from kesi.butkian.su import Su
 
 
-class 字(功能):
+class Ji(KongLing):
 
     def __init__(self, 型, 音=無音, 輕聲標記=False):
         if 型 == '':
@@ -44,7 +40,7 @@ class 字(功能):
 
     def __eq__(self, 別个):
         return (
-            isinstance(別个, 字)
+            isinstance(別个, Ji)
             and self.型 == 別个.型 and self.音 == 別个.音
             and self.輕聲標記 == 別个.輕聲標記
         )
@@ -68,7 +64,7 @@ class 字(功能):
         return self.音
 
     def 看分詞(self):
-        return 詞([self]).看分詞()
+        return Su([self]).看分詞()
 
     def 敢有輕聲標記(self):
         return self.輕聲標記 or self.音.startswith('0')
@@ -86,7 +82,7 @@ class 字(功能):
         return [self]
 
     def 網出詞物件(self):
-        詞物件 = 詞()
+        詞物件 = Su()
         詞物件.內底字.append(self)
         return [詞物件]
 
@@ -113,7 +109,7 @@ class 字(功能):
             新型 = 新型預設音標
         else:
             新型 = self.型
-        return 字(新型, 新音, self.輕聲標記)
+        return Ji(新型, 新音, self.輕聲標記)
 
     def 音標敢著(self, 音標工具):
         if self.敢是標點符號():
