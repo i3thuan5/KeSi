@@ -1,4 +1,5 @@
 from behave import given, when, then
+from kesi.butkian.ku import Ku
 
 
 @given(u'一句 "{bun}"')
