@@ -1,6 +1,6 @@
 Feature: Ku 句物件
 
-  Scenario: 一 ê 簡單 ê 句物件
+  Scenario: 一筆簡單 ê 句物件
        Given 一句 "我是Ke-si"
        When 建立句物件
         Then taibun是 "我是 Ke-si"

@@ -1,24 +1,36 @@
-from kesi.butkian.kongling import KongLing
 from kesi.butkian.kongiong import 分詞符號, 分字符號, 無音
+from kesi.butkian.kongling import KongLing
+from kesi.butkian.tsip import Tsip
+from kesi.kaisik.tsho_ngoo import 型態錯誤
+
 
 class Ku(KongLing):
     內底集 = None
 
     def __init__(self, hanlo, tsuanlo=''):
         # 愛產生新的物件
+        if isinstance(hanlo, str):
+            self.kianlip(hanlo)
+        elif isinstance(hanlo, list):
+            self.kianlip_tsip(hanlo)
+    
+    def kianlip(self, bun):
+        self.內底集 = [Tsip(bun, bun)]
+        
+    def kianlip_tsip(self, tsiptin):
         try:
             self.內底集 = []
-            for 集物件 in 集陣列:
-                if not isinstance(集物件, 集):
+            for 集物件 in tsiptin:
+                if not isinstance(集物件, Tsip):
                     raise 型態錯誤(
                         '集陣列內底有毋是集的：集陣列＝{0}，集物件＝{1}'
-                        .format(str(集陣列), str(集物件))
+                        .format(str(tsiptin), str(集物件))
                     )
-                self.內底集.append(集(集物件.內底組))
+                self.內底集.append(Tsip(集物件.內底組))
         except TypeError as 問題:
             raise 型態錯誤(
                 '傳入來的集陣列毋法度疊代：{0}，問題：{1}'
-                .format(str(集陣列), 問題)
+                .format(str(tsiptin), 問題)
             )
 
     def __eq__(self, 別个):
