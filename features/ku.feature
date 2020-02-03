@@ -23,12 +23,10 @@ Feature: Ku 句物件
         Then 第"1"句taibun是 "我是"
           And 第"2"句taibun是 "Ke-si"
 
-
   Scenario: 藉分詞建立句物件
        Given 分詞 "我｜Guá 是｜sī Ke-si｜Ke-si"
        When 建立句物件
         Then taibun是 "我是 Ke-si"
-
 
   Scenario: 全羅文 ē-īng-eh kā 轉做其他書寫
        Given 一句 "Guá sī Ke-si"
@@ -45,17 +43,3 @@ Feature: Ku 句物件
         Then taibun是 "Guá sī Ke-si"
           And lomaji是 "Guá sī Ke-si"
           And hanji是 "Guá sī Ke-si"
-
-  Scenario: 接 TauPhahJi 自動 kā 全羅補起來
-       Given 一句 "我是Ke-si"
-       When 接 TauPhahJi
-        Then taibun是 "我是Ke-si"
-          And lomaji是 "Guá sī Ke-si"
-          And hanji是 "我是家私"
-
-  Scenario: 接 Kaldi 自動 kā 聲轉做台文
-       Given 一段聲 "test_Kaldi.wav"
-       When 接 Kaldi
-        Then taibun是 "m tsai"
-          And lomaji是 "m tsai"
-          And hanji是 "m tsai"
