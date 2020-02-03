@@ -7,17 +7,19 @@ from kesi.kaisik.tsho_ngoo import 型態錯誤
 class Ku(KongLing):
     內底集 = None
 
-    def __init__(self, hanlo, tsuanlo=''):
+    def __init__(self, han, lo=''):
         # 愛產生新的物件
-        if isinstance(hanlo, str):
-            self.kianlip(hanlo)
-        elif isinstance(hanlo, list):
-            self.kianlip_tsip(hanlo)
+        if isinstance(han, str):
+            self.kianlip(han, lo)
+        elif isinstance(han, list):
+            self.kianlip_tsip_tinliat(han)
     
-    def kianlip(self, bun):
-        self.內底集 = [Tsip(bun, bun)]
+    def kianlip(self, hanbun, lobun):
+        if lobun == 無音:
+            lobun = hanbun
+        self.內底集 = [Tsip(hanbun, lobun)]
         
-    def kianlip_tsip(self, tsiptin):
+    def kianlip_tsip_tinliat(self, tsiptin):
         try:
             self.內底集 = []
             for 集物件 in tsiptin:

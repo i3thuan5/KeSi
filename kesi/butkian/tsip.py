@@ -1,26 +1,39 @@
 # -*- coding: utf-8 -*-
 from kesi.butkian.kongling import KongLing
 from kesi.kaisik.tsho_ngoo import 解析錯誤, 型態錯誤
-from kesi.butkian.kongiong import 分字符號, 分詞符號
+from kesi.butkian.kongiong import 分字符號, 分詞符號, 無音
 from kesi.butkian.tsoo import Tsoo
 
 
 class Tsip(KongLing):
     內底組 = None
+    
+    def __init__(self, han, lo=''):
+        # 愛產生新的物件
+        if isinstance(han, str):
+            self.kianlip(han, lo)
+        elif isinstance(han, list):
+            self.kianlip_tsoo_tinliat(han)
+    
+    def kianlip(self, hanbun, lobun):
+        if lobun == 無音:
+            lobun = hanbun
+        self.內底組 = [Tsoo(hanbun, lobun)]
 
-    def __init__(self, 組陣列=[]):
+    def kianlip_tsoo_tinliat(self, tsootin):
         # 愛產生新的物件
         try:
             self.內底組 = []
-            for 組物件 in 組陣列:
+            for 組物件 in tsootin:
                 if not isinstance(組物件, Tsoo):
                     raise 型態錯誤(
-                        '組陣列內底有毋是組的：組陣列＝{0}，組物件＝{1}'.format(str(組陣列), str(組物件))
+                        '組陣列內底有毋是組的：組陣列＝{0}，組物件＝{1}'.format(
+                            str(tsootin), str(組物件))
                     )
                 self.內底組.append(Tsoo(組物件.內底詞))
         except TypeError as 問題:
             raise 型態錯誤('傳入來的組陣列毋法度疊代：{0}，問題：{1}'
-                       .format(str(組陣列), 問題))
+                       .format(str(tsootin), 問題))
 
     def __eq__(self, 別个):
         return isinstance(別个, Tsip) and self.內底組 == 別个.內底組
