@@ -1,7 +1,9 @@
 # -*- coding: utf-8 -*-
 from kesi.butkian.kongling import KongLing
 from kesi.kaisik.tsho_ngoo import 型態錯誤, 解析錯誤
-from kesi.butkian.kongiong import 分詞符號, 敢是拼音字元, 分字符號, 無音
+from kesi.butkian.kongiong import 分詞符號, 敢是拼音字元, 分字符號,\
+    無音, 聲調符號, 標點符號, 組字式符號,\
+    敢是注音符號
 from kesi.butkian.su import Su
 
 
@@ -14,6 +16,18 @@ class Tsoo(KongLing):
             self.kianlip(han, lo)
         elif isinstance(han, list):
             self.kianlip_su_tinliat(han)
+
+    def __eq__(self, 別个):
+        return isinstance(別个, Tsoo) and self.內底詞 == 別个.內底詞
+
+    def __hash__(self):
+        return hash(tuple(self.內底詞))
+
+    def __str__(self):
+        return '組：{0}'.format(self.內底詞)
+
+    def __repr__(self):
+        return self.__str__()
 
     def kianlip(self, hanbun, lobun):
         self.內底詞 = ''
@@ -34,7 +48,7 @@ class Tsoo(KongLing):
             型巢狀輕聲陣列, 音巢狀輕聲陣列,
             hanbun, lobun,
         )
-    
+
     def kianlip_su_tinliat(self, sutin):
         # 愛產生新的物件
         try:
@@ -168,17 +182,140 @@ class Tsoo(KongLing):
             )
         return 詞陣列
 
-    def __eq__(self, 別个):
-        return isinstance(別个, Tsoo) and self.內底詞 == 別个.內底詞
+    def _句分析(self, 語句):
+        狀態 = self._分析狀態()
+        if 語句 == 分詞符號 or self._是空白.fullmatch(語句):
+            return 狀態.分析結果()
+        頂一个字 = None
+        頂一个是連字符 = False
+        頂一个是空白 = False
+        頂一个是輕聲符號 = False
+        頂一个是注音符號 = False
+        位置 = 0
+        while 位置 < len(語句):
+            字 = 語句[位置]
+            是連字符 = False
+            是空白 = False
+            是輕聲符號 = False
+            是注音符號 = 敢是注音符號(字)
+            if 狀態.是組字模式():
+                狀態.這馬字加一个字元(字)
+                狀態.組字模型加一个字元(字)
+                if 狀態.組字長度有夠矣未():
+                    狀態.這馬字好矣清掉囥入去字陣列()
+                    狀態.變一般模式()
+            elif 狀態.是一般模式():
+                揣分字 = self._是分字符號.match(語句[位置:])
+                if 揣分字:
+                    狀態.這馬字好矣清掉囥入去字陣列()
+                    分字長度 = len(揣分字.group(0))
+                    if 分字長度 == 1:
+                        if not 狀態.敢有分析資料矣() or 頂一个是空白:
+                            狀態.字陣列直接加一字(分字符號)
+                            狀態.頂一字佮這馬的字無仝詞()
+                        else:
+                            狀態.頂一字佮這馬的字仝詞()
+                            是連字符 = True
+                            狀態.有連字符()
+                    elif 分字長度 == 2:
+                        是輕聲符號 = True
+                        狀態.這陣是輕聲詞()
+                    else:
+                        for _ in range(分字長度):
+                            狀態.字陣列直接加一字(分字符號)
+                            狀態.頂一字佮這馬的字無仝詞()
+                    位置 += 分字長度 - 1
+                elif 字 == 分詞符號 or self._是空白.fullmatch(字):
+                    狀態.這馬字好矣清掉囥入去字陣列()
+                    狀態.頂一字佮這馬的字無仝詞()
+                    if 頂一个是連字符:
+                        狀態.字陣列直接加一字(分字符號)
+                        狀態.頂一字佮這馬的字無仝詞()
+                    if 頂一个是輕聲符號:
+                        狀態.字陣列直接加一字(分字符號)
+                        狀態.頂一字佮這馬的字無仝詞()
+                        狀態.字陣列直接加一字(分字符號)
+                        狀態.頂一字佮這馬的字無仝詞()
+                    是空白 = True
+                # 羅馬字接做伙
+                elif 敢是拼音字元(字):
+                    # 頭前是羅馬字抑是輕聲、外來語的數字
+                    # 「N1N1」、「g0v」濫做伙名詞，「sui2sui2」愛變做兩个字，予粗胚處理。
+                    if (
+                        not 敢是拼音字元(頂一个字) and
+                        頂一个字 not in self._是數字
+                    ):
+                        # 頭前愛清掉
+                        狀態.這馬字好矣清掉囥入去字陣列()
+                    if 頂一个是輕聲符號:
+                        狀態.這馬是輕聲字()
+                    狀態.這馬字加一个字元(字)
+                # 數字
+                elif 字 in self._是數字:
+                    if (
+                        頂一个字 not in self._是數字 and
+                        not 敢是拼音字元(頂一个字) and
+                        not 頂一个是注音符號
+                    ):
+                        狀態.這馬字好矣清掉囥入去字陣列()
+                        狀態.頂一字佮這馬的字無仝詞()
+                    狀態.這馬字加一个字元(字)
+                # 音標後壁可能有聲調符號
+                elif 字 in 聲調符號 and 敢是拼音字元(頂一个字):
+                    狀態.這馬字加一个字元(字)
+                # 處理注音，輕聲、注音、空三个後壁會當接注音
+                elif 是注音符號:
+                    if (
+                        頂一个字 not in 聲調符號 and
+                        not 頂一个是注音符號
+                    ):
+                        狀態.這馬字好矣清掉囥入去字陣列()
+                    狀態.這馬字加一个字元(字)
+                # 注音後壁會當接聲調
+                elif 字 in 聲調符號 and 頂一个是注音符號:
+                    狀態.這馬字加一个字元(字)
 
-    def __hash__(self):
-        return hash(tuple(self.內底詞))
-
-    def __str__(self):
-        return '組：{0}'.format(self.內底詞)
-
-    def __repr__(self):
-        return self.__str__()
+                elif 字 in 標點符號:
+                    if 字 == '•' and 狀態.上尾敢是o結尾():
+                        狀態.這馬字加一个字元(字)
+                    else:
+                        狀態.這馬字好矣清掉囥入去字陣列()
+                        狀態.頂一字佮這馬的字無仝詞()
+                        狀態.字陣列直接加一字(字)
+                        狀態.頂一字佮這馬的字無仝詞()
+                else:
+                    if 狀態.這馬字敢全部攏數字():
+                        狀態.這馬字好矣清掉囥入去字陣列()
+                        狀態.頂一字佮這馬的字無仝詞()
+                    else:
+                        狀態.這馬字好矣清掉囥入去字陣列()
+                    if 頂一个是輕聲符號:
+                        狀態.這馬是輕聲字()
+                    狀態.這馬字加一个字元(字)
+                    if 字 in 組字式符號:
+                        狀態.變組字模式()
+                    else:
+                        狀態.這馬字好矣清掉囥入去字陣列()
+            位置 += 1
+            頂一个字 = 字
+            頂一个是連字符 = 是連字符
+            頂一个是空白 = 是空白
+            頂一个是輕聲符號 = 是輕聲符號
+            頂一个是注音符號 = 是注音符號
+        if 狀態.這馬字敢閣有物件():
+            if 狀態.是一般模式():
+                狀態.這馬字好矣清掉囥入去字陣列()
+            else:
+                raise 解析錯誤('語句組字式無完整，語句＝{0}'.format(str(語句)))
+        if 頂一个是連字符:
+            狀態.字陣列直接加一字(分字符號)
+            狀態.頂一字佮這馬的字無仝詞()
+        if 頂一个是輕聲符號:
+            狀態.字陣列直接加一字(分字符號)
+            狀態.頂一字佮這馬的字無仝詞()
+            狀態.字陣列直接加一字(分字符號)
+            狀態.頂一字佮這馬的字無仝詞()
+        return 狀態.分析結果()
 
     def 看語句(self):
         詞的型陣列 = []
@@ -246,3 +383,98 @@ class Tsoo(KongLing):
         for 詞物件 in self.內底詞:
             新組物件.內底詞.append(詞物件.轉音(音標工具, 函式))
         return 新組物件
+
+    class _分析狀態:
+        def __init__(self):
+            self._字陣列 = []
+            self._輕聲陣列 = []
+            self._佮後一个字無仝一个詞 = []
+            self.變一般模式()
+            # 組字式抑是數羅會超過一个字元
+            self._這馬字 = ''
+            self._這馬是輕聲字 = False
+            self._這陣是輕聲詞 = False
+            self._這陣是輕聲詞_而且是輕聲詞ê一部份 = False
+
+        def 分析結果(self):
+            return self._字陣列, self._輕聲陣列, self._佮後一个字無仝一个詞
+
+        def 敢有分析資料矣(self):
+            return len(self._字陣列) > 0 or self.這馬字敢閣有物件()
+
+        def 這馬字敢閣有物件(self):
+            return self._這馬字 != ''
+
+        def 這馬字敢全部攏數字(self):
+            return self._這馬字.isdigit()
+
+        def 變一般模式(self):
+            self._模式 = '一般'
+            self._組字長度 = 0
+
+        def 變組字模式(self):
+            self._模式 = '組字'
+            self._組字長度 = -1
+
+        def 是一般模式(self):
+            return self._模式 == '一般'
+
+        def 是組字模式(self):
+            return self._模式 == '組字'
+
+        def 組字模型加一个字元(self, 字):
+            if 字 in 組字式符號:
+                self._組字長度 -= 1
+            else:
+                self._組字長度 += 1
+
+        def 組字長度有夠矣未(self):
+            return self._組字長度 == 1
+
+        def 這馬字加一个字元(self, 字):
+            self._這馬字 += 字
+
+        def 這馬是輕聲字(self):
+            self._這馬是輕聲字 = True
+
+        def 這陣是輕聲詞(self):
+            self._這陣是輕聲詞 = True
+            self._這陣是輕聲詞_而且是輕聲詞ê一部份 = True
+
+        def 有連字符(self):
+            if self._這陣是輕聲詞:
+                self._這陣是輕聲詞_而且是輕聲詞ê一部份 = True
+
+        def 字陣列直接加一字(self, 字):
+            self._字陣列.append(字)
+            self._輕聲陣列.append(False)
+            self._佮後一个字無仝一个詞.append(None)
+
+        def 這馬字好矣清掉囥入去字陣列(self):
+            if self._這馬字 != '':
+                if self._這陣是輕聲詞:
+                    if not self._這陣是輕聲詞_而且是輕聲詞ê一部份:
+                        self.頂一字佮這馬的字無仝詞()
+                        self._這陣是輕聲詞 = False
+                    self._這陣是輕聲詞_而且是輕聲詞ê一部份 = False
+                self._字陣列.append(self._這馬字)
+                self._輕聲陣列.append(self._這馬是輕聲字)
+                self._佮後一个字無仝一个詞.append(None)
+                self._這馬字 = ''
+                self._這馬是輕聲字 = False
+
+        def 頂一字佮這馬的字仝詞(self):
+            try:
+                self._佮後一个字無仝一个詞[-1] = False
+            except IndexError:
+                pass
+
+        def 頂一字佮這馬的字無仝詞(self):
+            try:
+                if self._佮後一个字無仝一个詞[-1] is None:
+                    self._佮後一个字無仝一个詞[-1] = True
+            except IndexError:
+                pass
+
+#         def 上尾敢是o結尾(self):
+#             return 文章粗胚._o結尾(self._這馬字)
