@@ -74,10 +74,9 @@ Feature: Ku 句仔
 
   Scenario Outline: 羅馬字 ē-īng-eh kā 轉做其他書寫
     Given 一句 <bun> 建立句仔
-    When 提 TL
-    Then hanlo是 <TL>
-    When 提 POJ
-    Then hanlo是 <POJ>
+     Then 轉出TL句，伊 ê hanlo是 <TL>
+      And 轉出POJ句，伊 ê hanlo是 <POJ>
+      But 原本ê句仔猶原是 <bun>
 
 	Examples: ku
    	| bun             | TL          | POJ         |

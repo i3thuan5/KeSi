@@ -25,20 +25,36 @@ def 做伙建立句仔(context, hanlo, lomaji):
 
 @then(u'詞仔是')
 def 詞仔是(context):
-    for su, tapan in zip_longest(context.ku.su, context.table):
+    for su, tapan in zip_longest(context.ku, context.table):
         assert su.hanlo == tapan['hanlo']
         assert su.lomaji == tapan['lomaji']
 
 
 @then(u'字仔是')
 def 字仔是(context):
-    for ji, tapan in zip_longest(context.ku.ji, context.table):
+    for ji, tapan in zip_longest(context.ku.thianji(), context.table):
         assert ji.hanlo == tapan['hanlo']
         assert ji.lomaji == tapan['lomaji']
 
 
 @then(u'第 {kui} 詞 ê 字仔是')
 def 第幾詞ê字仔是(context, kui):
-    for ji, tapan in zip_longest(context.ku.su[kui].ji, context.table):
+    su = context.ku[kui]
+    for ji, tapan in zip_longest(su, context.table):
         assert ji.hanlo == tapan['hanlo']
         assert ji.lomaji == tapan['lomaji']
+
+
+@then(u'轉出TL句，伊 ê hanlo是 {hanlo}')
+def 轉做TL(context, hanlo):
+    assert context.ku.TL().hanlo == hanlo
+
+
+@then(u'轉出POJ句，伊 ê hanlo是 {hanlo}')
+def 轉做POJ(context, hanlo):
+    assert context.ku.POJ().hanlo == hanlo
+
+
+@then(u'原本ê句仔猶原是 {bun}')
+def 原本ê句仔猶原是(context, bun):
+    assert context.ku.hanlo == bun
