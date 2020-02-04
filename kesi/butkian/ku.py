@@ -1,10 +1,9 @@
 from kesi.butkian.kongiong import 分詞符號, 分字符號, 無音
-from kesi.butkian.kongling import KongLing
 from kesi.butkian.tsip import Tsip
 from kesi.kaisik.tsho_ngoo import 型態錯誤
 
 
-class Ku(KongLing):
+class Ku:
     內底集 = None
 
     def __init__(self, han, lo=''):
