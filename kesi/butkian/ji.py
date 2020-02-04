@@ -1,12 +1,16 @@
 # -*- coding: utf-8 -*-
 from kesi.butkian.kongiong import 無音, 標點符號, 分字符號, 分詞符號
-from kesi.butkian.kongling import KongLing
 from kesi.kaisik.tsho_ngoo import 解析錯誤, 型態錯誤
 from kesi.butkian.su import Su
 
 
-class Ji(KongLing):
-
+class Ji:
+    def __init__(self, hanlo, lomaji=None, si_khinsiann=False):
+        self.hanlo = hanlo
+        self.lomaji = lomaji
+        self.khinsiann = si_khinsiann
+        
+class _Punso:
     def __init__(self, 型, 音=無音, 輕聲標記=False):
         if 型 == '':
             raise 解析錯誤('傳入來的型是空的！')

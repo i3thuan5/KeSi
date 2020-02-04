@@ -1,31 +1,48 @@
+import re
+
 from kesi.butkian.kongiong import 分詞符號, 分字符號, 無音, 組字式符號, 聲調符號, 標點符號, 敢是拼音字元,\
     敢是注音符號
 from kesi.kaisik.tsho_ngoo import 型態錯誤, 解析錯誤
-import re
+from kesi.butkian.su import Su
+from kesi.butkian.ji import Ji
 
 
 class Ku:
+    """
+    ku = Ku()
+    su = Su()
+    ji = Ji()
+
+    for su in ku:
+        for ji in su:
+            for guan in ji.hanlo:
+    """
     _切組物件分詞 = re.compile('(([^ ｜]*[^ ]｜[^ ][^ ｜]*) ?|[^ ]+)')
     _是空白 = re.compile(r'[^\S\n]+')
     _是分字符號 = re.compile('{}+'.format(分字符號))
     _是數字 = set('0123456789')
 
-    def __init__(self, hanlo, lomaji=''):
+    def __init__(self, hanlo):
         # 愛產生新的物件
         全部型陣列, 型巢狀輕聲陣列 = self._拆句做巢狀詞(hanlo)
-        全部音陣列, 音巢狀輕聲陣列 = self._拆句做巢狀詞(lomaji)
         # 對齊拆開的型、音
-        內底詞 = self._對齊型音處理刪節號(
-            全部型陣列, 全部音陣列,
-            型巢狀輕聲陣列, 音巢狀輕聲陣列,
-            hanlo, lomaji
-        )
+        print('全部型陣列, 全部音陣列,型巢狀輕聲陣列, 音巢狀輕聲陣列,=',
+              全部型陣列, 型巢狀輕聲陣列, )
+        self._su = self._bun_tsuan_suthong(全部型陣列, 型巢狀輕聲陣列)
 
-    def _對齊型音處理刪節號(
-        self,
-        型巢狀陣列, 音巢狀陣列, 型輕聲巢狀陣列, 音輕聲巢狀陣列,
-        型, 音,
-    ):
+    def _bun_tsuan_suthong(self, 型巢狀陣列, 型輕聲巢狀陣列):
+        suthong = []
+        for tsitsu, khinsiannthong in zip(型巢狀陣列, 型輕聲巢狀陣列):
+            su = Su()
+            for ji, si_khinsiann in zip(tsitsu, khinsiannthong):
+                su.append(
+                    Ji(ji, si_khinsiann)
+                )
+            suthong.append(su)
+        return suthong
+
+    def _對齊型音處理刪節號(self, 型巢狀陣列, 音巢狀陣列, 型輕聲巢狀陣列, 音輕聲巢狀陣列
+                   ):
         # 取得按照詞組成的型音巢狀陣列之後，將型音對齊成詞物件陣列
         詞陣列 = []
         第幾字 = 0

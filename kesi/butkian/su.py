@@ -1,10 +1,17 @@
 # -*- coding: utf-8 -*-
 from kesi.butkian.kongiong import 輕聲符號, 分字符號, 敢是拼音字元, 分詞符號, 分型音符號, 無音
-from kesi.butkian.kongling import KongLing
 from kesi.kaisik.tsho_ngoo import 型態錯誤
 
 
-class Su(KongLing):
+class Su:
+    def __init__(self):
+        self._ji = []
+
+    def append(self, ji):
+        self._ji.append(ji)
+
+
+class _Punso:
     內底字 = None
 
     def __init__(self, 字陣列=[]):
