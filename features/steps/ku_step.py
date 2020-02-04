@@ -1,91 +1,44 @@
 from behave import given, when, then
-from kesi.butkian.ku import Ku
+from kesi import Ku
+from itertools import zip_longest
 
 
-@given(u'一句 "{bun}"')
-def utsitku(context, bun):
-    context.bun = bun
+@given(u'一句 {bun} 建立句仔')
+def 建立句仔(context, bun):
+    context.ku = Ku(bun)
 
 
-@when(u'建立句物件')
-def kianlipku(context):
-    context.ku = Ku(context.bun)
+@then(u'hanlo是 {hanlo}')
+def hanlo是(context, hanlo):
+    assert context.ku.hanlo == hanlo
 
 
-@then(u'taibun是 "{taibun}"')
-def taibun_si(context, taibun):
-    assert context.ku.taibun == taibun
-
-
-@then(u'lomaji是 "{lomaji}"')
-def lomaji_si(context, lomaji):
+@then(u'lomaji是 {lomaji}')
+def lomaji是(context, lomaji):
     assert context.ku.lomaji == lomaji
 
 
-@then(u'hanji是 "{hanji}"')
-def hanji_si(context, hanji):
-    assert context.ku.hanji == hanji
+@given(u'兩句 {hanlo} kah {lomaji} 做伙建立一 ê 句仔')
+def 做伙建立句仔(context, hanlo, lomaji):
+    context.ku = Ku(hanlo, lomaji)
 
 
-@given(u'兩句 "{hanlo}" kah "{tsuanlo}"')
-def step_impl(context, hanlo, tsuanlo):
-    context.hanlo = hanlo
-    context.tsuanlo = tsuanlo
+@then(u'詞仔是')
+def 詞仔是(context):
+    for su, tapan in zip_longest(context.ku.su, context.table):
+        assert su.hanlo == tapan['hanlo']
+        assert su.lomaji == tapan['lomaji']
 
 
-@when(u'做伙建立一 ê 句物件')
-def tsohue_kianlip(context):
-    context.ku = Ku(context.hanlo, context.tsuanlo)
+@then(u'字仔是')
+def 字仔是(context):
+    for ji, tapan in zip_longest(context.ku.ji, context.table):
+        assert ji.hanlo == tapan['hanlo']
+        assert ji.lomaji == tapan['lomaji']
 
 
-@then(u'攏總 "{kui}" 詞')
-def su_longtsong(context, kui):
-    assert len(context.ku.網出詞陣列()) == kui
-
-
-@then(u'攏總 "{kui}" 字')
-def ji_longtsong(context, kui):
-    assert len(context.ku.篩出字陣列()) == kui
-
-
-@when(u'選擇 uì 第 "{kui}" ê 詞斷做兩句')
-def tngku(context, kui):
-    sutin = context.ku.網出詞陣列()
-    it = Ku(sutin[:kui])
-    ji = Ku(sutin[kui:])
-    context.ku_tin = [it, ji]
-
-
-@then(u'第{kui}句taibun是 "{taibun}"')
-def giamtsitku(context, kui, taibun):
-    assert context.ku_tin[kui].taibun == taibun
-
-
-@when(u'提 TL')
-def theh_tailo(context):
-    context.lomaji = context.ku.TL()
-
-
-@when(u'提 POJ')
-def theh_poj(context):
-    context.lomaji = context.ku.POJ()
-
-
-@when(u'轉做 TL 傳統調')
-def tsuan_tailo(context):
-    context.tailo = context.ku.轉音('TL')
-
-
-@given(u'一段聲 "test_Kaldi.wav"')
-def tsitsiann(context):
-    raise NotImplementedError(u'STEP: Given 一段聲 "test_Kaldi.wav"')
-
-
-@when(u'接 TauPhahJi')
-def tsiap_tauphahji(context):
-    context.ku = tauphahji(context.bun)
-
-
-@when(u'接 Kaldi')
-def tsiap_kaldi(context):
-    raise NotImplementedError(u'STEP: When 接 Kaldi')
+@then(u'第 {kui} 詞 ê 字仔是')
+def 第幾詞ê字仔是(context, kui):
+    for ji, tapan in zip_longest(context.ku.su[kui].ji, context.table):
+        assert ji.hanlo == tapan['hanlo']
+        assert ji.lomaji == tapan['lomaji']
