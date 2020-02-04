@@ -14,7 +14,7 @@ Feature: Ku 句仔
 	| 緊--出-來--啦     | 緊--出-來--啦   |
 
 
-  Scenario Outline: 漢羅文 kah 羅馬字做伙建立一 ê 句仔
+  Scenario Outline: 漢羅文 kah 羅馬字對照
     Given 兩句 <hanlo> kah <lomaji> 做伙建立一 ê 句仔
      Then hanlo是 <kiatko_hanlo>
       And lomaji是 <kiatko_lomaji>
@@ -63,13 +63,13 @@ Feature: Ku 句仔
 	   | si    | si        |
 
 
-  Scenario: 對照句仔ê時，照羅馬字統一輕聲符
+  Scenario: 對照句仔ê時，照羅馬字決定輕聲符
     Given 兩句 <hanlo> kah <lomaji> 做伙建立一 ê 句仔
-     Then hanlo是 <kiatko_hanlo>
+     Then hanlo是 <kiatko>
      
      Examples: ku
-       | hanlo         | lomaji     | kiatko_hanlo |
-	   | 我啦          | Guá--lah   | 我--啦       |
+       | hanlo       | lomaji     | kiatko    |
+       | 我啦        | Guá--lah   | 我--啦    |
 
 
   Scenario Outline: 羅馬字 ē-īng-eh kā 轉做其他書寫
