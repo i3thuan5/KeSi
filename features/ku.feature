@@ -63,7 +63,7 @@ Feature: Ku 句仔
 	   | si    | si        |
 
 
-  Scenario: 對照句仔ê時，照羅馬字決定輕聲符
+  Scenario Outline: 對照句仔ê時，照羅馬字決定輕聲符
     Given 兩句 <hanlo> kah <lomaji> 做伙建立一 ê 句仔
      Then hanlo是 <kiatko>
      
