@@ -57,6 +57,10 @@ Feature: Ku 句仔
 	   | 物    | mi̍h       |
 	   | 件    | kiānn     |
 	   | --啦  | --lah     |
+     And 第 2 詞 ê 字仔是
+       | hanlo | lomaji    |
+	   | Ke    | Ke        |
+	   | si    | si        |
 
 
   Scenario: 對照句仔ê時，照羅馬字統一輕聲符
@@ -68,14 +72,6 @@ Feature: Ku 句仔
 	   | 我啦          | Guá--lah   | 我--啦       |
 
 
-  Scenario: 句仔 ē-té 詞仔 mā 提有字仔
-    Given 兩句 "我是 Ke-si ê 物件" kah "Guá sī Ke-si ê mi̍h-kiānn" 做伙建立一 ê 句仔
-     Then 第 2 詞是
-       | hanlo | lomaji    |
-	   | Ke    | Ke        |
-	   | si    | si        |
-
-	   
   Scenario Outline: 羅馬字 ē-īng-eh kā 轉做其他書寫
     Given 一句 <bun> 建立句仔
     When 提 TL
