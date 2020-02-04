@@ -13,12 +13,12 @@ class Ku(KongLing):
             self.kianlip(han, lo)
         elif isinstance(han, list):
             self.kianlip_tsip_tinliat(han)
-    
+
     def kianlip(self, hanbun, lobun):
         if lobun == 無音:
             lobun = hanbun
         self.內底集 = [Tsip(hanbun, lobun)]
-        
+
     def kianlip_tsip_tinliat(self, tsiptin):
         try:
             self.內底集 = []
