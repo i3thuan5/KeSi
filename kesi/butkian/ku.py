@@ -30,19 +30,23 @@ class Ku:
               全部型陣列, 型巢狀輕聲陣列, )
         self._su = self._bun_tsuan_sûá(全部型陣列, 型巢狀輕聲陣列)
 
-    def _bun_tsuan_sûá(self, bunthong, khinsiannthong):
-        suthong = []
-        for tsitsu, khinsiann in zip(bunthong, khinsiannthong):
-            su = Su()
-            for ji, si_khinsiann in zip(tsitsu, khinsiann):
-                su.append(
-                    Ji(ji, si_khinsiann)
-                )
-            suthong.append(su)
-        return suthong
+    def __str__(self):
+        return self.hanlo
 
     def __iter__(self):
         yield from self._su
+
+    def _bun_tsuan_sûá(self, buntin, khinsianntin):
+        sutin = []
+        for tsitsu, khinsiann in zip(buntin, khinsianntin):
+            su = Su()
+            print('zip=', list(zip(tsitsu, khinsiann)))
+            for ji, si_khinsiann in zip(tsitsu, khinsiann):
+                su.append(
+                    Ji(ji, si_khinsiann=si_khinsiann)
+                )
+            sutin.append(su)
+        return sutin
 
     @property
     def hanlo(self):
@@ -65,6 +69,10 @@ class Ku:
             bunthong.append(suhanlo)
             頂一詞上尾是羅馬字 = si_lomaji(suhanlo[-1])
         return ''.join(bunthong)
+
+    @property
+    def lomaji(self):
+        return self.hanlo
 
     def _對齊型音處理刪節號(self, 型巢狀陣列, 音巢狀陣列, 型輕聲巢狀陣列, 音輕聲巢狀陣列
                    ):

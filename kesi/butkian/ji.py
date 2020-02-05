@@ -6,12 +6,13 @@ from kesi.butkian.su import Su
 class Ji:
 
     def __init__(self, hanlo, lomaji=None, si_khinsiann=False):
-        self.khinsiann = si_khinsiann
-        if self.khinsiann:
+        if si_khinsiann:
+            print('tioh')
             self.hanlo = '--{}'.format(hanlo)
         else:
             self.hanlo = hanlo
-        
+        self.si_khinsiann = si_khinsiann
+
 
 def ps():
     class _Punso:

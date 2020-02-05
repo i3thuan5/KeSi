@@ -2,27 +2,27 @@ Feature: Ku 句仔
 
 
   Scenario Outline: 一筆簡單 ê 句仔
-      """ 
-      會 kā 文本標準化：
-      保留羅馬字 ê 空白，tshun--ê 空白會刣掉
-      """
     Given 一句 <bun> 建立句仔
      Then hanlo是 <kiatko>
       And lomaji是 <kiatko>
 
-    Examples: ku
+    Examples: Hàn-lô bûn kan-na 保留羅馬字之間 ê 空白，tshun--ê 空白清掉
    	| bun              | kiatko       |
 	| Guá sī Ke-si     | Guá sī Ke-si |
 	| 我是 Ke-si       | 我是Ke-si    |
 	| 我 是Ke-si       | 我是Ke-si    |
 	
-	Examples: khin-siann
+	Examples: Khin-siann kah 頭前連寫
 	| bun              | kiatko       |
 	| Guá--lah         | Guá--lah     |
 	| Guá --lah        | Guá--lah     |
-	| 緊--出-來--啦    | 緊--出-來--啦|
 	
-	Examples: sòo-jī
+	Examples: Hàn-jī khin-siann
+	| bun              | kiatko       |
+	| 緊--出-來--啦    | 緊--出-來--啦|
+	| 正--月到--矣     | 正--月到--矣 | 
+	
+	Examples: Sòo-jī
 	| bun              | kiatko       |
 	| 0800-092-000     | 0800-092-000 |
      
