@@ -22,13 +22,24 @@ class Ku:
     _是分字符號 = re.compile('{}+'.format(LIAN_JI_HU))
     _是數字 = set('0123456789')
 
-    def __init__(self, hanlo):
-        # 愛產生新的物件
-        全部型陣列, 型巢狀輕聲陣列 = self._tngsu(hanlo)
-        # 對齊拆開的型、音
-        print('全部型陣列, 全部音陣列,型巢狀輕聲陣列, 音巢狀輕聲陣列,=',
-              全部型陣列, 型巢狀輕聲陣列, )
-        self._su = self._bun_tsuan_sûá(全部型陣列, 型巢狀輕聲陣列)
+    def __init__(self, hanlo, lomaji=None):
+        if lomaji is None:
+            tngji, tngji_khinsiann, si_bokangsu = (
+                self._hunsik_tngji_tngsu(hanlo)
+            )
+            bun, khinsiann = self._tngsu(tngji, tngji_khinsiann, si_bokangsu)
+            self._su = self._bun_tsuan_sutin(bun, khinsiann)
+        else:
+            tnghanlo, _ps, _ps = self._hunsik_tngji_tngsu(hanlo)
+            tnglomaji, tngji_khinsiann, si_bokangsu = (
+                self._hunsik_tngji_tngsu(lomaji)
+            )
+            hanlo_tin, _ps = self._tngsu(
+                tnghanlo, tngji_khinsiann, si_bokangsu)
+            lomaji_tin, khinsiann = self._tngsu(
+                tnglomaji, tngji_khinsiann, si_bokangsu)
+            self._su = self._phe_tsuan_sutin(
+                hanlo_tin, lomaji_tin, khinsiann)
 
     def __str__(self):
         return self.hanlo
@@ -36,11 +47,10 @@ class Ku:
     def __iter__(self):
         yield from self._su
 
-    def _bun_tsuan_sûá(self, buntin, khinsianntin):
+    def _bun_tsuan_sutin(self, buntin, khinsianntin):
         sutin = []
         for tsitsu, khinsiann in zip(buntin, khinsianntin):
             su = Su()
-            print('zip=', list(zip(tsitsu, khinsiann)))
             for ji, si_khinsiann in zip(tsitsu, khinsiann):
                 su.append(
                     Ji(ji, si_khinsiann=si_khinsiann)
@@ -48,9 +58,24 @@ class Ku:
             sutin.append(su)
         return sutin
 
+    def _phe_tsuan_sutin(self, hanlo_tin, lomaji_tin, khinsiann_tin):
+        sutin = []
+        for suhanlo, sulomaji, khinsiann in zip(
+                hanlo_tin, lomaji_tin, khinsiann_tin):
+            su = Su()
+            # print('suhanlo, sulomaji, khinsiann=',
+            #       suhanlo, sulomaji, khinsiann)
+            for jihanlo, jilomaji, si_khinsiann in zip(
+                    suhanlo, sulomaji, khinsiann):
+                su.append(
+                    Ji(jihanlo, lomaji=jilomaji, si_khinsiann=si_khinsiann)
+                )
+            sutin.append(su)
+        return sutin
+
     @property
     def hanlo(self):
-        """ 
+        """
           會 kā 文本標準化：
           保留羅馬字 ê 空白，tshun--ê 空白會刣掉
         """
@@ -171,11 +196,7 @@ class Ku:
             )
         return 詞陣列
 
-    def _拆句做字(self, 語句):
-        return self._句分析(語句)[0]
-
-    def _tngsu(self, 語句):
-        字陣列, 輕聲陣列, 佮後一个字無仝一个詞 = self._句分析(語句)
+    def _tngsu(self, 字陣列, 輕聲陣列, 佮後一个字無仝一个詞):
         巢狀詞陣列 = []
         巢狀輕聲陣列 = []
         位置 = 0
@@ -187,9 +208,10 @@ class Ku:
             巢狀詞陣列.append(字陣列[位置:範圍])
             巢狀輕聲陣列.append(輕聲陣列[位置:範圍])
             位置 = 範圍
+        print('巢狀詞陣列, 巢狀輕聲陣列=', 巢狀詞陣列, 巢狀輕聲陣列)
         return 巢狀詞陣列, 巢狀輕聲陣列
 
-    def _句分析(self, 語句):
+    def _hunsik_tngji_tngsu(self, 語句):
         狀態 = self._分析狀態()
         if 語句 == 分詞符號 or self._是空白.fullmatch(語句):
             return 狀態.分析結果()
@@ -218,7 +240,7 @@ class Ku:
                     分字長度 = len(揣分字.group(0))
                     if 分字長度 == 1:
                         if not 狀態.敢有分析資料矣() or 頂一个是空白:
-                            狀態.字陣列直接加一字(分字符號)
+                            狀態.字陣列直接加一字(LIAN_JI_HU)
                             狀態.頂一字佮這馬的字無仝詞()
                         else:
                             狀態.頂一字佮這馬的字仝詞()
@@ -229,19 +251,19 @@ class Ku:
                         狀態.這陣是輕聲詞()
                     else:
                         for _ in range(分字長度):
-                            狀態.字陣列直接加一字(分字符號)
+                            狀態.字陣列直接加一字(LIAN_JI_HU)
                             狀態.頂一字佮這馬的字無仝詞()
                     位置 += 分字長度 - 1
                 elif 字 == 分詞符號 or self._是空白.fullmatch(字):
                     狀態.這馬字好矣清掉囥入去字陣列()
                     狀態.頂一字佮這馬的字無仝詞()
                     if 頂一个是連字符:
-                        狀態.字陣列直接加一字(分字符號)
+                        狀態.字陣列直接加一字(LIAN_JI_HU)
                         狀態.頂一字佮這馬的字無仝詞()
                     if 頂一个是輕聲符號:
-                        狀態.字陣列直接加一字(分字符號)
+                        狀態.字陣列直接加一字(LIAN_JI_HU)
                         狀態.頂一字佮這馬的字無仝詞()
-                        狀態.字陣列直接加一字(分字符號)
+                        狀態.字陣列直接加一字(LIAN_JI_HU)
                         狀態.頂一字佮這馬的字無仝詞()
                     是空白 = True
                 # 羅馬字接做伙
@@ -315,16 +337,17 @@ class Ku:
             else:
                 raise 解析錯誤('語句組字式無完整，語句＝{0}'.format(str(語句)))
         if 頂一个是連字符:
-            狀態.字陣列直接加一字(分字符號)
+            狀態.字陣列直接加一字(LIAN_JI_HU)
             狀態.頂一字佮這馬的字無仝詞()
         if 頂一个是輕聲符號:
-            狀態.字陣列直接加一字(分字符號)
+            狀態.字陣列直接加一字(LIAN_JI_HU)
             狀態.頂一字佮這馬的字無仝詞()
-            狀態.字陣列直接加一字(分字符號)
+            狀態.字陣列直接加一字(LIAN_JI_HU)
             狀態.頂一字佮這馬的字無仝詞()
         return 狀態.分析結果()
 
     class _分析狀態:
+
         def __init__(self):
             self._字陣列 = []
             self._輕聲陣列 = []
@@ -425,6 +448,7 @@ class Ku:
 
 def ps():
     class _Punso:
+
         def kianlip(self, hanbun, lobun):
             if lobun == 無音:
                 lobun = hanbun
@@ -461,7 +485,7 @@ def ps():
                 集的型.append(一集.看型(物件分字符號, 物件分詞符號))
             return 物件分詞符號.join(集的型)
 
-        def lomaji(self, 物件分字符號=分字符號, 物件分詞符號=分詞符號):
+        def lomaji(self, 物件分字符號=LIAN_JI_HU, 物件分詞符號=分詞符號):
             集的音 = []
             for 一集 in self.內底集:
                 音標 = 一集.看音(物件分字符號, 物件分詞符號)
