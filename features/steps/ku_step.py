@@ -6,6 +6,7 @@ from itertools import zip_longest
 @given(u'一句 {bun} 建立句仔')
 def 建立句仔(context, bun):
     context.ku = Ku(bun)
+    print(context.ku.hanlo.__doc__)
 
 
 @then(u'hanlo是 {hanlo}')

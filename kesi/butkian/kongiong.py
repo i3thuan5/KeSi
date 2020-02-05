@@ -6,12 +6,9 @@ from kesi.imphiau.Taigi.臺灣閩南語羅馬字拼音轉方音符號吳守禮�
 
 無音 = ''  # '　'
 # sui1 koo1-niu5 =>　媠　姑娘
-分字符號 = '-'
+LIAN_JI_HU = '-'
 分詞符號 = ' '
-分型音符號 = '｜'
-# a2-bing5 # bo5 tsiah8 png7 代表 bing5 無變調
-本調符號 = '#'
-輕聲符號 = '--'
+KHIN_SIANN_HU = '--'
 # 句中是為著加速標音
 句中標點符號 = {
     '、', '﹑', '､', '-', '—', '~', '～',
@@ -46,6 +43,10 @@ from kesi.imphiau.Taigi.臺灣閩南語羅馬字拼音轉方音符號吳守禮�
 
 # Ll　小寫， Lu　大寫， Md　數字， Mn　有調號英文，Lo　其他, So 組字式符號…
 _統一碼羅馬字類 = {'Ll', 'Lu', 'Mn'}
+
+
+def si_lomaji(jiguan):
+    return 敢是拼音字元(jiguan) or jiguan.isdigit()
 
 
 def 敢是拼音字元(字元):

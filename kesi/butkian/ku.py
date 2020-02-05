@@ -1,7 +1,7 @@
 import re
 
-from kesi.butkian.kongiong import 分詞符號, 分字符號, 無音, 組字式符號, 聲調符號, 標點符號, 敢是拼音字元,\
-    敢是注音符號
+from kesi.butkian.kongiong import 分詞符號, 無音, 組字式符號, 聲調符號, 標點符號, 敢是拼音字元,\
+    敢是注音符號, KHIN_SIANN_HU, LIAN_JI_HU, si_lomaji
 from kesi.kaisik.tsho_ngoo import 型態錯誤, 解析錯誤
 from kesi.butkian.su import Su
 from kesi.butkian.ji import Ji
@@ -19,27 +19,52 @@ class Ku:
     """
     _切組物件分詞 = re.compile('(([^ ｜]*[^ ]｜[^ ][^ ｜]*) ?|[^ ]+)')
     _是空白 = re.compile(r'[^\S\n]+')
-    _是分字符號 = re.compile('{}+'.format(分字符號))
+    _是分字符號 = re.compile('{}+'.format(LIAN_JI_HU))
     _是數字 = set('0123456789')
 
     def __init__(self, hanlo):
         # 愛產生新的物件
-        全部型陣列, 型巢狀輕聲陣列 = self._拆句做巢狀詞(hanlo)
+        全部型陣列, 型巢狀輕聲陣列 = self._tngsu(hanlo)
         # 對齊拆開的型、音
         print('全部型陣列, 全部音陣列,型巢狀輕聲陣列, 音巢狀輕聲陣列,=',
               全部型陣列, 型巢狀輕聲陣列, )
-        self._su = self._bun_tsuan_suthong(全部型陣列, 型巢狀輕聲陣列)
+        self._su = self._bun_tsuan_sûá(全部型陣列, 型巢狀輕聲陣列)
 
-    def _bun_tsuan_suthong(self, 型巢狀陣列, 型輕聲巢狀陣列):
+    def _bun_tsuan_sûá(self, bunthong, khinsiannthong):
         suthong = []
-        for tsitsu, khinsiannthong in zip(型巢狀陣列, 型輕聲巢狀陣列):
+        for tsitsu, khinsiann in zip(bunthong, khinsiannthong):
             su = Su()
-            for ji, si_khinsiann in zip(tsitsu, khinsiannthong):
+            for ji, si_khinsiann in zip(tsitsu, khinsiann):
                 su.append(
                     Ji(ji, si_khinsiann)
                 )
             suthong.append(su)
         return suthong
+
+    def __iter__(self):
+        yield from self._su
+
+    @property
+    def hanlo(self):
+        """ 
+          會 kā 文本標準化：
+          保留羅馬字 ê 空白，tshun--ê 空白會刣掉
+        """
+        bunthong = []
+        頂一詞上尾是羅馬字 = False
+        for su in self:
+            suhanlo = su.hanlo
+            #
+            #  判斷愛先添空白符無
+            #    H, H -> 'HH'
+            #    H, L -> 'HL'
+            #    L, L -> 'L L'
+            #
+            if 頂一詞上尾是羅馬字 and si_lomaji(suhanlo[0]):
+                bunthong.append(' ')
+            bunthong.append(suhanlo)
+            頂一詞上尾是羅馬字 = si_lomaji(suhanlo[-1])
+        return ''.join(bunthong)
 
     def _對齊型音處理刪節號(self, 型巢狀陣列, 音巢狀陣列, 型輕聲巢狀陣列, 音輕聲巢狀陣列
                    ):
@@ -141,7 +166,7 @@ class Ku:
     def _拆句做字(self, 語句):
         return self._句分析(語句)[0]
 
-    def _拆句做巢狀詞(self, 語句):
+    def _tngsu(self, 語句):
         字陣列, 輕聲陣列, 佮後一个字無仝一个詞 = self._句分析(語句)
         巢狀詞陣列 = []
         巢狀輕聲陣列 = []
@@ -390,193 +415,69 @@ class Ku:
             return False
 
 
-class Tsoo():
-    內底詞 = None
+def ps():
+    class _Punso:
+        def kianlip(self, hanbun, lobun):
+            if lobun == 無音:
+                lobun = hanbun
+            self.內底集 = [Tsip(hanbun, lobun)]
 
-    def __init__(self, han, lo=''):
-        # 愛產生新的物件
-        if isinstance(han, str):
-            self.kianlip(han, lo)
-        elif isinstance(han, list):
-            self.kianlip_su_tinliat(han)
+        def kianlip_tsip_tinliat(self, tsiptin):
+            try:
+                self.內底集 = []
+                for 集物件 in tsiptin:
+                    if not isinstance(集物件, Tsip):
+                        raise 型態錯誤(
+                            '集陣列內底有毋是集的：集陣列＝{0}，集物件＝{1}'
+                            .format(str(tsiptin), str(集物件))
+                        )
+                    self.內底集.append(Tsip(集物件.內底組))
+            except TypeError as 問題:
+                raise 型態錯誤(
+                    '傳入來的集陣列毋法度疊代：{0}，問題：{1}'
+                    .format(str(tsiptin), 問題)
+                )
 
-    def __eq__(self, 別个):
-        return isinstance(別个, Tsoo) and self.內底詞 == 別个.內底詞
+        def __eq__(self, 別个):
+            return isinstance(別个, Ku) and self.內底集 == 別个.內底集
 
-    def __hash__(self):
-        return hash(tuple(self.內底詞))
+        def __str__(self):
+            return '句：{0}'.format(self.內底集)
 
-    def __str__(self):
-        return '組：{0}'.format(self.內底詞)
+        def __repr__(self):
+            return self.__str__()
 
-    def __repr__(self):
-        return self.__str__()
+        def hanji(self, 物件分字符號='', 物件分詞符號=''):
+            集的型 = []
+            for 一集 in self.內底集:
+                集的型.append(一集.看型(物件分字符號, 物件分詞符號))
+            return 物件分詞符號.join(集的型)
 
-    def kianlip(self, hanbun, lobun):
-        self.內底詞 = ''
-        if not isinstance(hanbun, str):
-            raise 型態錯誤(
-                '傳入來的型毋是字串：型＝{0}，音＝{1}'.format(
-                    str(hanbun), str(lobun))
-            )
-        if not isinstance(lobun, str):
-            raise 型態錯誤(
-                '傳入來的音毋是字串：型＝{0}，音＝{1}'.format(
-                    str(hanbun), str(lobun))
-            )
-        全部型陣列, 型巢狀輕聲陣列 = self._拆句做巢狀詞(hanbun)
-        全部音陣列, 音巢狀輕聲陣列 = self._拆句做巢狀詞(lobun)
-        self.內底詞 = self._對齊型音處理刪節號(
-            全部型陣列, 全部音陣列,
-            型巢狀輕聲陣列, 音巢狀輕聲陣列,
-            hanbun, lobun,
-        )
+        def lomaji(self, 物件分字符號=分字符號, 物件分詞符號=分詞符號):
+            集的音 = []
+            for 一集 in self.內底集:
+                音標 = 一集.看音(物件分字符號, 物件分詞符號)
+                if 音標 != 無音:
+                    集的音.append(音標)
+            return 物件分詞符號.join(集的音)
 
-    def kianlip_su_tinliat(self, sutin):
-        # 愛產生新的物件
-        try:
-            self.內底詞 = []
-            for 詞物件 in sutin:
-                if not isinstance(詞物件, Su):
-                    raise 型態錯誤(
-                        '詞陣列內底有毋是詞的：詞陣列＝{0}，詞物件＝{1}'.format(
-                            str(sutin), str(詞物件))
-                    )
-                self.內底詞.append(Su(詞物件.內底字))
-        except TypeError as 問題:
-            raise 型態錯誤('傳入來的詞陣列毋法度疊代：{0}，問題：{1}'
-                       .format(str(sutin), 問題))
+        def hunsu(self):
+            return
 
-    def 看語句(self):
-        詞的型陣列 = []
-        頂一詞上尾是羅馬字 = False
-        for 一詞 in self.內底詞:
-            詞型 = 一詞.看語句()
-            if (
-                頂一詞上尾是羅馬字
-                and (敢是拼音字元(詞型[0]) or 詞型[0].isdigit() or 詞型[0] == 分字符號)
-            ):
-                詞的型陣列.append(分詞符號)
-            # 輕聲詞 '--sui2' => '--sui2 '
-            # 一般詞 'sui2' => 'sui2 '
-            詞的型陣列.append(詞型)
-            頂一詞上尾是羅馬字 = 敢是拼音字元(詞型[-1]) or 詞型[-1].isdigit()
-        return ''.join(詞的型陣列)
+        def 篩出字物件(self):
+            字陣列 = []
+            for 集物件 in self.內底集:
+                字陣列.extend(集物件.篩出字物件())
+            return 字陣列
 
-    def 看型(self, 物件分字符號='', 物件分詞符號='', 物件分句符號=''):
-        詞的型 = []
-        for 一詞 in self.內底詞:
-            詞的型.append(一詞.看型(物件分字符號, 物件分詞符號))
-        return 物件分詞符號.join(詞的型)
+        def 網出詞物件(self):
+            詞陣列 = []
+            for 集物件 in self.內底集:
+                詞陣列.extend(集物件.網出詞物件())
+            return 詞陣列
 
-    def 看音(self, 物件分字符號=分字符號, 物件分詞符號=分詞符號, 物件分句符號=分詞符號):
-        詞的音 = []
-        for 一詞 in self.內底詞:
-            音標 = 一詞.看音(物件分字符號, 物件分詞符號)
-            if 音標 != 無音:
-                詞的音.append(音標)
-        return 物件分詞符號.join(詞的音)
-
-    def 看分詞(self):
-        詞的音 = []
-        for 一詞 in self.內底詞:
-            音標 = 一詞.看分詞()
-            if 音標 != '':
-                詞的音.append(音標)
-        return 分詞符號.join(詞的音)
-
-    def 綜合標音(self, 語言綜合標音):
-        詞組綜合標音 = {}
-        for 一詞 in self.內底詞:
-            for 欄位, 內容 in 一詞.綜合標音(語言綜合標音)[0].items():
-                try:
-                    詞組綜合標音[欄位].append(內容)
-                except KeyError:
-                    詞組綜合標音[欄位] = [內容]
-        結果 = {}
-        for 欄位, 內容 in 詞組綜合標音.items():
-            結果[欄位] = ' '.join(內容)
-        return [結果]
-
-    def 篩出字物件(self):
-        字陣列 = []
-        for 詞物件 in self.內底詞:
-            字陣列.extend(詞物件.篩出字物件())
-        return 字陣列
-
-    def 網出詞物件(self):
-        return list(self.內底詞)
-
-    def 轉音(self, 音標工具, 函式='預設音標'):
-        # 逐个函式攏愛產生新的物件
-        新組物件 = Tsoo()
-        for 詞物件 in self.內底詞:
-            新組物件.內底詞.append(詞物件.轉音(音標工具, 函式))
-        return 新組物件
-
-
-class _Punso:
-    def kianlip(self, hanbun, lobun):
-        if lobun == 無音:
-            lobun = hanbun
-        self.內底集 = [Tsip(hanbun, lobun)]
-
-    def kianlip_tsip_tinliat(self, tsiptin):
-        try:
-            self.內底集 = []
-            for 集物件 in tsiptin:
-                if not isinstance(集物件, Tsip):
-                    raise 型態錯誤(
-                        '集陣列內底有毋是集的：集陣列＝{0}，集物件＝{1}'
-                        .format(str(tsiptin), str(集物件))
-                    )
-                self.內底集.append(Tsip(集物件.內底組))
-        except TypeError as 問題:
-            raise 型態錯誤(
-                '傳入來的集陣列毋法度疊代：{0}，問題：{1}'
-                .format(str(tsiptin), 問題)
-            )
-
-    def __eq__(self, 別个):
-        return isinstance(別个, Ku) and self.內底集 == 別个.內底集
-
-    def __str__(self):
-        return '句：{0}'.format(self.內底集)
-
-    def __repr__(self):
-        return self.__str__()
-
-    def hanji(self, 物件分字符號='', 物件分詞符號=''):
-        集的型 = []
-        for 一集 in self.內底集:
-            集的型.append(一集.看型(物件分字符號, 物件分詞符號))
-        return 物件分詞符號.join(集的型)
-
-    def lomaji(self, 物件分字符號=分字符號, 物件分詞符號=分詞符號):
-        集的音 = []
-        for 一集 in self.內底集:
-            音標 = 一集.看音(物件分字符號, 物件分詞符號)
-            if 音標 != 無音:
-                集的音.append(音標)
-        return 物件分詞符號.join(集的音)
-
-    def hunsu(self):
-        return
-
-    def 篩出字物件(self):
-        字陣列 = []
-        for 集物件 in self.內底集:
-            字陣列.extend(集物件.篩出字物件())
-        return 字陣列
-
-    def 網出詞物件(self):
-        詞陣列 = []
-        for 集物件 in self.內底集:
-            詞陣列.extend(集物件.網出詞物件())
-        return 詞陣列
-
-    def 轉音(self, 音標工具, 函式='預設音標'):
-        新句物件 = Ku()
-        for 集物件 in self.內底集:
-            新句物件.內底集.append(集物件.轉音(音標工具, 函式))
-        return 新句物件
+        def 轉音(self, 音標工具, 函式='預設音標'):
+            新句物件 = Ku()
+            for 集物件 in self.內底集:
+                新句物件.內底集.append(集物件.轉音(音標工具, 函式))
+            return 新句物件
