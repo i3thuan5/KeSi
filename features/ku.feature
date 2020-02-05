@@ -2,17 +2,30 @@ Feature: Ku 句仔
 
 
   Scenario Outline: 一筆簡單 ê 句仔
+      """ 
+      會 kā 文本標準化：
+      保留羅馬字 ê 空白，tshun--ê 空白會刣掉
+      """
     Given 一句 <bun> 建立句仔
      Then hanlo是 <kiatko>
       And lomaji是 <kiatko>
 
     Examples: ku
-   	| bun               | kiatko          |
-	| Guá sī Ke-si      | Guá sī Ke-si    |
-	| 我是 Ke-si ê 物件 | 我是Ke-si ê物件 |
-	| 我 是Ke-si ê物件  | 我是Ke-si ê物件 |
-	| 緊--出-來--啦     | 緊--出-來--啦   |
-
+   	| bun              | kiatko       |
+	| Guá sī Ke-si     | Guá sī Ke-si |
+	| 我是 Ke-si       | 我是Ke-si    |
+	| 我 是Ke-si       | 我是Ke-si    |
+	
+	Examples: khin-siann
+	| bun              | kiatko       |
+	| Guá--lah         | Guá--lah     |
+	| Guá --lah        | Guá--lah     |
+	| 緊--出-來--啦    | 緊--出-來--啦|
+	
+	Examples: sòo-jī
+	| bun              | kiatko       |
+	| 0800-092-000     | 0800-092-000 |
+     
 
   Scenario Outline: 漢羅文 kah 羅馬字對照
     Given 兩句 <hanlo> kah <lomaji> 做伙建立一 ê 句仔
