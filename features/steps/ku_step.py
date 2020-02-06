@@ -8,6 +8,11 @@ def 建立句仔(context, bun):
     context.ku = Ku(bun)
 
 
+@given(u'Kan-na傳 lomaji: {lomaji}建立句仔')
+def step_impl(context, lomaji):
+    context.ku = Ku(lomaji=lomaji)
+
+
 @then(u'hanlo是 {hanlo}')
 def hanlo是(context, hanlo):
     assert context.ku.hanlo == hanlo, context.ku.hanlo
