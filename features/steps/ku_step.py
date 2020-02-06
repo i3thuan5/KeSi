@@ -10,13 +10,12 @@ def 建立句仔(context, bun):
 
 @then(u'hanlo是 {hanlo}')
 def hanlo是(context, hanlo):
-    print(context.ku.hanlo)
-    assert context.ku.hanlo == hanlo
+    assert context.ku.hanlo == hanlo, context.ku.hanlo
 
 
 @then(u'lomaji是 {lomaji}')
 def lomaji是(context, lomaji):
-    assert context.ku.lomaji == lomaji
+    assert context.ku.lomaji == lomaji, context.ku.lomaji
 
 
 @given(u'兩句 {hanlo} kah {lomaji} 做伙建立一 ê 句仔')
