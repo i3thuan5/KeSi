@@ -50,6 +50,9 @@ class Ku:
     def __iter__(self):
         yield from self._su
 
+    def __getitem__(self, kui):
+        return self._su[kui]
+
     def _bun_tsuan_sutin(self, bun_tin, khinsiann_tin):
         sutin = []
         for tsitsu, khinsiann in zip(bun_tin, khinsiann_tin):

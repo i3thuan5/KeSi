@@ -42,7 +42,7 @@ def 字仔是(context):
         assert ji.lomaji == tapan['lomaji'], ji.lomaji
 
 
-@then(u'第 {kui} 詞 ê 字仔是')
+@then(u'第 {kui:d} 詞 ê 字仔是')
 def 第幾詞ê字仔是(context, kui):
     su = context.ku[kui]
     for ji, tapan in zip_longest(su, context.table):
