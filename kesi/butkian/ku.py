@@ -30,6 +30,7 @@ class Ku:
             bun, khinsiann = self._tngsu(tngji, tngji_khinsiann, si_bokangsu)
             self._su = self._bun_tsuan_sutin(bun, khinsiann)
         else:
+            """ 以羅馬字ê斷字斷詞為主，漢羅文--ê無效 """
             tnghanlo, _ps, _ps = self._hunsik_tngji_tngsu(hanlo)
             tnglomaji, tngji_khinsiann, si_bokangsu = (
                 self._hunsik_tngji_tngsu(lomaji)
@@ -38,6 +39,7 @@ class Ku:
                 tnghanlo, tngji_khinsiann, si_bokangsu)
             lomaji_tin, khinsiann = self._tngsu(
                 tnglomaji, tngji_khinsiann, si_bokangsu)
+
             self._su = self._phe_tsuan_sutin(
                 hanlo_tin, lomaji_tin, khinsiann)
 
@@ -47,9 +49,9 @@ class Ku:
     def __iter__(self):
         yield from self._su
 
-    def _bun_tsuan_sutin(self, buntin, khinsianntin):
+    def _bun_tsuan_sutin(self, bun_tin, khinsiann_tin):
         sutin = []
-        for tsitsu, khinsiann in zip(buntin, khinsianntin):
+        for tsitsu, khinsiann in zip(bun_tin, khinsiann_tin):
             su = Su()
             for ji, si_khinsiann in zip(tsitsu, khinsiann):
                 su.append(
@@ -79,7 +81,7 @@ class Ku:
           會 kā 文本標準化：
           保留羅馬字 ê 空白，tshun--ê 空白會刣掉
         """
-        bunthong = []
+        bun = []
         頂一詞上尾是羅馬字 = False
         for su in self:
             suhanlo = su.hanlo
@@ -90,14 +92,32 @@ class Ku:
             #    L, L -> 'L L'
             #
             if 頂一詞上尾是羅馬字 and si_lomaji(suhanlo[0]):
-                bunthong.append(' ')
-            bunthong.append(suhanlo)
+                bun.append(' ')
+            bun.append(suhanlo)
             頂一詞上尾是羅馬字 = si_lomaji(suhanlo[-1])
-        return ''.join(bunthong)
+        return ''.join(bun)
 
     @property
     def lomaji(self):
-        return self.hanlo
+        """
+          會 kā 文本標準化：
+          保留羅馬字 ê 空白，tshun--ê 空白會刣掉
+        """
+        bun = []
+        頂一詞上尾是羅馬字 = False
+        for su in self:
+            sulomaji = su.lomaji
+            #
+            #  判斷愛先添空白符無
+            #    H, H -> 'HH'
+            #    H, L -> 'HL'
+            #    L, L -> 'L L'
+            #
+            if 頂一詞上尾是羅馬字 and si_lomaji(sulomaji[0]):
+                bun.append(' ')
+            bun.append(sulomaji)
+            頂一詞上尾是羅馬字 = si_lomaji(sulomaji[-1])
+        return ''.join(bun)
 
     def _對齊型音處理刪節號(self, 型巢狀陣列, 音巢狀陣列, 型輕聲巢狀陣列, 音輕聲巢狀陣列
                    ):

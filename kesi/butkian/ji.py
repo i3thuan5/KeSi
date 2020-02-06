@@ -11,6 +11,13 @@ class Ji:
             self.hanlo = '--{}'.format(hanlo)
         else:
             self.hanlo = hanlo
+
+        if lomaji and si_khinsiann:
+            self.lomaji = '--{}'.format(lomaji)
+        elif lomaji:
+            self.lomaji = lomaji
+        else:
+            self.lomaji = self.hanlo
         self.si_khinsiann = si_khinsiann
 
 

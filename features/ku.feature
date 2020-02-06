@@ -42,7 +42,7 @@ Feature: Ku 句仔
     
     Examples: 標點符號
     | hanlo         | lomaji            | kiatko_hanlo    | kiatko_lomaji  |
-    | Gâu-tsá,      | Gâu-tsá,          | Gâu-tsá         | Gâu-tsá        |
+    | Gâu-tsá,      | Gâu-tsá,          | Gâu-tsá,         | Gâu-tsá,        |
     | 𠢕早，        | Gâu-tsá,          | 𠢕早，          | Gâu-tsá,       |
     | 𠢕早……      |  Gâu-tsá...       | 𠢕早……        |  Gâu-tsá...    |
     
