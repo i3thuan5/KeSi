@@ -71,8 +71,14 @@ class Su:
             ting_ji_si_lomaji = si_lomaji(jilomaji[-1])
         return ''.join(buntin)
 
-    def append(self, ji):
+    def thiam(self, ji):
         self._ji.append(ji)
+
+    def POJ(self):
+        sin_su = Su()
+        for ji in self:
+            sin_su.thiam(ji.POJ())
+        return sin_su
 
 
 def ps():

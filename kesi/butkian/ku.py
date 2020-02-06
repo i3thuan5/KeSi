@@ -23,8 +23,15 @@ class Ku:
     _是數字 = set('0123456789')
     _是多字元標點 = re.compile('(\.\.\.)|(……)|(──)')
 
-    def __init__(self, hanlo, lomaji=None):
-        if lomaji is None:
+    def __init__(self, hanlo=None, lomaji=None):
+        # Ku(lomaji='Goa')
+        if hanlo is None:
+            hanlo = lomaji
+            lomaji = None
+
+        if hanlo is None:
+            self._su = []
+        elif lomaji is None:
             tngji, tngji_khinsiann, si_bokangsu = (
                 self._hunsik_tngji_tngsu(hanlo)
             )
@@ -58,7 +65,7 @@ class Ku:
         for tsitsu, khinsiann in zip(bun_tin, khinsiann_tin):
             su = Su()
             for ji, si_khinsiann in zip(tsitsu, khinsiann):
-                su.append(
+                su.thiam(
                     Ji(ji, si_khinsiann=si_khinsiann)
                 )
             sutin.append(su)
@@ -69,11 +76,9 @@ class Ku:
         for suhanlo, sulomaji, khinsiann in zip(
                 hanlo_tin, lomaji_tin, khinsiann_tin):
             su = Su()
-            # print('suhanlo, sulomaji, khinsiann=',
-            #       suhanlo, sulomaji, khinsiann)
             for jihanlo, jilomaji, si_khinsiann in zip(
                     suhanlo, sulomaji, khinsiann):
-                su.append(
+                su.thiam(
                     Ji(jihanlo, lomaji=jilomaji, si_khinsiann=si_khinsiann)
                 )
             sutin.append(su)
@@ -129,6 +134,15 @@ class Ku:
         """
         for tsit_su in self:
             yield from tsit_su
+
+    def thiam(self, su):
+        self._su.append(su)
+
+    def POJ(self):
+        sin_ku = Ku()
+        for su in self:
+            sin_ku.thiam(su.POJ())
+        return sin_ku
 
     def _tngsu(self, 字陣列, 輕聲陣列, 佮後一个字無仝一个詞):
         巢狀詞陣列 = []

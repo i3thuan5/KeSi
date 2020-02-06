@@ -19,6 +19,12 @@ class Ji:
             self.lomaji = self.hanlo
         self.si_khinsiann = si_khinsiann
 
+    def POJ(self):
+        return Ji(
+            tsuanPOJ(self.hanlo), tsuanPOJ(self.lomaji),
+            si_khinsiann=self.si_khinsiann
+        )
+
 
 def ps():
     class _Punso:
