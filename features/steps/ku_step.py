@@ -18,23 +18,28 @@ def lomaji是(context, lomaji):
     assert context.ku.lomaji == lomaji, context.ku.lomaji
 
 
-@given(u'兩句 {hanlo} kah {lomaji} 做伙建立一 ê 句仔')
+@given(u'兩句 "{hanlo}" kah "{lomaji}" 做伙建立一 ê 句仔')
 def 做伙建立句仔(context, hanlo, lomaji):
+    context.ku = Ku(hanlo, lomaji)
+
+
+@given(u'兩句 {hanlo} kah {lomaji} 做伙建立一 ê 句仔')
+def 做伙建立句仔2(context, hanlo, lomaji):
     context.ku = Ku(hanlo, lomaji)
 
 
 @then(u'詞仔是')
 def 詞仔是(context):
     for su, tapan in zip_longest(context.ku, context.table):
-        assert su.hanlo == tapan['hanlo']
-        assert su.lomaji == tapan['lomaji']
+        assert su.hanlo == tapan['hanlo'], su.hanlo
+        assert su.lomaji == tapan['lomaji'], su.lomaji
 
 
 @then(u'字仔是')
 def 字仔是(context):
     for ji, tapan in zip_longest(context.ku.thianji(), context.table):
-        assert ji.hanlo == tapan['hanlo']
-        assert ji.lomaji == tapan['lomaji']
+        assert ji.hanlo == tapan['hanlo'], ji.hanlo
+        assert ji.lomaji == tapan['lomaji'], ji.lomaji
 
 
 @then(u'第 {kui} 詞 ê 字仔是')

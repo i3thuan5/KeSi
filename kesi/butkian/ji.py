@@ -7,7 +7,6 @@ class Ji:
 
     def __init__(self, hanlo, lomaji=None, si_khinsiann=False):
         if si_khinsiann:
-            print('tioh')
             self.hanlo = '--{}'.format(hanlo)
         else:
             self.hanlo = hanlo

@@ -8,9 +8,6 @@ class Su:
     def __init__(self):
         self._ji = []
 
-    def append(self, ji):
-        self._ji.append(ji)
-
     def __iter__(self):
         yield from self._ji
 
@@ -73,6 +70,9 @@ class Su:
             buntin.append(jilomaji)
             ting_ji_si_lomaji = si_lomaji(jilomaji[-1])
         return ''.join(buntin)
+
+    def append(self, ji):
+        self._ji.append(ji)
 
 
 def ps():

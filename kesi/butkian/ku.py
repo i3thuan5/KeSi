@@ -1,7 +1,7 @@
 import re
 
 from kesi.butkian.kongiong import 分詞符號, 無音, 組字式符號, 聲調符號, 標點符號, 敢是拼音字元,\
-    敢是注音符號, KHIN_SIANN_HU, LIAN_JI_HU, si_lomaji
+    敢是注音符號, LIAN_JI_HU, si_lomaji
 from kesi.kaisik.tsho_ngoo import 型態錯誤, 解析錯誤
 from kesi.butkian.su import Su
 from kesi.butkian.ji import Ji
@@ -119,6 +119,13 @@ class Ku:
             bun.append(sulomaji)
             頂一詞上尾是羅馬字 = si_lomaji(sulomaji[-1])
         return ''.join(bun)
+
+    def thianji(self):
+        """
+        =臺灣言語工具.拆文分析器.篩出字物件
+        """
+        for tsit_su in self:
+            yield from tsit_su
 
     def _tngsu(self, 字陣列, 輕聲陣列, 佮後一个字無仝一个詞):
         巢狀詞陣列 = []
