@@ -1,8 +1,6 @@
 # -*- coding: utf-8 -*-
 # 瀏覽器希望無音愛有空白，但是處理標音時希望較好認
 import unicodedata
-from kesi.imphiau.Hagfa.臺灣客家話拼音 import 臺灣客家話拼音調類對照表
-from kesi.imphiau.Taigi.臺灣閩南語羅馬字拼音轉方音符號吳守禮改良式模組 import 臺灣閩南語羅馬字拼音對照吳守禮方音聲調表
 
 無音 = ''  # '　'
 # sui1 koo1-niu5 =>　媠　姑娘
@@ -31,9 +29,19 @@ KHIN_SIANN_HU = '--'
     {';', '；', '﹔', }
 )
 
+# Siann-tiāu
+HAGFA_TIAU = {
+    '', 'ˊ', 'ˋ', 'ˇ', '+', '^'
+}
+NGOO_SIU_LE = {
+    '0': '˙', '1': '', '2': 'ˋ', '3': '˪',
+    '4': '', '5': 'ˊ', '6': '˫', '7': '˫',
+    '8': '㆐', '9': '^', '10': '㆐'
+}
+
 聲調符號 = (
-    臺灣客家話拼音調類對照表 |
-    set(臺灣閩南語羅馬字拼音對照吳守禮方音聲調表.values())
+    HAGFA_TIAU |
+    set(NGOO_SIU_LE.values())
 ) - {''}
 
 
