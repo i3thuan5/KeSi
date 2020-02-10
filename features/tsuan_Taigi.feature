@@ -8,14 +8,15 @@ Feature: Tsuán Tâi-gí 轉台語，kā羅馬字轉做其他音標系統
     | bun     | POJ   |
     | a1      | a     |
     | Sui2    | Súi   |
-	| Tsui2   | Chúi  |
-	| ang3    | àng   |
+	  | Tsui2   | Chúi  |
+	  | ang3    | àng   |
     | au3     | àu    |
     | tik4    | tek   |
     | mng5    | mn̂g  |
     | M5      | M̂    |
     | ua5     | ôa    |
     | phîng   | phêng |
+    | PHÎNG   | PHÊNG |
     | oo7     | ō͘     |
     | ainn7   | āiⁿ   |
     | hiunnh8 | hiu̍ⁿh |

@@ -4,18 +4,40 @@ import re
 from kesi.susia.Taigi.TL import KONGKE_SIANNBO, KONGKE_UNBO
 from kesi.susia.Taigi.臺灣閩南語羅馬字拼音轉白話字模組 import 臺羅數字調轉白話字
 
+SI_TSUAN_TUASIA = 'SI_TSUAN_TUASIA'
+SI_TSUAN_SIOSIA = 'SI_TSUAN_SIOSIA'
+SI_THAU_TUASIA = 'SI_THAU_TUASIA'
 
-def tsuanPOJ(lomaji):
-    bun = ''
+
+def tsuanPOJ(bun):
+    tuasiosia = khuann_tuasiosia(bun)
     # Kong-ke: siann, un, tiau
     try:
-        siann, un, tiau = thiah(lomaji)
+        siann, un, tiau = thiah(bun.lower())
     except SuSiaTshoNgoo as e:
         print('tsuanPOJ Exception=', e)
-        return lomaji
+        return bun
     # tsuan
-    bun = kapPOJ(siann, un, tiau)
-    return bun
+    poj = kapPOJ(siann, un, tiau)
+    return tshiau_tuasiosia(tuasiosia, poj)
+
+
+def khuann_tuasiosia(bun):
+    if bun.isupper():
+        return SI_TSUAN_TUASIA
+    elif bun.islower():
+        return SI_TSUAN_SIOSIA
+    else:
+        return SI_THAU_TUASIA
+
+
+def tshiau_tuasiosia(tuasiosia, bun):
+    if tuasiosia == SI_TSUAN_TUASIA:
+        return bun.upper()
+    elif tuasiosia == SI_TSUAN_SIOSIA:
+        return bun.lower()
+    else:
+        return bun.capitalize()
 
 
 def thiah(lomaji):
