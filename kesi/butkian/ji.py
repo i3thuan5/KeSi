@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from kesi.kaisik.tsho_ngoo import 解析錯誤, 型態錯誤
 from kesi.butkian.su import Su
+from kesi.susia.Taigi.tsuan_POJ import tsuanPOJ
 
 
 class Ji:
