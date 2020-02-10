@@ -2,7 +2,7 @@ import unicodedata
 import re
 
 from kesi.susia.Taigi.TL import KONGKE_SIANNBO, KONGKE_UNBO
-from kesi.susia.Taigi.臺灣閩南語羅馬字拼音轉白話字模組 import 臺羅數字調轉白話字
+from kesi.susia.Taigi.臺灣閩南語羅馬字拼音轉白話字模組 import 臺羅數字調轉白話字, TIAUHO_TIAUHU_PIO
 
 SI_TSUAN_TUASIA = 'SI_TSUAN_TUASIA'
 SI_TSUAN_SIOSIA = 'SI_TSUAN_SIOSIA'
@@ -13,7 +13,7 @@ def tsuanPOJ(bun):
     tuasiosia = khuann_tuasiosia(bun)
     # Kong-ke: siann, un, tiau
     try:
-        siann, un, tiau = thiah(bun.lower())
+        siann, un, tiau = thiah(bun)
     except SuSiaTshoNgoo as e:
         print('tsuanPOJ Exception=', e)
         return bun
@@ -55,11 +55,14 @@ def theh_sianntiau(lomaji):
     nfd = unicodedata.normalize('NFD', lomaji)
     # Guân-té tō sòo-jī-tiāu
     if nfd[-1].isdigit():
-        return nfd[:-1], nfd[-1]
+        return nfd[:-1], tiauho_tsuan_tiauhu(nfd[-1])
     # Thuân-thóng-tiāu
     pitui = re.search(
         '\u0301|\u0300|\u0302|\u030c|\u0304|\u030d|\u030b|\u0306', nfd)
-    tiau = pitui.group(0)
+    try:
+        tiau = pitui.group(0)
+    except AttributeError:
+        tiau = ''  # 1 or 4
     siannun = nfd.replace(tiau, '')
     return siannun, tiau
 
@@ -79,6 +82,10 @@ def kapPOJ(siann, un, tiau):
         'NFC',
         臺羅數字調轉白話字.轉白話字(siann, un, tiau)
     )
+
+
+def tiauho_tsuan_tiauhu(tiauho):
+    return TIAUHO_TIAUHU_PIO[tiauho]
 
 
 class SuSiaTshoNgoo(ValueError):
