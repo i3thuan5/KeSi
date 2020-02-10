@@ -1,9 +1,8 @@
 # -*- coding: utf-8 -*-
-from 臺灣言語工具.音標系統.閩南語.閩南語音標介面 import 閩南語音標介面
 import unicodedata
 
 
-教會系羅馬音標聲調符號表 = {
+POJ_IMPHIAU_PIO = {
     'á': ('a', '2'), 'à': ('a', '3'), 'â': ('a', '5'), 'ǎ': ('a', '6'),
     'ā': ('a', '7'), 'a̍': ('a', '8'), 'a̋': ('a', '9'),
     'é': ('e', '2'), 'è': ('e', '3'), 'ê': ('e', '5'), 'ě': ('e', '6'),
@@ -23,10 +22,10 @@ import unicodedata
 }
 
 
-class 教會系羅馬音標(閩南語音標介面):
+class POJ:
     # 0 tsh iaunnh 10
     音標上長長度 = 1 + 3 + 6 + 2
-    聲調符號表 = 教會系羅馬音標聲調符號表
+    聲調符號表 = POJ_IMPHIAU_PIO
 
     def __init__(self):
         self.聲 = None
