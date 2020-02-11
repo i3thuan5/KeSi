@@ -17,7 +17,7 @@ class 臺羅數字調轉白話字():
 
     @classmethod
     def 轉白話字(cls, 聲, 韻, 調):
-        白話字聲 = cls.轉白話字聲(聲)
+        白話字聲 = cls.轉白話字聲(聲.lower())
         白話字韻 = cls.轉白話字韻(韻)
         白話字傳統調韻 = cls.白話字韻標傳統調(白話字韻, 調)
         print('白話字聲=', 白話字聲)
@@ -60,6 +60,8 @@ class 臺羅數字調轉白話字():
             白話字韻 = 白話字韻.replace('nnh', 'ⁿh')
         elif 'nn' in 韻:
             白話字韻 = 白話字韻.replace('nn', 'ⁿ')
+        elif 'NN' in 韻:
+            白話字韻 = 白話字韻.replace('NN', 'ᴺ')
         return 白話字韻
 
     @classmethod

@@ -22,7 +22,7 @@ Feature: Tsuán Tâi-gí 轉台語，kā羅馬字轉做其他音標系統
     | hiunnh8 | hiu̍ⁿh |
     | őo      | ŏ͘     |
 
-    Examples: Í-king POJ
+   Examples: Í-king POJ
    | bun   |  POJ   |
    | Chúi  |  Chúi  |
    | àu    |  àu    |
@@ -30,15 +30,26 @@ Feature: Tsuán Tâi-gí 轉台語，kā羅馬字轉做其他音標系統
    | ôa    |  ôa    |
    | phêng |  phêng |
    | ō͘     |  ō͘     |
+   | āⁿ    |  āⁿ    |
    | āiⁿ   |  āiⁿ   |
-   | āiN   |  āiⁿ   |
-   | ĀINN  |  ĀIᴺ   |
+   | āN    |  āⁿ    |
+   | āNh   |  āⁿh   |
+   | ĀN    |  ĀN    |
+   | Nā    |  Nā    |
+   | Āⁿ    |  Āⁿ    |
+   | OĀIⁿ  |  OĀIⁿ  |
    
-
-    Examples: 方言韻
+   Examples: POJ tsuân tuā-siá ᴺ
+   | bun   |  POJ   |
+   | Āᴺ    |  Āᴺ    |
+   | ĀNN   |  Āᴺ    |
+   | ĀINN  |  ĀIᴺ   |
+   | ĀNNH  |  ĀᴺH   |
+   
+  Examples: 方言韻
 	| bun     | POJ    |
 	| tere5   | terê   |
-    | tir5    | tîr    |
+  | tir5    | tîr    |
 
 	Examples: 輕聲
 	| bun     | POJ   |
