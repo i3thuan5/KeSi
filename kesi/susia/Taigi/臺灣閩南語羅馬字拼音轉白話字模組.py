@@ -19,7 +19,7 @@ class 臺羅數字調轉白話字():
     def 轉白話字(cls, 聲, 韻, 調):
         白話字聲 = cls.轉白話字聲(聲.lower())
         白話字韻 = cls.轉白話字韻(韻)
-        白話字傳統調韻 = cls.白話字韻標傳統調(白話字韻, 調)
+        白話字傳統調韻 = cls.白話字韻標傳統調(白話字韻.lower(), 調)
         print('白話字聲=', 白話字聲)
         print('白話字韻=', 白話字韻)
         print('白話字傳統調韻=', 白話字傳統調韻)
@@ -41,28 +41,23 @@ class 臺羅數字調轉白話字():
         return 白話字聲
 
     @classmethod
-    def 轉白話字韻(cls, 韻):
-        白話字韻 = None
-        # 母音
-        if 'oo' in 韻:
-            白話字韻 = 韻.replace('oo', 'o͘')
-        elif 'ua' in 韻:
-            白話字韻 = 韻.replace('ua', 'oa')
-        elif 'ue' in 韻:
-            白話字韻 = 韻.replace('ue', 'oe')
-        elif 'ing' in 韻 or 'ik' in 韻:
-            白話字韻 = 韻.replace('i', 'e')
-        else:
-            # oo, au, ia, ai
-            白話字韻 = 韻
+    def 轉白話字韻(cls, un):
         # 鼻化音
-        if 'nnh' in 韻:
-            白話字韻 = 白話字韻.replace('nnh', 'ⁿh')
-        elif 'nn' in 韻:
-            白話字韻 = 白話字韻.replace('nn', 'ⁿ')
-        elif 'NN' in 韻:
-            白話字韻 = 白話字韻.replace('NN', 'ᴺ')
-        return 白話字韻
+        if 'nn' in un:
+            un = un.replace('nn', 'ⁿ')
+        elif 'NN' in un:
+            un = un.replace('NN', 'ᴺ')
+        un = un.lower()
+        # 母音
+        un = (
+            un.replace('oo', 'o͘')
+            .replace('ou', 'o͘')
+            .replace('ua', 'oa')
+            .replace('ue', 'oe')
+            .replace('ing', 'eng')
+            .replace('ik', 'ek')
+        )
+        return un
 
     @classmethod
     def 白話字韻標傳統調(cls, 白話字韻無調, 調):
@@ -95,6 +90,8 @@ class 臺羅數字調轉白話字():
             該標調的字 = 'n'
         elif 'm' in 白話字韻無調:
             該標調的字 = 'm'
+        print('白話字韻無調={}, 該標調的字={}, 調={}'.format(
+            白話字韻無調, 該標調的字, 調))
         結果 = cls.加上白話字調符(白話字韻無調, 該標調的字, 調)
         return 結果
 

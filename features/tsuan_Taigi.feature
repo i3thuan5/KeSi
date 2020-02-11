@@ -18,16 +18,15 @@ Feature: Tsuán Tâi-gí 轉台語，kā羅馬字轉做其他音標系統
     | phîng   | phêng |
     | PHÎNG   | PHÊNG |
     | oo7     | ō͘     |
+    | ou7     | ō͘     |
     | ainn7   | āiⁿ   |
     | hiunnh8 | hiu̍ⁿh |
     | őo      | ŏ͘     |
-
-   Examples: Í-king POJ
-   | bun   |  POJ   |
    | Chúi  |  Chúi  |
    | àu    |  àu    |
    | tek   |  tek   |
    | ôa    |  ôa    |
+   | ôa   |  ôa    |
    | phêng |  phêng |
    | ō͘     |  ō͘     |
    | āⁿ    |  āⁿ    |
@@ -35,9 +34,10 @@ Feature: Tsuán Tâi-gí 轉台語，kā羅馬字轉做其他音標系統
    | āN    |  āⁿ    |
    | āNh   |  āⁿh   |
    | ĀN    |  ĀN    |
-   | Nā    |  Nā    |
+   | Ānn   |  Āⁿ    |    
    | Āⁿ    |  Āⁿ    |
    | OĀIⁿ  |  OĀIⁿ  |
+   | Nā    |  Nā    |
    
    Examples: POJ tsuân tuā-siá ᴺ
    | bun   |  POJ   |

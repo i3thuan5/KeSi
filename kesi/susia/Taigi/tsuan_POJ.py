@@ -42,7 +42,7 @@ def tshiau_tuasiosia(tuasiosia, bun):
 
 def thiah(lomaji):
     siannun, tiau = theh_sianntiau(lomaji)
-    print('siannun, tiau=', siannun, tiau)
+    print('siannun={}, tiau={}'.format(siannun, tiau))
     siann, un = thiah_siannun(siannun)
     # 音標是著的, 無調號音標 = _分離閏號聲調(音標)
     # 聲韻符合, 聲, 韻 = _揣聲韻(無調號音標)
