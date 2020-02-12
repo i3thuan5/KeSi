@@ -11,3 +11,4 @@ def 一字(context, bun):
 def 書寫轉POJ會生做(context, POJ):
     ji_poj = context.ji.POJ()
     assert ji_poj.hanlo == POJ, ji_poj.hanlo
+    assert ji_poj.lomaji == POJ, ji_poj.lomaji

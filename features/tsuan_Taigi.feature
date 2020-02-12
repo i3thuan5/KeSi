@@ -26,7 +26,6 @@ Feature: Tsuán Tâi-gí 轉台語，kā羅馬字轉做其他音標系統
    | àu    |  àu    |
    | tek   |  tek   |
    | ôa    |  ôa    |
-   | ôa   |  ôa    |
    | phêng |  phêng |
    | ō͘     |  ō͘     |
    | āⁿ    |  āⁿ    |
@@ -53,6 +52,10 @@ Feature: Tsuán Tâi-gí 轉台語，kā羅馬字轉做其他音標系統
 	| bun     | POJ   |
 	| --Suí   | --Súi | 
 
+  Examples: NFD
+  | bun     | POJ   |
+  | ôa     |  ôa   |
+   
   Examples: M̄ sī Lô-má-jī
   | bun     | POJ  |
 	| suii    | suii |
@@ -62,38 +65,58 @@ Feature: Tsuán Tâi-gí 轉台語，kā羅馬字轉做其他音標系統
   | 5       | 5    |
 
   
-  Scenario Outline: Kā 書寫轉做 TL
+  Scenario Outline: Kā 書寫轉做TL
     Given 一字 <bun>
      Then 書寫轉TL會生做 <TL>
 
     Examples: Jī
     | bun     | TL    |
     | a1      | a     |
-    | Sui2    | Suí   |
-	| Tsui2   | Tsuí  |
-	| ang3    | àng   |
+    | Sui2    | Súi   |
+    | am3     | àm    |
     | au3     | àu    |
     | tik4    | tik   |
     | mng5    | mn̂g  |
-    | m5      | m̂    |
-    | ua5     | uâ    |
-    | phîng   | phîng |
+    | M5      | M̂    |
+    | uan5    | uân   |
+    | PHÎNG   | PHÎNG |
     | oo7     | ōo    |
-    | ainn7   | āinn  |
+    | āN      | ānn   |
     | hiunnh8 | hiu̍nnh|
-    | Őo      | Őo    |
+    | OO9     | ŐO    |
+    | AN      | AN    |
+    | Ná      | Ná    |
+    
+    Examples: POJ
+    | bun     | TL    |
+    | Chúi    | Tsuí  |
+    | PHÊNG   | PHÎNG |
+    | tek     | tik   |
+    | ôa      | ôa    |
+    | ō͘       | ōo    |
+    | āⁿ      | ānn   |
+    | OĀI     | UĀI   |
     
     Examples: 方言韻
-	| bun     | TL     |
-	| tere5   | terê   |
+	  | bun     | TL     |
+	  | tere5   | terê   |
+    | terê    | terê   |
     | tir5    | tîr    |
 
-	Examples: 輕聲
-	| bun     | TL    |
-	| --Suí   | --Súi | 
+	  Examples: 輕聲
+	  | bun     | TL    |
+	  | --Suí   | --Súi | 
+    
+    Examples: NFD
+    | bun     | TL   |
+    | ôa     | uâ   |
 
     Examples: Bô正確--ê
     | bun     | TL   |
-	| suii    | suii |
+	  | suii    | suii |
+    | súi2    | súi2 |
+    | ĀIN     | ĀIN  |
+    | hello   | hello|
+    | 5       | 5    |
     
     
