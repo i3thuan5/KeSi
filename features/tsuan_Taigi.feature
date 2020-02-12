@@ -64,7 +64,7 @@ Feature: Tsuán Tâi-gí 轉台語，kā羅馬字轉做其他音標系統
   | ĀIN     | ĀIN  |
   | hello   | hello|
   | 5       | 5    |
-
+  | 媠      | 媠    |
   
   Scenario Outline: Kā 書寫轉做TL
     Given 一字 <bun>
@@ -74,14 +74,13 @@ Feature: Tsuán Tâi-gí 轉台語，kā羅馬字轉做其他音標系統
     | bun     | TL    |
     | a1      | a     |
     | Sui2    | Suí   |
-    | am3     | àm    |
     | au3     | àu    |
     | tik4    | tik   |
     | mng5    | mn̂g  |
     | M5      | M̂    |
     | uan5    | uân   |
     | PHÎNG   | PHÎNG |
-    | oo7     | ōo    |
+    | om7     | ōm    |
     | āN      | ānn   |
     | hiunnh8 | hiu̍nnh|
     | OO9     | ŐO    |
@@ -114,12 +113,13 @@ Feature: Tsuán Tâi-gí 轉台語，kā羅馬字轉做其他音標系統
     | bun     | TL   |
     | ôa     | uâ   |
 
-    Examples: Bô正確--ê
+    Examples: M̄ sī Lô-má-jī
     | bun     | TL   |
 	  | suii    | suii |
     | súi2    | súi2 |
     | ĀIN     | ĀIN  |
     | hello   | hello|
     | 5       | 5    |
+    | 媠      | 媠    |
     
     

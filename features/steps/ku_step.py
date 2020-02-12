@@ -57,12 +57,12 @@ def 第幾詞ê字仔是(context, kui):
 
 @then(u'轉出TL句，伊 ê hanlo是 {hanlo}')
 def 轉做TL(context, hanlo):
-    assert context.ku.TL().hanlo == hanlo
+    assert context.ku.TL().hanlo == hanlo, context.ku.TL().hanlo
 
 
 @then(u'轉出POJ句，伊 ê hanlo是 {hanlo}')
 def 轉做POJ(context, hanlo):
-    assert context.ku.POJ().hanlo == hanlo
+    assert context.ku.POJ().hanlo == hanlo, context.ku.POJ().hanlo
 
 
 @then(u'原本ê句仔猶原是 {bun}')
