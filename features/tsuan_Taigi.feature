@@ -93,7 +93,8 @@ Feature: Tsuán Tâi-gí 轉台語，kā羅馬字轉做其他音標系統
     | Chúi    | Tsuí  |
     | PHÊNG   | PHÎNG |
     | tek     | tik   |
-    | ôa      | ôa    |
+    | ôa      | uâ    |
+    | oân     | uân   |
     | ō͘       | ōo    |
     | āⁿ      | ānn   |
     | OĀI     | UĀI   |
@@ -103,10 +104,11 @@ Feature: Tsuán Tâi-gí 轉台語，kā羅馬字轉做其他音標系統
 	  | tere5   | terê   |
     | terê    | terê   |
     | tir5    | tîr    |
+    | ionn5   | iônn   |
 
 	  Examples: 輕聲
 	  | bun     | TL    |
-	  | --Suí   | --Súi | 
+	  | --Súi   | --Suí | 
     
     Examples: NFD
     | bun     | TL   |

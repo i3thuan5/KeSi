@@ -46,19 +46,13 @@ def tshiau_tuasiosia(tuasiosia, bun):
 
 def thiah(lomaji):
     siannun, tiau = theh_sianntiau(lomaji)
-    print('theh_sianntiau, siannun={}, tiau={}'.format(siannun, tiau))
-    # Kā tuā-sió-siá kì--khí-lâi
+
     siannun_n = thong_n(siannun)
     tuasiosia = khuann_tuasiosia(siannun_n)
-    print('tuasiosia={}'.format(tuasiosia))
 
     siannun_se = siannun_n.lower()
     kongke = tsuan_kongke(siannun_se)
     siann, un = thiah_siannun(kongke)
-    # 音標是著的, 無調號音標 = _分離閏號聲調(音標)
-    # 聲韻符合, 聲, 韻 = _揣聲韻(無調號音標)
-    # _si_haphuat_susia(聲韻符合, 聲, 韻, 調)
-    print('siann={}, un={}, tiau={}'.format(siann, un, tiau))
 
     return siann, un, tiau, tuasiosia
 
@@ -101,7 +95,6 @@ def tsuan_kongke(siannun):
 
 
 def thiah_siannun(無調號音標):
-    print('無調號音標=', 無調號音標)
     for 所在 in range(len(無調號音標)):
         聲母 = 無調號音標[:所在]
         if 聲母.lower() in KONGKE_SIANNBO:
