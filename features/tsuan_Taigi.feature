@@ -72,7 +72,7 @@ Feature: Tsuán Tâi-gí 轉台語，kā羅馬字轉做其他音標系統
     Examples: Jī
     | bun     | TL    |
     | a1      | a     |
-    | Sui2    | Súi   |
+    | Sui2    | Suí   |
     | am3     | àm    |
     | au3     | àu    |
     | tik4    | tik   |

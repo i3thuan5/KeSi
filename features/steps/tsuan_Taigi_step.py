@@ -9,6 +9,13 @@ def 一字(context, bun):
 
 @then(u'書寫轉POJ會生做 {POJ}')
 def 書寫轉POJ會生做(context, POJ):
-    ji_poj = context.ji.POJ()
-    assert ji_poj.hanlo == POJ, ji_poj.hanlo
-    assert ji_poj.lomaji == POJ, ji_poj.lomaji
+    poj = context.ji.POJ()
+    assert poj.hanlo == POJ, poj.hanlo
+    assert poj.lomaji == POJ, poj.lomaji
+
+
+@then(u'書寫轉TL會生做 {TL}')
+def 書寫轉TL會生做(context, TL):
+    tailo = context.ji.TL()
+    assert tailo.hanlo == TL, tailo.hanlo
+    assert tailo.lomaji == TL, tailo.lomaji

@@ -46,7 +46,7 @@ def tshiau_tuasiosia(tuasiosia, bun):
 
 def thiah(lomaji):
     siannun, tiau = theh_sianntiau(lomaji)
-
+    print('theh_sianntiau, siannun={}, tiau={}'.format(siannun, tiau))
     # Kā tuā-sió-siá kì--khí-lâi
     siannun_n = thong_n(siannun)
     tuasiosia = khuann_tuasiosia(siannun_n)

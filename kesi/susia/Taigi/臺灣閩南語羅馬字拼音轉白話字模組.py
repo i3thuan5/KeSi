@@ -19,7 +19,8 @@ class 臺羅數字調轉白話字():
     def 轉白話字(cls, 聲, 韻, 調):
         白話字聲 = cls.轉白話字聲(聲)
         白話字韻 = cls.轉白話字韻(韻)
-        白話字傳統調韻 = cls.白話字韻標傳統調(白話字韻, 調)
+        白話字調 = cls.轉白話字調(調)
+        白話字傳統調韻 = cls.白話字韻標傳統調(白話字韻, 白話字調)
         print('白話字聲=', 白話字聲)
         print('白話字韻=', 白話字韻)
         print('白話字傳統調韻=', 白話字傳統調韻)
@@ -52,6 +53,10 @@ class 臺羅數字調轉白話字():
             .replace('ik', 'ek')
         )
         return un
+
+    @classmethod
+    def 轉白話字調(cls, tiau):
+        return tiau.replace('\u030b', '\u0306')
 
     @classmethod
     def 白話字韻標傳統調(cls, 白話字韻無調, 調):
@@ -91,6 +96,4 @@ class 臺羅數字調轉白話字():
 
     @classmethod
     def 加上白話字調符(cls, 白話字韻無調, 標調字母, 調):
-        if 調 == '\u030b':
-            調 = '\u0306'
         return 白話字韻無調.replace(標調字母, 標調字母 + 調, 1)
