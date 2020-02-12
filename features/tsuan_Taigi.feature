@@ -9,12 +9,13 @@ Feature: Tsuán Tâi-gí 轉台語，kā羅馬字轉做其他音標系統
     | a1      | a     |
     | Sui2    | Súi   |
 	  | Tsui2   | Chúi  |
-	  | ang3    | àng   |
+	  | gua2    | góa   |
+    | ang3    | àng   |
     | au3     | àu    |
     | tik4    | tek   |
     | mng5    | mn̂g  |
     | M5      | M̂    |
-    | ua5     | ôa    |
+    | uan5    | oân   |
     | phîng   | phêng |
     | PHÎNG   | PHÊNG |
     | oo7     | ō͘     |
@@ -25,7 +26,7 @@ Feature: Tsuán Tâi-gí 轉台語，kā羅馬字轉做其他音標系統
    | Chúi  |  Chúi  |
    | àu    |  àu    |
    | tek   |  tek   |
-   | ôa    |  ôa    |
+   | òe    |  òe    |
    | phêng |  phêng |
    | ō͘     |  ō͘     |
    | āⁿ    |  āⁿ    |
