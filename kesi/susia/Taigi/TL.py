@@ -42,11 +42,5 @@ TL_UNBO = {
     'oi', 'oih',  # 詞彙方言差.csv:硩⿰落去
 }
 
-POJ_SIANNBO = {
-    "ch", "chh"
-}
-POJ_UNBO = {
-    "ou", "oa", "oe"
-}
-KONGKE_SIANNBO = TL_SIANNBO | POJ_SIANNBO
-KONGKE_UNBO = TL_UNBO | POJ_UNBO
+KONGKE_SIANNBO = TL_SIANNBO
+KONGKE_UNBO = TL_UNBO

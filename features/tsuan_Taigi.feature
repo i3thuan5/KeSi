@@ -33,18 +33,16 @@ Feature: Tsuán Tâi-gí 轉台語，kā羅馬字轉做其他音標系統
    | āiⁿ   |  āiⁿ   |
    | āN    |  āⁿ    |
    | āNh   |  āⁿh   |
-   | ĀN    |  ĀN    |
-   | Ānn   |  Āⁿ    |    
+   | ĀN    |  ĀN    |           
+   | Ānn   |  Āⁿ    |
    | Āⁿ    |  Āⁿ    |
+   | UĀIⁿ  |  OĀIⁿ  |
    | OĀIⁿ  |  OĀIⁿ  |
    | Nā    |  Nā    |
-   
+
    Examples: POJ tsuân tuā-siá ᴺ
    | bun   |  POJ   |
-   | Āᴺ    |  Āᴺ    |
-   | ĀNN   |  Āᴺ    |
-   | ĀINN  |  ĀIᴺ   |
-   | ĀNNH  |  ĀᴺH   |
+   | Āᴺ    |  Āⁿ    |
    
   Examples: 方言韻
 	| bun     | POJ    |

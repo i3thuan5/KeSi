@@ -10,22 +10,20 @@ SI_THAU_TUASIA = 'SI_THAU_TUASIA'
 
 
 def tsuanPOJ(bun):
-    tuasiosia = khuann_tuasiosia(bun)
-    # Kong-ke: siann, un, tiau
     try:
-        siann, un, tiau = thiah(bun)
+        siann, un, tiau, tuasiosia = thiah(bun)
     except SuSiaTshoNgoo as e:
         print('tsuanPOJ Exception=', e)
         return bun
-    # tsuan
     poj = kapPOJ(siann, un, tiau)
     return tshiau_tuasiosia(tuasiosia, poj)
 
 
 def khuann_tuasiosia(bun):
-    if bun.isupper():
+    bo_phinnim = bun.replace('ⁿ', '')
+    if bo_phinnim.isupper():
         return SI_TSUAN_TUASIA
-    elif bun.islower():
+    elif bo_phinnim.islower():
         return SI_TSUAN_SIOSIA
     else:
         return SI_THAU_TUASIA
@@ -42,13 +40,21 @@ def tshiau_tuasiosia(tuasiosia, bun):
 
 def thiah(lomaji):
     siannun, tiau = theh_sianntiau(lomaji)
-    print('siannun={}, tiau={}'.format(siannun, tiau))
-    siann, un = thiah_siannun(siannun)
+
+    # Kā tuā-sió-siá kì--khí-lâi
+    siannun_n = re.sub('([a-z])(N)(h?)', r'\1ⁿ\3', siannun)
+    tuasiosia = khuann_tuasiosia(siannun_n)
+    print('tuasiosia={}'.format(tuasiosia))
+
+    siannun_se = siannun_n.lower()
+    kongke = tsuan_kongke(siannun_se)
+    siann, un = thiah_siannun(kongke)
     # 音標是著的, 無調號音標 = _分離閏號聲調(音標)
     # 聲韻符合, 聲, 韻 = _揣聲韻(無調號音標)
     # _si_haphuat_susia(聲韻符合, 聲, 韻, 調)
+    print('siann={}, un={}, tiau={}'.format(siann, un, tiau))
 
-    return siann, un, tiau
+    return siann, un, tiau, tuasiosia
 
 
 def theh_sianntiau(lomaji):
@@ -65,6 +71,21 @@ def theh_sianntiau(lomaji):
         tiau = ''  # 1 or 4
     siannun = nfd.replace(tiau, '')
     return siannun, tiau
+
+
+def tsuan_kongke(siannun):
+    kiatko = (
+        siannun
+        .replace('ch', 'ts')
+        .replace('ou', 'oo')
+        .replace('o͘', 'oo')
+        .replace('ⁿ', 'nn')
+        .replace('oa', 'ua')
+        .replace('oe', 'ue')
+        .replace('eng', 'ing')
+        .replace('ek', 'ik')
+    )
+    return kiatko
 
 
 def thiah_siannun(無調號音標):
