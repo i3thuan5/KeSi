@@ -10,13 +10,19 @@ SI_THAU_TUASIA = 'SI_THAU_TUASIA'
 
 
 def tsuanPOJ(bun):
+    si_khinsiann = bun.startswith('--')
+    if si_khinsiann:
+        bun = bun.replace('--', '')
     try:
         siann, un, tiau, tuasiosia = thiah(bun)
     except SuSiaTshoNgoo as e:
         print('tsuanPOJ Exception=', e)
         return bun
     poj = kapPOJ(siann, un, tiau)
-    return tshiau_tuasiosia(tuasiosia, poj)
+    kiatko = tshiau_tuasiosia(tuasiosia, poj)
+    if si_khinsiann:
+        kiatko = '--{}'.format(kiatko)
+    return kiatko
 
 
 def khuann_tuasiosia(bun):
@@ -42,7 +48,7 @@ def thiah(lomaji):
     siannun, tiau = theh_sianntiau(lomaji)
 
     # Kā tuā-sió-siá kì--khí-lâi
-    siannun_n = re.sub('([a-z])(N)(h?)', r'\1ⁿ\3', siannun)
+    siannun_n = thong_n(siannun)
     tuasiosia = khuann_tuasiosia(siannun_n)
     print('tuasiosia={}'.format(tuasiosia))
 
@@ -73,6 +79,12 @@ def theh_sianntiau(lomaji):
     return siannun, tiau
 
 
+def thong_n(siannun):
+    phinnim = re.sub('([a-z])(N)(h?)', r'\1ⁿ\3', siannun)
+    phinnim = phinnim.replace('ᴺ', 'ⁿ')
+    return phinnim
+
+
 def tsuan_kongke(siannun):
     kiatko = (
         siannun
@@ -89,6 +101,7 @@ def tsuan_kongke(siannun):
 
 
 def thiah_siannun(無調號音標):
+    print('無調號音標=', 無調號音標)
     for 所在 in range(len(無調號音標)):
         聲母 = 無調號音標[:所在]
         if 聲母.lower() in KONGKE_SIANNBO:

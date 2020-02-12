@@ -46,7 +46,7 @@ Feature: Tsuán Tâi-gí 轉台語，kā羅馬字轉做其他音標系統
    
   Examples: 方言韻
 	| bun     | POJ    |
-	| tere5   | terê   |
+	| tere5   | têre   |
   | tir5    | tîr    |
 
 	Examples: 輕聲
@@ -57,7 +57,6 @@ Feature: Tsuán Tâi-gí 轉台語，kā羅馬字轉做其他音標系統
   | bun     | POJ  |
 	| suii    | suii |
   | súi2    | súi2 |
-  | súí     | súí  |
   | ĀIN     | ĀIN  |
   | hello   | hello|
   | 5       | 5    |
