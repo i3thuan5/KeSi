@@ -20,10 +20,10 @@ def tsuanPOJ(bun):
 
 
 def khuann_tuasiosia(bun):
-    bo_phinnim = bun.replace('ⁿ', '')
-    if bo_phinnim.isupper():
+    latin = bun.replace('ⁿ', '')
+    if latin.isupper():
         return SI_TSUAN_TUASIA
-    elif bo_phinnim.islower():
+    elif latin.islower():
         return SI_TSUAN_SIOSIA
     else:
         return SI_THAU_TUASIA
