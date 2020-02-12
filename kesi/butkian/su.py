@@ -80,6 +80,12 @@ class Su:
             sin_su.thiam(ji.POJ())
         return sin_su
 
+    def TL(self):
+        sin_su = Su()
+        for ji in self:
+            sin_su.thiam(ji.TL())
+        return sin_su
+
 
 def ps():
     class _Punso:

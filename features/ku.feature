@@ -104,4 +104,4 @@ Feature: Ku 句仔
 	| Guá sī Ke-si    | Guá sī Ke-si| Góa sī Ke-si|
 	| Góa sī Ke-si    | Guá sī Ke-si| Góa sī Ke-si|
 	| Gua2 si7 Ke1-si1| Guá sī Ke-si| Góa sī Ke-si|
-	| Góa sī 家私     | Guá sī 家私 | Góa sī 家私 |
+	| Góa sī家私     | Guá sī家私 | Góa sī家私 |

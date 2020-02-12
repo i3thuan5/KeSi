@@ -144,6 +144,12 @@ class Ku:
             sin_ku.thiam(su.POJ())
         return sin_ku
 
+    def TL(self):
+        sin_ku = Ku()
+        for su in self:
+            sin_ku.thiam(su.TL())
+        return sin_ku
+
     def _tngsu(self, 字陣列, 輕聲陣列, 佮後一个字無仝一个詞):
         巢狀詞陣列 = []
         巢狀輕聲陣列 = []
