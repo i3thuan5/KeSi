@@ -4,7 +4,7 @@ python:
 - '3.6'
 env:
   matrix:
-  - TOX_ENV=unittest
+  - TOX_ENV=flake8
   - TOX_ENV=behave
 branches:
   only:
