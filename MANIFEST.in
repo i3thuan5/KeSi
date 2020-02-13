@@ -1,0 +1,3 @@
+include panpun.py
+include LICENSE
+include README.md
