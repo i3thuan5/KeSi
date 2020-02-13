@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-from kesi.kaisik.tsho_ngoo import 型態錯誤
 from kesi.butkian.kongiong import LIAN_JI_HU, si_lomaji
 
 
@@ -18,7 +17,7 @@ class Su:
         判斷愛先添連字符無
           H, H -> 'HH'
           H, L -> 'HL'
-          L, H -> 'LH' 
+          L, H -> 'LH'
           L, L -> 'L-L'
           L, --L -> 'L--L'
         """
@@ -48,7 +47,7 @@ class Su:
         判斷愛先添連字符無
           H, H -> 'HH'
           H, L -> 'HL'
-          L, H -> 'LH' 
+          L, H -> 'LH'
           L, L -> 'L-L'
           L, --L -> 'L--L'
         """

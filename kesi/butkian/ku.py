@@ -1,8 +1,8 @@
 import re
 
-from kesi.butkian.kongiong import 分詞符號, 無音, 組字式符號, 聲調符號, 標點符號, 敢是拼音字元,\
+from kesi.butkian.kongiong import 分詞符號, 組字式符號, 聲調符號, 標點符號, 敢是拼音字元,\
     敢是注音符號, LIAN_JI_HU, si_lomaji
-from kesi.kaisik.tsho_ngoo import 型態錯誤, 解析錯誤
+from kesi.kaisik.tsho_ngoo import 解析錯誤
 from kesi.butkian.su import Su
 from kesi.butkian.ji import Ji
 
@@ -21,7 +21,7 @@ class Ku:
     _是空白 = re.compile(r'[^\S\n]+')
     _是分字符號 = re.compile('{}+'.format(LIAN_JI_HU))
     _是數字 = set('0123456789')
-    _是多字元標點 = re.compile('(\.\.\.)|(……)|(──)')
+    _是多字元標點 = re.compile(r'(\.\.\.)|(……)|(──)')
 
     def __init__(self, hanlo=None, lomaji=None):
         # Ku(lomaji='Goa')

@@ -1,4 +1,4 @@
-from behave import given, when, then
+from behave import given, then
 from kesi import Ku
 from itertools import zip_longest
 
