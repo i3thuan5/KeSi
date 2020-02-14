@@ -1,0 +1,15 @@
+dist: xenial
+language: python
+python:
+- '3.6'
+env:
+  matrix:
+  - TOX_ENV=flake8
+  - TOX_ENV=behave
+branches:
+  only:
+  - master
+install:
+- pip install tox
+script:
+- tox -e $TOX_ENV
