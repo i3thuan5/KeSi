@@ -2,7 +2,6 @@ import re
 
 from kesi.butkian.kongiong import 分詞符號, 組字式符號, 聲調符號, 標點符號, 敢是拼音字元,\
     敢是注音符號, LIAN_JI_HU, si_lomaji
-from kesi.kaisik.tsho_ngoo import 解析錯誤
 from kesi.butkian.su import Su
 from kesi.butkian.ji import Ji
 
@@ -405,3 +404,7 @@ class Ku:
                 if self._這馬字.endswith(o):
                     return True
             return False
+
+
+class 解析錯誤(Exception):
+    pass
