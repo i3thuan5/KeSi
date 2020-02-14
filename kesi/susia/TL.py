@@ -1,46 +1,61 @@
-# -*- coding: utf-8 -*-
+import unicodedata
+from kesi.susia.POJ import thiah, tshiau_tuasiosia, SuSiaTshoNgoo
 
-TL_SIANNBO = {
-    'p', 'ph', 'm', 'b',
-    't', 'th', 'n', 'l',
-    'k', 'kh', 'ng', 'g',
-    'ts', 'tsh', 's', 'j',
-    'h', '',
-}
-# 臺灣閩南語羅馬字拼音方案使用手冊 + 臺灣語語音入門 + 教育部辭典的字
-# 歌仔戲：枝頭 ki1 thiou5， 土 thou。目前教羅共ou轉oo（因為台華辭典按呢處理）
-TL_UNBO = {
-    'a', 'ah', 'ap', 'at', 'ak', 'ann', 'annh',
-    'am', 'an', 'ang',
-    'e', 'eh', 'enn', 'ennh',
-    'i', 'ih', 'ip', 'it', 'ik', 'inn', 'innh',
-    'im', 'in', 'ing',
-    'o', 'oh',
-    'oo', 'ooh', 'op', 'ok', 'om', 'ong', 'onn', 'onnh',
-    'u', 'uh', 'ut', 'un',
-    'ai', 'aih', 'ainn', 'ainnh',
-    'au', 'auh', 'aunn', 'aunnh',
-    'ia', 'iah', 'iap', 'iat', 'iak', 'iam', 'ian', 'iang', 'iann', 'iannh',
-    'io', 'ioh',
-    'iok', 'iong', 'ionn',
-    'iu', 'iuh', 'iut', 'iunn', 'iunnh',
-    'ua', 'uah', 'uat', 'uak', 'uan', 'uann', 'uannh',
-    'ue', 'ueh', 'uenn', 'uennh',
-    'ui', 'uih', 'uinn', 'uinnh',
-    'iau', 'iauh', 'iaunn', 'iaunnh',
-    'uai', 'uaih', 'uainn', 'uainnh',
-    'm', 'mh', 'ng', 'ngh',
-    'ioo', 'iooh',  # 諾 0hioo 0hiooh, 詞目總檔.csv:khan35 jioo51
-    ######
-    'er', 'erh', 'erm', 'ere', 'ereh',  # 泉　鍋
-    'ee', 'eeh', 'uee',  # 漳　家
-    'eng',
-    'ir', 'irh', 'irp', 'irt', 'irk', 'irm', 'irn', 'irng', 'irinn',
-    'ie',  # 鹿港偏泉腔
-    'or', 'orh', 'ior', 'iorh',  # 蚵
-    'uang',  # 金門偏泉腔　　風　huang1
-    'oi', 'oih',  # 詞彙方言差.csv:硩⿰落去
-}
 
-KONGKE_SIANNBO = TL_SIANNBO
-KONGKE_UNBO = TL_UNBO
+def tsuanTL(bun):
+    si_khinsiann = bun.startswith('--')
+    if si_khinsiann:
+        bun = bun.replace('--', '')
+    try:
+        siann, un, tiau, tuasiosia = thiah(bun)
+    except SuSiaTshoNgoo as e:
+        print('Exception of tsuanTL(): ', e)
+        return bun
+    tailo = kapTL(siann, un, tiau)
+    kiatko = tshiau_tuasiosia(tuasiosia, tailo)
+    if si_khinsiann:
+        kiatko = '--{}'.format(kiatko)
+    return kiatko
+
+
+def kapTL(siann, un, tiau):
+    tiau = tsuan_TL_tiau(tiau)
+    un = tau_tiauhu(un, tiau)
+    return unicodedata.normalize(
+        'NFC', siann + un)
+
+
+def tsuan_TL_tiau(tiau):
+    if tiau == '\u0306':
+        return '\u030b'
+    return tiau
+
+
+def tau_tiauhu(un, tiau):
+    lomaji = ''
+    if 'a' in un:
+        lomaji = un.replace('a', 'a' + tiau)
+    elif 'oo' in un:
+        lomaji = un.replace('oo', 'o' + tiau + 'o')
+    elif 'ere' in un:
+        lomaji = un.replace('ere', 'ere' + tiau)
+    elif 'e' in un:
+        lomaji = un.replace('e', 'e' + tiau)
+    elif 'o' in un:
+        lomaji = un.replace('o', 'o' + tiau)
+    elif 'ui' in un:
+        lomaji = un.replace('i', 'i' + tiau)
+    elif 'iu' in un:
+        lomaji = un.replace('u', 'u' + tiau)
+    elif 'iri' in un:
+        lomaji = un.replace('iri', 'iri' + tiau)
+    elif 'i' in un:
+        lomaji = un.replace('i', 'i' + tiau)
+    elif 'u' in un:
+        lomaji = un.replace('u', 'u' + tiau)
+    elif 'ng' in un:
+        # ng, mng
+        lomaji = un.replace('ng', 'n' + tiau + 'g')
+    elif 'm' in un:
+        lomaji = un.replace('m', 'm' + tiau)
+    return lomaji
