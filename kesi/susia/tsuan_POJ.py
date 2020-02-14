@@ -1,8 +1,8 @@
 import unicodedata
 import re
 
-from kesi.susia.Taigi.TL import KONGKE_SIANNBO, KONGKE_UNBO
-from kesi.susia.Taigi.臺灣閩南語羅馬字拼音轉白話字模組 import 臺羅數字調轉白話字, TIAUHO_TIAUHU_PIO
+from kesi.susia.TL import KONGKE_SIANNBO, KONGKE_UNBO
+from kesi.susia.臺灣閩南語羅馬字拼音轉白話字模組 import 臺羅數字調轉白話字, TIAUHO_TIAUHU_PIO
 
 SI_TSUAN_TUASIA = 'SI_TSUAN_TUASIA'
 SI_TSUAN_SIOSIA = 'SI_TSUAN_SIOSIA'

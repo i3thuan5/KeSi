@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
-from kesi.susia.Taigi.tsuan_POJ import tsuanPOJ
-from kesi.susia.Taigi.tsuan_TL import tsuanTL
+from kesi.susia.tsuan_POJ import tsuanPOJ
+from kesi.susia.tsuan_TL import tsuanTL
 
 
 class Ji:
