@@ -1,6 +1,6 @@
 import re
 
-from kesi.butkian.kongiong import 分詞符號, 組字式符號, 聲調符號, 標點符號, 敢是拼音字元,\
+from kesi.butkian.kongiong import 組字式符號, 聲調符號, 標點符號, 敢是拼音字元,\
     敢是注音符號, LIAN_JI_HU, si_lomaji
 from kesi.butkian.su import Su
 from kesi.butkian.ji import Ji
@@ -165,7 +165,7 @@ class Ku:
 
     def _hunsik_tngji_tngsu(self, 語句):
         狀態 = self._分析狀態()
-        if 語句 == 分詞符號 or self._是空白.fullmatch(語句):
+        if self._是空白.fullmatch(語句):
             return 狀態.分析結果()
         頂一个字 = None
         頂一个是連字符 = False
@@ -206,7 +206,7 @@ class Ku:
                             狀態.字陣列直接加一字(LIAN_JI_HU)
                             狀態.頂一字佮這馬的字無仝詞()
                     位置 += 分字長度 - 1
-                elif 字 == 分詞符號 or self._是空白.fullmatch(字):
+                elif self._是空白.fullmatch(字):
                     狀態.這馬字好矣清掉囥入去字陣列()
                     狀態.頂一字佮這馬的字無仝詞()
                     if 頂一个是連字符:

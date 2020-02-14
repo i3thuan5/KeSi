@@ -2,10 +2,7 @@
 # 瀏覽器希望無音愛有空白，但是處理標音時希望較好認
 import unicodedata
 
-無音 = ''  # '　'
-# sui1 koo1-niu5 =>　媠　姑娘
 LIAN_JI_HU = '-'
-分詞符號 = ' '
 KHIN_SIANN_HU = '--'
 # 句中是為著加速標音
 句中標點符號 = {
