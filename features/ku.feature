@@ -27,6 +27,16 @@ Feature: Ku 句仔
 	| 0800-092-000     | 0800-092-000 |
 
 
+  Scenario Outline: Bô-thuân mi̍h-kiānn kiàn-li̍p kù
+  Given Kan-na傳 lomaji: <bun>建立句仔
+   Then hanlo是 <kiatko>
+    And lomaji是 <kiatko>
+  
+  Examples: Ku
+  | bun              | kiatko       |
+  | Guá sī Ke-si     | Guá sī Ke-si |
+
+
   Scenario Outline: 漢羅文 kah 羅馬字對照
     Given 兩句 <hanlo> kah <lomaji> 做伙建立一 ê 句仔
      Then hanlo是 <kiatko_hanlo>
