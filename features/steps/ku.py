@@ -37,8 +37,8 @@ def 做伙建立句仔2(context, hanlo, lomaji):
 @then(u'詞仔是')
 def 詞仔是(context):
     for su, tapan in zip_longest(context.ku, context.table):
-        assert su.hanlo == tapan['hanlo'], su.hanlo
-        assert su.lomaji == tapan['lomaji'], su.lomaji
+        assert su.hanlo == tapan['hanlo'], 'su.hanlo={}'.format(su.hanlo)
+        assert su.lomaji == tapan['lomaji'], 'su.lomaji={}'.format(su.lomaji)
 
 
 @then(u'字仔是')
@@ -48,7 +48,7 @@ def 字仔是(context):
         assert ji.lomaji == tapan['lomaji'], ji.lomaji
 
 
-@then(u'第 {kui:d} 詞 ê 字仔是')
+@then(u'詞仔 mā ē-tàng 提著字，像第{kui:d}詞 ê 字仔是')
 def 第幾詞ê字仔是(context, kui):
     su = context.ku[kui]
     for ji, tapan in zip_longest(su, context.table):

@@ -42,6 +42,9 @@ class Ku:
             tnglomaji, tngji_khinsiann, si_bokangsu = (
                 self._hunsik_tngji_tngsu(lomaji)
             )
+            print('tnglomaji=', tnglomaji)
+            print('si_bokangsu=', si_bokangsu)
+
             if len(tnghanlo) != len(tnglomaji):
                 raise TuiBeTse(
                     'Kù bô pênn tn̂g: '
@@ -64,6 +67,9 @@ class Ku:
 
     def __getitem__(self, kui):
         return self._su[kui]
+
+    def __len__(self):
+        return len(self._su)
 
     def _bun_tsuan_sutin(self, bun_tin, khinsiann_tin):
         sutin = []
@@ -186,6 +192,9 @@ class Ku:
             是空白 = False
             是輕聲符號 = False
             是注音符號 = 敢是注音符號(字)
+            print('字=', 字)
+            print('_這馬字=', 狀態._這馬字)
+            print('_字陣列=', 狀態._字陣列)
             if 狀態.是組字模式():
                 狀態.這馬字加一个字元(字)
                 狀態.組字模型加一个字元(字)
@@ -291,6 +300,7 @@ class Ku:
                     if 字 in 組字式符號:
                         狀態.變組字模式()
                     else:
+                        print('Siang-ting')
                         狀態.這馬字好矣清掉囥入去字陣列()
             位置 += 1
             頂一个字 = 字
@@ -311,6 +321,7 @@ class Ku:
             狀態.頂一字佮這馬的字無仝詞()
             狀態.字陣列直接加一字(LIAN_JI_HU)
             狀態.頂一字佮這馬的字無仝詞()
+        print('==END==')
         return 狀態.分析結果()
 
     class _分析狀態:
