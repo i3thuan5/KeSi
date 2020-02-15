@@ -43,7 +43,7 @@ class Ku:
                 self._hunsik_tngji_tngsu(lomaji)
             )
             if len(tnghanlo) != len(tnglomaji):
-                raise TuiTseTshoNgoo(
+                raise TuiBeTse(
                     'Kù bô pênn tn̂g: '
                     'Hanlo tn̂g {} jī, m̄-koh lomaji tn̂g {} jī'
                     .format(len(tnghanlo), len(tnglomaji)))
@@ -417,5 +417,5 @@ class 解析錯誤(Exception):
     pass
 
 
-class TuiTseTshoNgoo(ValueError):
+class TuiBeTse(ValueError):
     pass

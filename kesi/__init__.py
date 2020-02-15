@@ -1,4 +1,4 @@
 from .butkian.ku import Ku
-from .butkian.ku import TuiTseTshoNgoo
+from .butkian.ku import TuiBeTse
 
-__all__ = ['Ku', 'TuiTseTshoNgoo']
+__all__ = ['Ku', 'TuiBeTse']

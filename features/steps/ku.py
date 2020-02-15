@@ -1,7 +1,7 @@
 from behave import given, then, when
 from itertools import zip_longest
 
-from kesi import Ku, TuiTseTshoNgoo
+from kesi import Ku, TuiBeTse
 
 
 @given(u'一句 {bun} 建立句仔')
@@ -61,7 +61,7 @@ def 若欲對句仔會發錯誤(context, hanlo, lomaji):
     u_tshongoo = False
     try:
         Ku(hanlo, lomaji)
-    except TuiTseTshoNgoo:
+    except TuiBeTse:
         u_tshongoo = True
     assert u_tshongoo
 
