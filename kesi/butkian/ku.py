@@ -42,6 +42,12 @@ class Ku:
             tnglomaji, tngji_khinsiann, si_bokangsu = (
                 self._hunsik_tngji_tngsu(lomaji)
             )
+            if len(tnghanlo) != len(tnglomaji):
+                raise TuiBeTse(
+                    'Kù bô pênn tn̂g: '
+                    'Hanlo tn̂g {} jī, m̄-koh lomaji tn̂g {} jī'
+                    .format(len(tnghanlo), len(tnglomaji)))
+
             hanlo_tin, _ps = self._tngsu(
                 tnghanlo, tngji_khinsiann, si_bokangsu)
             lomaji_tin, khinsiann = self._tngsu(
@@ -72,13 +78,14 @@ class Ku:
 
     def _phe_tsuan_sutin(self, hanlo_tin, lomaji_tin, khinsiann_tin):
         sutin = []
-        for suhanlo, sulomaji, khinsiann in zip(
+        for suhanlo_tin, sulomaji_tin, khinsiann in zip(
                 hanlo_tin, lomaji_tin, khinsiann_tin):
             su = Su()
             for jihanlo, jilomaji, si_khinsiann in zip(
-                    suhanlo, sulomaji, khinsiann):
+                    suhanlo_tin, sulomaji_tin, khinsiann):
                 su.thiam(
-                    Ji(jihanlo, lomaji=jilomaji, si_khinsiann=si_khinsiann)
+                    Ji(jihanlo, lomaji=jilomaji,
+                        si_khinsiann=si_khinsiann)
                 )
             sutin.append(su)
         return sutin
@@ -407,4 +414,8 @@ class Ku:
 
 
 class 解析錯誤(Exception):
+    pass
+
+
+class TuiBeTse(ValueError):
     pass

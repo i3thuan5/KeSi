@@ -1,6 +1,7 @@
-from behave import given, then
-from kesi import Ku
+from behave import given, then, when
 from itertools import zip_longest
+
+from kesi import Ku, TuiBeTse
 
 
 @given(u'一句 {bun} 建立句仔')
@@ -53,6 +54,16 @@ def 第幾詞ê字仔是(context, kui):
     for ji, tapan in zip_longest(su, context.table):
         assert ji.hanlo == tapan['hanlo']
         assert ji.lomaji == tapan['lomaji']
+
+
+@when(u'{hanlo} kah {lomaji} 若欲對句仔會發錯誤')
+def 若欲對句仔會發錯誤(context, hanlo, lomaji):
+    u_tshongoo = False
+    try:
+        Ku(hanlo, lomaji)
+    except TuiBeTse:
+        u_tshongoo = True
+    assert u_tshongoo
 
 
 @then(u'轉出TL句，伊 ê hanlo是 {hanlo}')
