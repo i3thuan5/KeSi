@@ -25,14 +25,7 @@ Feature: Ku 句仔
 	Examples: Sòo-jī
 	| bun              | kiatko       |
 	| 0800-092-000     | 0800-092-000 |
-     
-  Scenario Outline: Bô-thuân mi̍h-kiānn kiàn-li̍p kù
-	Given Kan-na傳 lomaji: <bun>建立句仔
-     Then hanlo是 <kiatko>
-      And lomaji是 <kiatko>
-    Examples: Ku
-	| bun              | kiatko       |
-	| Guá sī Ke-si     | Guá sī Ke-si |
+
 
   Scenario Outline: 漢羅文 kah 羅馬字對照
     Given 兩句 <hanlo> kah <lomaji> 做伙建立一 ê 句仔
@@ -91,6 +84,16 @@ Feature: Ku 句仔
      Examples: ku
        | hanlo       | lomaji     | kiatko    |
        | 我啦        | Guá--lah   | 我--啦    |
+
+
+  Scenario Outline: 字數bô-kâng無法度對
+    When <hanlo> kah <lomaji> 若欲對句仔會發錯誤
+     
+     Examples: ku
+       | hanlo       | lomaji     |
+       | 我啦        | --lah   |
+       | 我        | Guá--lah   |
+       | 我 就是Ke-si-thâu-á 你好     | Guá tō sī lí-hó  |
 
 
   Scenario Outline: 羅馬字 ē-īng-eh kā 轉做其他書寫
