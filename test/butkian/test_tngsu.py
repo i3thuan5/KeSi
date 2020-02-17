@@ -74,8 +74,8 @@ class TshiTngSu(TestCase):
         self.詞數 = 1
 
     def test_漢羅做伙(self):
-        self.語句 = '台文通訊Bóng報'
-        self.詞數 = 1
+        self.語句 = '台文通訊Bóng報好看'
+        self.詞數 = 3
 
     def test_漢羅輕聲(self):
         self.語句 = '阿菊姨--ā'
