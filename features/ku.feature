@@ -84,6 +84,7 @@ Feature: Ku 句仔
      | hanlo | lomaji    |
 	   | Ke    | Ke        |
 	   | si    | si        |
+     | --啦  | --lah     |
 
 
 
