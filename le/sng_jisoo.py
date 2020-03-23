@@ -5,8 +5,7 @@ def sng():
     jisoo = 0
     for line in sys.stdin:
         jisoo += len(list(Ku(line.rstrip()).thianji()))
-        print(jisoo)
-    print('long-tsong=', jisoo)
+    print('字數=', jisoo)
 
 if __name__ == '__main__':
     sng()
