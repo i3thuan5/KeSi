@@ -6,7 +6,7 @@ setup(
     name='KeSi',
     description='台語文NLP家私',
     long_description='Kā台文轉做電腦通利用ê格式。臺灣言語工具翻新。',
-    packages=['kesi'],
+    packages=['kesi', 'kesi.butkian', 'kesi.susia', ],
     version=PANPUN,
     author='Tshuà Bûn-lī',
     author_email='ithuan@ithuan.tw',
