@@ -51,7 +51,8 @@ Feature: Tsuán Tâi-gí 轉台語，kā羅馬字轉做其他音標系統
 
 	Examples: 輕聲
 	| bun     | POJ   |
-	| --Suí   | --Súi | 
+	| --Suí   | --Súi |
+    | --aih-iah | --aih-iah |
 
   Examples: NFD
   | bun     | POJ   |
@@ -107,7 +108,8 @@ Feature: Tsuán Tâi-gí 轉台語，kā羅馬字轉做其他音標系統
 
 	  Examples: 輕聲
 	  | bun     | TL    |
-	  | --Súi   | --Suí | 
+	  | --Súi   | --Suí |
+	  | --aih-iah | --aih-iah |
     
     Examples: NFD
     | bun     | TL   |
