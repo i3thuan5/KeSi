@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from kesi.susia.POJ import tsuanPOJ
 from kesi.susia.TL import tsuanTL
+from kesi.butkian.kongiong import KHIN_SIANN_HU
 
 
 class Ji:
@@ -9,6 +10,8 @@ class Ji:
         if si_khinsiann:
             self.hanlo = '--{}'.format(hanlo)
         else:
+            if hanlo.startswith(KHIN_SIANN_HU):
+                si_khinsiann = True
             self.hanlo = hanlo
 
         if lomaji and si_khinsiann:
@@ -20,13 +23,25 @@ class Ji:
         self.si_khinsiann = si_khinsiann
 
     def POJ(self):
+        if self.si_khinsiann:
+            hanlo = self.hanlo[2:]
+            lomaji = self.lomaji[2:]
+        else:
+            hanlo = self.hanlo
+            lomaji = self.lomaji
         return Ji(
-            tsuanPOJ(self.hanlo), tsuanPOJ(self.lomaji),
+            tsuanPOJ(hanlo), tsuanPOJ(lomaji),
             si_khinsiann=self.si_khinsiann
         )
 
     def TL(self):
+        if self.si_khinsiann:
+            hanlo = self.hanlo[2:]
+            lomaji = self.lomaji[2:]
+        else:
+            hanlo = self.hanlo
+            lomaji = self.lomaji
         return Ji(
-            tsuanTL(self.hanlo), tsuanTL(self.lomaji),
+            tsuanTL(hanlo), tsuanTL(lomaji),
             si_khinsiann=self.si_khinsiann
         )
