@@ -67,8 +67,10 @@ class Ku:
 
     def _bun_tsuan_sutin(self, bun_tin, khinsiann_tin):
         sutin = []
+        print('_bun_tsuan_sutin')
         for tsitsu, khinsiann in zip(bun_tin, khinsiann_tin):
             su = Su()
+            print('tsitsu={}, khinsiann={}'.format(tsitsu, khinsiann))
             for ji, si_khinsiann in zip(tsitsu, khinsiann):
                 su.thiam(
                     Ji(ji, si_khinsiann=si_khinsiann)
@@ -78,9 +80,11 @@ class Ku:
 
     def _phe_tsuan_sutin(self, hanlo_tin, lomaji_tin, khinsiann_tin):
         sutin = []
+        print('_phe_tsuan_sutin')
         for suhanlo_tin, sulomaji_tin, khinsiann in zip(
                 hanlo_tin, lomaji_tin, khinsiann_tin):
             su = Su()
+            print('tsitsu={}, khinsiann={}'.format(suhanlo_tin, khinsiann))
             for jihanlo, jilomaji, si_khinsiann in zip(
                     suhanlo_tin, sulomaji_tin, khinsiann):
                 su.thiam(
@@ -142,6 +146,7 @@ class Ku:
             yield from tsit_su
 
     def thiam(self, su):
+        print('ku.thiam, su=', su.hanlo)
         self._su.append(su)
 
     def POJ(self):
@@ -151,6 +156,7 @@ class Ku:
         return sin_ku
 
     def TL(self):
+        print('>> TL <<')
         sin_ku = Ku()
         for su in self:
             sin_ku.thiam(su.TL())
