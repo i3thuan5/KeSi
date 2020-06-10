@@ -120,6 +120,5 @@ Feature: Tsuán Tâi-gí 轉台語，kā羅馬字轉做其他音標系統
     | ĀIN     | ĀIN  |
     | hello   | hello|
     | 5       | 5    |
+    | 20      | 20   |
     | 媠      | 媠    |
-    
-    

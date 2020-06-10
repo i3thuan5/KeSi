@@ -57,6 +57,10 @@ Feature: Ku 句仔
     | 𠢕早……      |  Gâu-tsá...       | 𠢕早……        |  Gâu-tsá...    |
     | 缺喙的食米粉──看現現。 | Khih-tshuì--ê tsia̍h bí-hún──khuànn-hiān-hiān.  | 缺喙--的食米粉──看現現。    |  Khih-tshuì--ê tsia̍h bí-hún──khuànn-hiān-hiān.    |
     
+  Examples: 數字
+    | hanlo         | lomaji            | kiatko_hanlo    | kiatko_lomaji  |
+    | 落雨機率20 pha | lo̍h-hōo ki-lu̍t 20 pha | 落雨機率20 pha | lo̍h-hōo ki-lu̍t 20 pha |
+
 
   Scenario: 對照句仔提著 ē-té ê 詞仔 kah 字仔。
             """

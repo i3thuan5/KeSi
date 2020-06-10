@@ -65,7 +65,6 @@ def thiah(lomaji):
     siannun_se = siannun_n.lower()
     kongke = tsuan_kongke(siannun_se)
     siann, un = thiah_siannun(kongke)
-
     return siann, un, tiau, tuasiosia
 
 
@@ -73,7 +72,10 @@ def theh_sianntiau(lomaji):
     nfd = unicodedata.normalize('NFD', lomaji)
     # Guân-té tō sòo-jī-tiāu
     if nfd[-1].isdigit():
-        return nfd[:-1], tiauho_tsuan_tiauhu(nfd[-1])
+        try:
+            return nfd[:-1], tiauho_tsuan_tiauhu(nfd[-1])
+        except KeyError:
+            return nfd, ''
     # Thuân-thóng-tiāu
     pitui = re.search(
         '\u0301|\u0300|\u0302|\u030c|\u0304|\u030d|\u030b|\u0306', nfd)
