@@ -71,11 +71,8 @@ def thiah(lomaji):
 def theh_sianntiau(lomaji):
     nfd = unicodedata.normalize('NFD', lomaji)
     # Guân-té tō sòo-jī-tiāu
-    if nfd[-1].isdigit():
-        if nfd[-1] in TIAUHO_TIAUHU_PIO:
-            return nfd[:-1], TIAUHO_TIAUHU_PIO[nfd[-1]]
-        else:
-            return nfd, ''
+    if nfd[-1] in TIAUHO_TIAUHU_PIO:
+        return nfd[:-1], TIAUHO_TIAUHU_PIO[nfd[-1]]
     # Thuân-thóng-tiāu
     pitui = re.search(
         '\u0301|\u0300|\u0302|\u030c|\u0304|\u030d|\u030b|\u0306', nfd)
