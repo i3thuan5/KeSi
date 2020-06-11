@@ -72,9 +72,9 @@ def theh_sianntiau(lomaji):
     nfd = unicodedata.normalize('NFD', lomaji)
     # Guân-té tō sòo-jī-tiāu
     if nfd[-1].isdigit():
-        try:
-            return nfd[:-1], tiauho_tsuan_tiauhu(nfd[-1])
-        except KeyError:
+        if nfd[-1] in TIAUHO_TIAUHU_PIO:
+            return nfd[:-1], TIAUHO_TIAUHU_PIO[nfd[-1]]
+        else:
             return nfd, ''
     # Thuân-thóng-tiāu
     pitui = re.search(
@@ -123,10 +123,6 @@ def kapPOJ(siann, un, tiau):
         'NFC',
         臺羅數字調轉白話字.轉白話字(siann, un, tiau)
     )
-
-
-def tiauho_tsuan_tiauhu(tiauho):
-    return TIAUHO_TIAUHU_PIO[tiauho]
 
 
 class SuSiaTshoNgoo(ValueError):
