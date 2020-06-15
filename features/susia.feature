@@ -98,6 +98,7 @@ Feature: Tsuán Tâi-gí 轉台語，kā羅馬字轉做其他音標系統
     | ō͘       | ōo    |
     | āⁿ      | ānn   |
     | OĀI     | UĀI   |
+    | ō͘ⁿ      | ōnn   |
     
     Examples: 方言韻
 	  | bun     | TL     |
