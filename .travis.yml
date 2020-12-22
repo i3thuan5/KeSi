@@ -2,19 +2,21 @@ dist: xenial
 language: python
 python:
 - '3.6'
+env:
+  matrix:
+  - TOX_ENV=flake8
+  - TOX_ENV=behave
+  - TOX_ENV=tanguan
 branches:
   only:
   - master
   - "/\\d+\\.\\d+\\.\\d+/"
+install:
+- pip install tox
+script:
+- tox -e $TOX_ENV
 jobs:
   include:
-  - stage: test
-    install: pip install tox
-    script: tox -e flake8
-  - install: pip install tox
-    script: tox -e behave
-  - install: pip install tox
-    script: tox -e tanguan
   - stage: deploy
     provider: pypi
     skip_cleanup: true
