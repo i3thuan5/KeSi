@@ -18,6 +18,8 @@ script:
 jobs:
   include:
     - stage: deploy
+      install: skip # skip pip install tox
+      script: skip # skip test scripts
       deploy:
         provider: pypi
         skip_cleanup: true
