@@ -48,9 +48,10 @@ def 字仔是(context):
         assert ji.lomaji == tapan['lomaji'], ji.lomaji
 
 
-@then(u'詞仔 mā ē-tàng 提著字，像第{kui:d}詞 ê 字仔是')
-def 第幾詞ê字仔是(context, kui):
+@then(u'詞仔 mā ē-tàng 提著字，像第{kui:d}詞攏總{jisoo:d}字，字仔是')
+def 第幾詞ê字仔是(context, kui, jisoo):
     su = context.ku[kui]
+    assert len(su) == jisoo
     for ji, tapan in zip_longest(su, context.table):
         assert ji.hanlo == tapan['hanlo']
         assert ji.lomaji == tapan['lomaji']

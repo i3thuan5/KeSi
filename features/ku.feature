@@ -80,7 +80,7 @@ Feature: Ku 句仔
      | Ke    | Ke        |
 	   | si    | si        |
 	   | --啦  | --lah     |
-     And 詞仔 mā ē-tàng 提著字，像第3詞 ê 字仔是
+     And 詞仔 mā ē-tàng 提著字，像第3詞攏總3字，字仔是
      | hanlo | lomaji    |
 	   | Ke    | Ke        |
 	   | si    | si        |

@@ -10,6 +10,9 @@ class Su:
     def __iter__(self):
         yield from self._ji
 
+    def __len__(self):
+        return len(self._ji)
+
     @property
     def hanlo(self):
         """
