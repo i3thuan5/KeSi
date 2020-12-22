@@ -51,7 +51,8 @@ Feature: Tsuán Tâi-gí 轉台語，kā羅馬字轉做其他音標系統
 
 	Examples: 輕聲
 	| bun     | POJ   |
-	| --Suí   | --Súi | 
+	| --Suí   | --Súi |
+    | --aih-iah | --aih-iah |
 
   Examples: NFD
   | bun     | POJ   |
@@ -104,10 +105,13 @@ Feature: Tsuán Tâi-gí 轉台語，kā羅馬字轉做其他音標系統
     | terê    | terê   |
     | tir5    | tîr    |
     | ionn5   | iônn   |
+    | tee5    | têe    |
+
 
 	  Examples: 輕聲
 	  | bun     | TL    |
-	  | --Súi   | --Suí | 
+	  | --Súi   | --Suí |
+	  | --aih-iah | --aih-iah |
     
     Examples: NFD
     | bun     | TL   |
@@ -120,6 +124,13 @@ Feature: Tsuán Tâi-gí 轉台語，kā羅馬字轉做其他音標系統
     | ĀIN     | ĀIN  |
     | hello   | hello|
     | 5       | 5    |
+    | 20      | 20   |
     | 媠      | 媠    |
-    
-    
+
+  Scenario Outline: Kui 句 kā 書寫轉做TL
+    Given 一句 <bun>
+     Then 書寫轉TL會生做 <TL>
+
+    Examples: 輕聲
+    | bun     | TL    |
+    | --aih-iah | --aih-iah |

@@ -80,3 +80,13 @@ def 轉做POJ(context, hanlo):
 @then(u'原本ê句仔猶原是 {bun}')
 def 原本ê句仔猶原是(context, bun):
     assert context.ku.hanlo == bun
+
+
+@then(u'轉出POJ句，伊 ê lomaji是 {lomaji}')
+def 轉出POJ句伊lomaji是(context, lomaji):
+    assert context.ku.POJ().lomaji == lomaji, context.ku.POJ().lomaji
+
+
+@then(u'轉出TL句，伊 ê lomaji是 {lomaji}')
+def 轉出TL句伊lomaji是(context, lomaji):
+    assert context.ku.TL().lomaji == lomaji, context.ku.TL().lomaji

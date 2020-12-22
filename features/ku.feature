@@ -57,6 +57,10 @@ Feature: Ku 句仔
     | 𠢕早……      |  Gâu-tsá...       | 𠢕早……        |  Gâu-tsá...    |
     | 缺喙的食米粉──看現現。 | Khih-tshuì--ê tsia̍h bí-hún──khuànn-hiān-hiān.  | 缺喙--的食米粉──看現現。    |  Khih-tshuì--ê tsia̍h bí-hún──khuànn-hiān-hiān.    |
     
+  Examples: 數字
+    | hanlo         | lomaji            | kiatko_hanlo    | kiatko_lomaji  |
+    | 落雨機率20 pha | lo̍h-hōo ki-lu̍t 20 pha | 落雨機率20 pha | lo̍h-hōo ki-lu̍t 20 pha |
+
 
   Scenario: 對照句仔提著 ē-té ê 詞仔 kah 字仔。
             """
@@ -119,3 +123,14 @@ Feature: Ku 句仔
 	| Góa sī Ke-si    | Guá sī Ke-si| Góa sī Ke-si|
 	| Gua2 si7 Ke1-si1| Guá sī Ke-si| Góa sī Ke-si|
 	| Góa sī家私     | Guá sī家私 | Góa sī家私 |
+
+
+  Scenario Outline: 漢羅文 kah 羅馬字對照 ē-īng-eh kā 轉做其他書寫
+    Given 兩句 <hanlo> kah <lomaji> 做伙建立一 ê 句仔
+     Then 轉出POJ句，伊 ê lomaji是 <POJ>
+      And 轉出TL句，伊 ê lomaji是 <TL>
+
+    Examples: ku
+    | hanlo | lomaji | TL | POJ |
+    | 一    | tsi̍t | tsi̍t | chi̍t |
+    | 一    | chi̍t | tsi̍t | chi̍t |
