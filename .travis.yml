@@ -9,9 +9,12 @@ branches:
 jobs:
   include:
   - stage: test
-    before_script: pip install tox
+    install: pip install tox
     script: tox -e flake8
+  - install: pip install tox
     script: tox -e behave
+  - install: pip install tox
+    script: tox -e tanguan
   - stage: deploy
     provider: pypi
     skip_cleanup: true
