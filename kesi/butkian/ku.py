@@ -42,8 +42,6 @@ class Ku:
             tnglomaji, tngji_khinsiann, si_bokangsu = (
                 self._hunsik_tngji_tngsu(lomaji)
             )
-            print('tnglomaji=', tnglomaji)
-            print('si_bokangsu=', si_bokangsu)
 
             if len(tnghanlo) != len(tnglomaji):
                 raise TuiBeTse(
