@@ -17,13 +17,15 @@ script:
 - tox -e $TOX_ENV
 jobs:
   include:
-  - stage: deploy
-    provider: pypi
-    skip_cleanup: true
-    user: a8568730
-    password:
-      secure: EGtXvcivUqzPOBk4INGsH2dNUC3qyBmCe+P9vVbG/yvra5dqchU+46NYdInugRG64jyNzqW8peo7SriRjZ3IKz/id9rK2UnVayvd7eVz098WJVhEV3qyYScZ9v99v8ID+Suy8Nii1X1fAaJ8rALDA+jpfIo6z0mfSjitrp6WJlI1n23g2M+9g2UMgcM299gm4qBOcbqVuCjo6F4mCgKDuDovtjixzu9H6Yn/BbdKCNVy4xlhfecw3qGuJJczRr9ubKzQcIAkoRJsj564JM7qoxr/MH/55z3nRt4jwPSRj8rmX/yQgmFrqIdW7MXLgx06kfJw3aJvYM/R3KiQHwnMiVGjTyDBRXajR5agWiWKqNYn9RVUny2AjIYq4h7L3GbwaURaRFo1fFw/1CIaFG+968svbsBsT/p4NWpRPk5jX2RkLi4hfw1nk14lvPNyd07GTeTHoF2S4vAsHZcvF5zDEajJkqSk1pB+fMuMMenoa+CpfciorHHyDnSmZOZjbCVBo0Y4vZYIbB8oNHovKxw139VNUJJVExFIWarpXT8nPNoQNJ9l5zemn2aXw/xezNoVRCZYDwhGo31fUXRNt1R9bAxH8nBxMe7yGiGqLjkM7OV1RjHnz0H6EXxD1n3jr9Ybrk+eg6T3Ds4kKuBSEofo8qDPI35koC8aDAgwhvWLoIo=
-      on:
-        tags: true
-        distributions: sdist bdist_wheel
-        repo: i3thuan5/KeSi
+    matrix:
+    - stage: deploy
+      deploy:
+        provider: pypi
+        skip_cleanup: true
+        user: __token__
+        password:
+          secure: Ypm5LqfxiOTv9fYnsNsI0d9hz7xAcuKjzHA2EWCfyDxLoHmRADlkhdUhg0ljhZ73XHDY+EOfWuOaG3hObtn7+bmMKswpdf9ICuT7v/MLTNjBYqptKVnmDl3lcGJj3hoXnj7uLLHC45qQPtsFTwRiyZKYYmIQ7WEitZnMK6F/aOyw5KL+5P1u6pjbt43t0dlhQECpBrGGwItr0XUwgi/AXGjFh25xQ/M+XK9O8H48m/aPbIPJEPKE0OzIDPhAQK8coEIu0jWpblzo1bu1qnyJ57EYPo+Yxy4sjUsitxmVrgaDmpWg88MS0gkKpxsUPQ7EPF0OTv0QbQoG8AZb75/rszRAUP6WsIY1Gj9/h5ub/heVkd8huTdHxftKhpzEFJBMy87YQ8RkQBzT33ae80HhDRIF9Wh9J1XPC1zJ58hlQCtuX/csiyWemLdJjLw+/FaFgAI0C4gNCpRRFSEx0eo0Qj/ccFAUnQ4XldnHRlqhD+yK+qJ+WOZ1EhvjB0TTuZ4/+TeFDY+r4b5k0iLJdcfaU171cY6sBPj0ZMGib7zwLqAz8NjQgSHyEAhBxVRpwhAfdAmZpqVbOytvlNQbVphx8NzT7dT6c7Tk8Yd96a4961Ug/bc0/tDbcGDIxuL3KI0X+hK88HHaPp0zakHzNi1lGpYni3ZwirtViz4eRFAqMDU=
+          on:
+            tags: true
+            distributions: sdist bdist_wheel
+            repo: i3thuan5/KeSi
