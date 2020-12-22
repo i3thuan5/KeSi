@@ -42,6 +42,7 @@ class Ku:
             tnglomaji, tngji_khinsiann, si_bokangsu = (
                 self._hunsik_tngji_tngsu(lomaji)
             )
+
             if len(tnghanlo) != len(tnglomaji):
                 raise TuiBeTse(
                     'Kù bô pênn tn̂g: '
@@ -64,6 +65,9 @@ class Ku:
 
     def __getitem__(self, kui):
         return self._su[kui]
+
+    def __len__(self):
+        return len(self._su)
 
     def _bun_tsuan_sutin(self, bun_tin, khinsiann_tin):
         sutin = []
@@ -195,9 +199,11 @@ class Ku:
             elif 狀態.是一般模式():
                 揣分字 = self._是分字符號.match(語句[位置:])
                 if 揣分字:
+                    # Hyphen
                     狀態.這馬字好矣清掉囥入去字陣列()
                     分字長度 = len(揣分字.group(0))
                     if 分字長度 == 1:
+                        # LIAN_JI_HU
                         if not 狀態.敢有分析資料矣() or 頂一个是空白:
                             狀態.字陣列直接加一字(LIAN_JI_HU)
                             狀態.頂一字佮這馬的字無仝詞()
@@ -208,6 +214,10 @@ class Ku:
                     elif 分字長度 == 2:
                         是輕聲符號 = True
                         狀態.這陣是輕聲詞()
+                        if not 頂一个是空白:
+                            # hó --lah -> ['hó', '--lah']
+                            # hó--lah -> ['hó--lah']
+                            狀態.頂一字佮這馬的字仝詞()
                     else:
                         for _ in range(分字長度):
                             狀態.字陣列直接加一字(LIAN_JI_HU)
@@ -235,8 +245,10 @@ class Ku:
                     ):
                         # 頭前愛清掉
                         狀態.這馬字好矣清掉囥入去字陣列()
+                        狀態.頂一字佮這馬的字無仝詞()
                     if 頂一个是輕聲符號:
                         狀態.這馬是輕聲字()
+
                     狀態.這馬字加一个字元(字)
                 # 數字
                 elif 字 in self._是數字:
@@ -283,11 +295,16 @@ class Ku:
                     if 狀態.這馬字敢全部攏數字():
                         狀態.這馬字好矣清掉囥入去字陣列()
                         狀態.頂一字佮這馬的字無仝詞()
+                    elif 敢是拼音字元(頂一个字):
+                        狀態.這馬字好矣清掉囥入去字陣列()
+                        狀態.頂一字佮這馬的字無仝詞()
                     else:
                         狀態.這馬字好矣清掉囥入去字陣列()
                     if 頂一个是輕聲符號:
                         狀態.這馬是輕聲字()
+
                     狀態.這馬字加一个字元(字)
+
                     if 字 in 組字式符號:
                         狀態.變組字模式()
                     else:

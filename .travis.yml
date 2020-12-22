@@ -6,6 +6,7 @@ env:
   matrix:
   - TOX_ENV=flake8
   - TOX_ENV=behave
+  - TOX_ENV=tanguan
 branches:
   only:
   - master
