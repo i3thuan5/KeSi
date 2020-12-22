@@ -36,6 +36,8 @@ def tau_tiauhu(un, tiau):
         lomaji = un.replace('a', 'a' + tiau)
     elif 'oo' in un:
         lomaji = un.replace('oo', 'o' + tiau + 'o')
+    elif 'ee' in un:
+        lomaji = un.replace('ee', 'e' + tiau + 'e')
     elif 'ere' in un:
         lomaji = un.replace('ere', 'ere' + tiau)
     elif 'e' in un:
