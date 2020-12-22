@@ -8,8 +8,7 @@ def tsuanTL(bun):
         bun = bun.replace('--', '')
     try:
         siann, un, tiau, tuasiosia = thiah(bun)
-    except SuSiaTshoNgoo as e:
-        print('Exception of tsuanTL(): ', e)
+    except SuSiaTshoNgoo:
         return bun
     tailo = kapTL(siann, un, tiau)
     kiatko = tshiau_tuasiosia(tuasiosia, tailo)
