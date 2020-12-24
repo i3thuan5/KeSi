@@ -11,7 +11,7 @@ Feature: Unicode normalization
     | 年 | 5E74    | F98E     |
 
   Scenario Outline: 統一區內底，無仝語言ê漢字mài互相轉換，保持原本ê字碼
-    Given 一句漢字是 <jit> ê字
+    Given 一句 <jit> 建立句仔
      Then 書寫ê漢字mài變做 <tai>
 
     Examples: CJK unified 免振動

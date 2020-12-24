@@ -3,11 +3,6 @@ from behave import given, then
 from kesi import Ku
 
 
-@given(u'一句漢字是 {bun} ê字')
-def 一句漢字(context, bun):
-    context.ku = Ku(bun)
-
-
 @given(u'一句編碼是 {pianbe} ê字')
 def 一句編碼(context, pianbe):
     bun = ''.join(map(lambda x: chr(int(x, 16)), pianbe.split(',')))
