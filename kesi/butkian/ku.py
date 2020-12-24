@@ -24,6 +24,11 @@ class Ku:
     _是多字元標點 = re.compile(r'(\.\.\.)|(……)|(──)')
 
     def __init__(self, hanlo=None, lomaji=None):
+        if hanlo is not None:
+            hanlo = normalize('NFC', hanlo)
+        if lomaji is not None:
+            lomaji = normalize('NFC', lomaji)
+
         # Ku(lomaji='Goa')
         if hanlo is None:
             hanlo = lomaji
@@ -115,7 +120,7 @@ class Ku:
                 bun.append(' ')
             bun.append(suhanlo)
             頂一詞上尾是羅馬字 = si_lomaji(suhanlo[-1])
-        return normalize('NFC', ''.join(bun))
+        return ''.join(bun)
 
     @property
     def lomaji(self):
@@ -137,7 +142,7 @@ class Ku:
                 bun.append(' ')
             bun.append(sulomaji)
             頂一詞上尾是羅馬字 = si_lomaji(sulomaji[-1])
-        return normalize('NFC', ''.join(bun))
+        return ''.join(bun)
 
     def thianji(self):
         """
