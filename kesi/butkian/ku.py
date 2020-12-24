@@ -1,4 +1,5 @@
 import re
+from unicodedata import normalize
 
 from kesi.butkian.kongiong import 組字式符號, 聲調符號, 標點符號, 敢是拼音字元,\
     敢是注音符號, LIAN_JI_HU, si_lomaji
@@ -114,7 +115,7 @@ class Ku:
                 bun.append(' ')
             bun.append(suhanlo)
             頂一詞上尾是羅馬字 = si_lomaji(suhanlo[-1])
-        return ''.join(bun)
+        return normalize('NFC', ''.join(bun))
 
     @property
     def lomaji(self):
@@ -136,7 +137,7 @@ class Ku:
                 bun.append(' ')
             bun.append(sulomaji)
             頂一詞上尾是羅馬字 = si_lomaji(sulomaji[-1])
-        return ''.join(bun)
+        return normalize('NFC', ''.join(bun))
 
     def thianji(self):
         """
