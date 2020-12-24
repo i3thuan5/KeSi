@@ -1,4 +1,5 @@
 import re
+from unicodedata import normalize
 
 from kesi.butkian.kongiong import 組字式符號, 聲調符號, 標點符號, 敢是拼音字元,\
     敢是注音符號, LIAN_JI_HU, si_lomaji
@@ -23,6 +24,11 @@ class Ku:
     _是多字元標點 = re.compile(r'(\.\.\.)|(……)|(──)')
 
     def __init__(self, hanlo=None, lomaji=None):
+        if hanlo is not None:
+            hanlo = normalize('NFC', hanlo)
+        if lomaji is not None:
+            lomaji = normalize('NFC', lomaji)
+
         # Ku(lomaji='Goa')
         if hanlo is None:
             hanlo = lomaji
