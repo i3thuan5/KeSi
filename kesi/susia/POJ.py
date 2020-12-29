@@ -27,8 +27,7 @@ def tsuanPOJ(bun):
         bun = bun.replace('--', '')
     try:
         siann, un, tiau, tuasiosia = thiah(bun)
-    except SuSiaTshoNgoo as e:
-        print('Exception of tsuanPOJ(): ', e)
+    except SuSiaTshoNgoo:
         return bun
     poj = kapPOJ(siann, un, tiau)
     kiatko = tshiau_tuasiosia(tuasiosia, poj)
