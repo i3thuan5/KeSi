@@ -100,6 +100,7 @@ def tsuan_kongke(siannun):
         .replace('oe', 'ue')
         .replace('eng', 'ing')
         .replace('ek', 'ik')
+        .replace('oonn', 'onn')
     )
     return kiatko
 
