@@ -39,6 +39,8 @@ Feature: Tsuán Tâi-gí 轉台語，kā羅馬字轉做其他音標系統
    | UĀIⁿ  |  OĀIⁿ  |
    | OĀIⁿ  |  OĀIⁿ  |
    | Nā    |  Nā    |
+   | ō͘ⁿ      | ōⁿ   |
+
 
    Examples: POJ tsuân tuā-siá ᴺ
    | bun   |  POJ   |
