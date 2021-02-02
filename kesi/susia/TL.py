@@ -1,5 +1,5 @@
 import unicodedata
-from kesi.susia.POJ import thiah, tshiau_tuasiosia, SuSiaTshoNgoo
+from kesi.susia.kongke import thiah, tshiau_tuasiosia, SuSiaTshoNgoo
 
 
 def tsuanTL(bun):
