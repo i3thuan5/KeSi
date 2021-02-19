@@ -97,7 +97,7 @@ def thiah_siannun(無調號音標):
             韻母 = 無調號音標[所在:]
             if 韻母.lower() in KONGKE_UNBO:
                 return 聲母, 韻母
-    raise SuSiaTshoNgoo('Bô tsit-khuán im-tsiat')
+    raise SuSiaTshoNgoo('Bô tsit-khuán im-tsiat: {}'.format(無調號音標))
 
 
 class SuSiaTshoNgoo(ValueError):
