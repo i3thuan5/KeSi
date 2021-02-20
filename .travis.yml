@@ -18,7 +18,7 @@ script:
 jobs:
   include:
     - stage: deploy
-      install: pip install wheel setuptools
+      install: skip
       script: skip # skip test scripts
       deploy:
         provider: pypi
