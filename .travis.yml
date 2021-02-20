@@ -28,5 +28,5 @@ jobs:
           secure: Ypm5LqfxiOTv9fYnsNsI0d9hz7xAcuKjzHA2EWCfyDxLoHmRADlkhdUhg0ljhZ73XHDY+EOfWuOaG3hObtn7+bmMKswpdf9ICuT7v/MLTNjBYqptKVnmDl3lcGJj3hoXnj7uLLHC45qQPtsFTwRiyZKYYmIQ7WEitZnMK6F/aOyw5KL+5P1u6pjbt43t0dlhQECpBrGGwItr0XUwgi/AXGjFh25xQ/M+XK9O8H48m/aPbIPJEPKE0OzIDPhAQK8coEIu0jWpblzo1bu1qnyJ57EYPo+Yxy4sjUsitxmVrgaDmpWg88MS0gkKpxsUPQ7EPF0OTv0QbQoG8AZb75/rszRAUP6WsIY1Gj9/h5ub/heVkd8huTdHxftKhpzEFJBMy87YQ8RkQBzT33ae80HhDRIF9Wh9J1XPC1zJ58hlQCtuX/csiyWemLdJjLw+/FaFgAI0C4gNCpRRFSEx0eo0Qj/ccFAUnQ4XldnHRlqhD+yK+qJ+WOZ1EhvjB0TTuZ4/+TeFDY+r4b5k0iLJdcfaU171cY6sBPj0ZMGib7zwLqAz8NjQgSHyEAhBxVRpwhAfdAmZpqVbOytvlNQbVphx8NzT7dT6c7Tk8Yd96a4961Ug/bc0/tDbcGDIxuL3KI0X+hK88HHaPp0zakHzNi1lGpYni3ZwirtViz4eRFAqMDU=
         on:
           tags: true
-          distributions: "sdist bdist_wheel"
+          distributions: "bdist_wheel"
           repo: i3thuan5/KeSi
