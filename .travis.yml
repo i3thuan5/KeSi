@@ -12,13 +12,13 @@ branches:
   - master
   - "/\\d+\\.\\d+\\.\\d+/"
 install:
-- pip install tox wheel
+- pip install tox
 script:
 - tox -e $TOX_ENV
 jobs:
   include:
     - stage: deploy
-      install: skip # skip pip install tox
+      install: pip install wheel setuptools
       script: skip # skip test scripts
       deploy:
         provider: pypi
