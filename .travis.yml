@@ -12,7 +12,7 @@ branches:
   - master
   - "/\\d+\\.\\d+\\.\\d+/"
 install:
-- pip install tox
+- pip install tox wheel
 script:
 - tox -e $TOX_ENV
 jobs:
