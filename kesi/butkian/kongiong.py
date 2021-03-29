@@ -36,6 +36,19 @@ NGOO_SIU_LE = {
     '8': '㆐', '9': '^', '10': '㆐'
 }
 
+# 造字
+KIP_TSOJI = {
+    '\uE701': '\U0002A736',
+    '\uF5E9': '\U0002B74F',
+    '\uE35C': '\U0002B75B',
+    '\uF5EA': '\U0002B77A',
+    '\uF5EE': '\U0002B77B',
+    '\uE703': '\U0002B7BC',
+    '\uF5EF': '\U0002B7C2',
+    '\uE705': '\U0002C9B0',
+    '\uF5E7': '\U000308FB',
+}
+
 聲調符號 = (
     HAGFA_TIAU |
     set(NGOO_SIU_LE.values())
@@ -64,3 +77,9 @@ def 敢是拼音字元(字元):
 
 def 敢是注音符號(字元):
     return unicodedata.name(字元, '').startswith('BOPOMOFO LETTER')
+
+
+def normalize_kautian(taibun):
+    for ji_kautian, ji_unicode in KIP_TSOJI.items():
+        taibun = taibun.replace(ji_kautian, ji_unicode)
+    return taibun
