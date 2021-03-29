@@ -80,6 +80,6 @@ def 敢是注音符號(字元):
 
 
 def normalize_kautian(taibun):
-    for ji in KIP_TSOJI:
-        taibun = taibun.replace(ji, KIP_TSOJI[ji])
+    for ji_kautian, ji_unicode in KIP_TSOJI.items():
+        taibun = taibun.replace(ji_kautian, ji_unicode)
     return taibun
