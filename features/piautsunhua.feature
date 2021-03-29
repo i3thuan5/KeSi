@@ -26,3 +26,12 @@ Feature: Unicode normalization
     | 字 | kap       | thiah            | tsukai            |
     | á | 00E1       | 0061,0301        |                   |
     | ō͘ | 014D,0358  | 006F,0358,0304   | o7,tiam; o,tiam,7 |
+
+  Scenario Outline: 教育部造字轉做Unicode
+    Given 一句編碼是 <KIP> ê字
+     Then 書寫ê編碼是 <Unicode>
+
+    Examples: 教育部造字ài取代
+    | 字 | KIP | Unicode |
+    | 𪜶 | E701    | 2A736     |
+    | 𬦰 | E705    | 2C9B0     |
