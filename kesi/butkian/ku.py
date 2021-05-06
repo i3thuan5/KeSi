@@ -22,12 +22,15 @@ class Ku:
     _是分字符號 = re.compile('{}+'.format(LIAN_JI_HU))
     _是數字 = set('0123456789')
     _是多字元標點 = re.compile(r'(\.\.\.)|(……)|(──)')
+    _non_printable_chars = re.complie(r'[\u0000-\u001f\u007f-\u009f]')
 
     def __init__(self, hanlo=None, lomaji=None):
         if hanlo is not None:
+            hanlo = re.sub(self._non_printable_chars, '', hanlo)
             hanlo = normalize_kautian(hanlo)
             hanlo = normalize('NFC', hanlo)
         if lomaji is not None:
+            lomaji = re.sub(self._non_printable_chars, '', lomaji)
             lomaji = normalize_kautian(lomaji)
             lomaji = normalize('NFC', lomaji)
 
