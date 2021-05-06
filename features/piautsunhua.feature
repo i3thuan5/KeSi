@@ -35,3 +35,11 @@ Feature: Unicode normalization
     | 字 | KIP | Unicode |
     | 𪜶 | E701    | 2A736     |
     | 𬦰 | E705    | 2C9B0     |
+
+  Scenario Outline: Bē顯示ê字元(Non-printable)，換做空白kā使用者提醒
+    Given 一句編碼是 <guanpun> ê字
+     Then 書寫ê編碼是 <tshuli>
+
+    Examples: lô-má-jī
+    | 字            | guanpun            | tshuli            |
+    | o(backspace)a | 006F,0008,0061       | 006F,0020,0061        |
