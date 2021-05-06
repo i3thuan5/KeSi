@@ -1,6 +1,9 @@
 # -*- coding: utf-8 -*-
 # 瀏覽器希望無音愛有空白，但是處理標音時希望較好認
 import unicodedata
+import re
+from unicodedata import normalize
+
 
 LIAN_JI_HU = '-'
 KHIN_SIANN_HU = '--'
@@ -25,6 +28,10 @@ KHIN_SIANN_HU = '--'
     {'﹐', '﹒', '﹗', '﹖', } |
     {';', '；', '﹔', }
 )
+
+NON_PRINTABLE_CHARS = re.compile(
+        r'[\u0000-\u0008\u000b\u000c\u000e-\u001f\u007f-\u009f]')
+
 
 # Siann-tiāu
 HAGFA_TIAU = {
@@ -82,4 +89,11 @@ def 敢是注音符號(字元):
 def normalize_kautian(taibun):
     for ji_kautian, ji_unicode in KIP_TSOJI.items():
         taibun = taibun.replace(ji_kautian, ji_unicode)
+    return taibun
+
+
+def normalize_taibun(taibun):
+    taibun = re.sub(NON_PRINTABLE_CHARS, ' ', taibun)
+    taibun = normalize_kautian(taibun)
+    taibun = normalize('NFC', taibun)
     return taibun
