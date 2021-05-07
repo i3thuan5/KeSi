@@ -1,8 +1,7 @@
 import re
-from unicodedata import normalize
 
 from kesi.butkian.kongiong import 組字式符號, 聲調符號, 標點符號, 敢是拼音字元,\
-    敢是注音符號, LIAN_JI_HU, si_lomaji, normalize_kautian
+    敢是注音符號, LIAN_JI_HU, si_lomaji, normalize_taibun
 from kesi.butkian.su import Su
 from kesi.butkian.ji import Ji
 
@@ -25,11 +24,9 @@ class Ku:
 
     def __init__(self, hanlo=None, lomaji=None):
         if hanlo is not None:
-            hanlo = normalize_kautian(hanlo)
-            hanlo = normalize('NFC', hanlo)
+            hanlo = normalize_taibun(hanlo)
         if lomaji is not None:
-            lomaji = normalize_kautian(lomaji)
-            lomaji = normalize('NFC', lomaji)
+            lomaji = normalize_taibun(lomaji)
 
         # Ku(lomaji='Goa')
         if hanlo is None:
