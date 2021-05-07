@@ -30,7 +30,8 @@ KHIN_SIANN_HU = '--'
 )
 
 NON_PRINTABLE_CHARS = re.compile(
-        r'[\u0000-\u0008\u000b\u000c\u000e-\u001f\u007f-\u009f]')
+    r'[\u0000-\u0008\u000b\u000c\u000e-\u001f\u007f-\u009f]'
+)
 
 
 # Siann-tiāu
