@@ -87,7 +87,6 @@ class Su:
         """
         buntin = []
         ting_ji_si_lomaji = False
-        su_u_khinsiann = False
 
         for ji in self:
             jihanlo = ji.kiphanlo
