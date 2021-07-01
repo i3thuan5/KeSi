@@ -14,14 +14,19 @@ def step_impl(context, lomaji):
     context.ku = Ku(lomaji=lomaji)
 
 
-@then(u'hanlo是 {hanlo}')
+@then('hanlo是 {hanlo}')
 def hanlo是(context, hanlo):
     assert context.ku.hanlo == hanlo, context.ku.hanlo
 
 
-@then(u'lomaji是 {lomaji}')
+@then('lomaji是 {lomaji}')
 def lomaji是(context, lomaji):
     assert context.ku.lomaji == lomaji, context.ku.lomaji
+
+
+@then('kiphanlo是 {kiphanlo}')
+def kiphanlo是(context, kiphanlo):
+    assert context.ku.kiphanlo == kiphanlo, context.ku.kiphanlo
 
 
 @given(u'兩句 "{hanlo}" kah "{lomaji}" 做伙建立一 ê 句仔')

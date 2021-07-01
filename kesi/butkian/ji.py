@@ -2,6 +2,7 @@
 from kesi.susia.POJ import tsuanPOJ
 from kesi.susia.TL import tsuanTL
 from kesi.butkian.kongiong import KHIN_SIANN_HU
+from kesi.butkian.kongiong import si_lomaji
 
 
 class Ji:
@@ -21,6 +22,12 @@ class Ji:
         else:
             self.lomaji = self.hanlo
         self.si_khinsiann = si_khinsiann
+
+    @property
+    def kiphanlo(self):
+        if self.si_khinsiann and not si_lomaji(self.hanlo[2]):
+            return self.hanlo[2:]
+        return self.hanlo
 
     def POJ(self):
         if self.si_khinsiann:

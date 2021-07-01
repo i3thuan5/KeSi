@@ -143,6 +143,28 @@ class Ku:
             頂一詞上尾是羅馬字 = si_lomaji(sulomaji[-1])
         return ''.join(bun)
 
+    @property
+    def kiphanlo(self):
+        """
+          會 kā 文本標準化：
+          保留羅馬字 ê 空白，tshun--ê 空白會刣掉
+        """
+        bun = []
+        頂一詞上尾是羅馬字 = False
+        for su in self:
+            suhanlo = su.kiphanlo
+            #
+            #  判斷愛先添空白符無
+            #    H, H -> 'HH'
+            #    H, L -> 'HL'
+            #    L, L -> 'L L'
+            #
+            if 頂一詞上尾是羅馬字 and si_lomaji(suhanlo[0]):
+                bun.append(' ')
+            bun.append(suhanlo)
+            頂一詞上尾是羅馬字 = si_lomaji(suhanlo[-1])
+        return ''.join(bun)
+
     def thianji(self):
         """
         =臺灣言語工具.拆文分析器.篩出字物件
