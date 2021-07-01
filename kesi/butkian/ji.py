@@ -2,6 +2,7 @@
 from kesi.susia.POJ import tsuanPOJ
 from kesi.susia.TL import tsuanTL
 from kesi.butkian.kongiong import KHIN_SIANN_HU
+from kesi.butkian.kongiong import si_lomaji
 
 
 class Ji:
@@ -24,7 +25,7 @@ class Ji:
 
     @property
     def kiphanlo(self):
-        if self.hanlo.startswith(KHIN_SIANN_HU):
+        if self.si_khinsiann and not si_lomaji(self.hanlo[2]):
             return self.hanlo[2:]
         return self.hanlo
 

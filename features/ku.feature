@@ -71,6 +71,8 @@ Scenario Outline: 教育部漢羅袂有連字符
         | oo-tóo-bái | oo-tóo-bái   | oo-tóo-bái |
         | 有--一-寡  | ū--tsi̍t-kuá | 有一寡     |
         | 有的無的   | ū--ê-bô--ê   | 有的無的   |
+        | 啊         | --ah         | 啊         |
+        | --ah       | --ah         | --ah       |
 
     Examples: 其他情形
         | hanlo        | lomaji       | kiphanlo     |
