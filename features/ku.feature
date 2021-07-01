@@ -73,6 +73,7 @@ Scenario Outline: 教育部漢羅袂有連字符
         | 有的無的   | ū--ê-bô--ê   | 有的無的   |
 
     Examples: 其他情形
+        | hanlo        | lomaji       | kiphanlo     |
         | āu--ji̍t     | āu--ji̍t     | āu--ji̍t     |
         | ū--ê-bô--ê   | ū--ê-bô--ê   | ū--ê-bô--ê   |
         | ū--tsi̍t-kuá | ū--tsi̍t-kuá | ū--tsi̍t-kuá |

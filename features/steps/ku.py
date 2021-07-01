@@ -24,7 +24,7 @@ def lomaji是(context, lomaji):
     assert context.ku.lomaji == lomaji, context.ku.lomaji
 
 
-@then('kiphanlo是 {hanlo}')
+@then('kiphanlo是 {kiphanlo}')
 def kiphanlo是(context, kiphanlo):
     assert context.ku.kiphanlo == kiphanlo, context.ku.kiphanlo
 

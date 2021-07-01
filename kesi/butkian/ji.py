@@ -22,6 +22,12 @@ class Ji:
             self.lomaji = self.hanlo
         self.si_khinsiann = si_khinsiann
 
+    @property
+    def kiphanlo(self):
+        if self.hanlo.startswith(KHIN_SIANN_HU):
+            return self.hanlo[2:]
+        return self.hanlo
+
     def POJ(self):
         if self.si_khinsiann:
             hanlo = self.hanlo[2:]

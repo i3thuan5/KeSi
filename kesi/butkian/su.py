@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from kesi.butkian.kongiong import LIAN_JI_HU, si_lomaji
+from kesi.butkian.kongiong import KHIN_SIANN_HU
 
 
 class Su:
@@ -71,6 +72,33 @@ class Su:
                 buntin.append(LIAN_JI_HU)
             buntin.append(jilomaji)
             ting_ji_si_lomaji = si_lomaji(jilomaji[-1])
+        return ''.join(buntin)
+
+    @property
+    def kiphanlo(self):
+        """
+        會 kā 文本標準化：
+        判斷愛先添連字符無
+          H, H -> 'HH'
+          H, L -> 'HL'
+          L, H -> 'LH'
+          L, L -> 'L-L'
+          L, --L -> 'L--L'
+        """
+        buntin = []
+        ting_ji_si_lomaji = False
+        su_u_khinsiann = False
+
+        for ji in self:
+            jihanlo = ji.kiphanlo
+            if ting_ji_si_lomaji and si_lomaji(jihanlo[0]):
+                " L, L -> 'L-L' "
+                if ji.si_khinsiann:
+                    buntin.append(KHIN_SIANN_HU)
+                else:
+                    buntin.append(LIAN_JI_HU)
+            buntin.append(jihanlo)
+            ting_ji_si_lomaji = si_lomaji(jihanlo[-1])
         return ''.join(buntin)
 
     def thiam(self, ji):
