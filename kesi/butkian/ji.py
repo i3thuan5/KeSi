@@ -11,8 +11,6 @@ class Ji:
         if si_khinsiann:
             self.hanlo = '--{}'.format(hanlo)
         else:
-            if hanlo.startswith(KHIN_SIANN_HU):
-                si_khinsiann = True
             self.hanlo = hanlo
 
         if lomaji and si_khinsiann:
