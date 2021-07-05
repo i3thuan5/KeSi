@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from kesi.susia.POJ import tsuanPOJ
 from kesi.susia.TL import tsuanTL
+from kesi.butkian.kongiong import KHIN_SIANN_HU
 from kesi.butkian.kongiong import si_lomaji
 
 
@@ -18,7 +19,6 @@ class Ji:
             self.lomaji = lomaji
         else:
             self.lomaji = self.hanlo
-        self.si_khinsiann = si_khinsiann
 
     @property
     def kiphanlo(self):
@@ -49,3 +49,7 @@ class Ji:
             tsuanTL(hanlo), tsuanTL(lomaji),
             si_khinsiann=self.si_khinsiann
         )
+
+    @property
+    def si_khinsiann(self):
+        return self.hanlo.startswith(KHIN_SIANN_HU)
