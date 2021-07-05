@@ -47,14 +47,14 @@ Feature: Tsuán Tâi-gí 轉台語，kā羅馬字轉做其他音標系統
       | Āᴺ  | Āⁿ  |
    
     Examples: 方言韻
-    | bun   | POJ  |
-    | tere5 | têre |
-    | tir5  | tîr  |
+      | bun   | POJ  |
+      | tere5 | têre |
+      | tir5  | tîr  |
 
     Examples: 輕聲
-    | bun       | POJ       |
-    | --Suí     | --Súi     |
-    | --aih-iah | --aih-iah |
+      | bun       | POJ       |
+      | --Suí     | --Súi     |
+      | --aih-iah | --aih-iah |
 
     Examples: NFD
       | bun | POJ |
@@ -103,18 +103,18 @@ Feature: Tsuán Tâi-gí 轉台語，kā羅馬字轉做其他音標系統
       | ō͘ⁿ   | ōnn   |
     
     Examples: 方言韻
-    | bun   | TL   |
-    | tere5 | terê |
-    | terê  | terê |
-    | tir5  | tîr  |
-    | ionn5 | iônn |
-    | tee5  | têe  |
+      | bun   | TL   |
+      | tere5 | terê |
+      | terê  | terê |
+      | tir5  | tîr  |
+      | ionn5 | iônn |
+      | tee5  | têe  |
 
 
     Examples: 輕聲
-    | bun       | TL        |
-    | --Súi     | --Suí     |
-    | --aih-iah | --aih-iah |
+      | bun       | TL        |
+      | --Súi     | --Suí     |
+      | --aih-iah | --aih-iah |
     
     Examples: NFD
       | bun | TL  |
