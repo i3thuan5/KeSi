@@ -80,7 +80,7 @@ def 敢是拼音字元(字元):
         種類 = unicodedata.category(字元)
     except TypeError:
         return False
-    return 種類 in _統一碼羅馬字類 or 字元 in ['ⁿ', "'", '_', ]
+    return 種類 in _統一碼羅馬字類 or 字元 in ['ⁿ', "'", '_', 'ᴺ', ]
 
 
 def 敢是注音符號(字元):
