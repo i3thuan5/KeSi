@@ -1,13 +1,14 @@
 import unicodedata
 import re
 
+from kesi.butkian.kongiong import KHIN_SIANN_HU
 from kesi.susia.kongke import thiah, tshiau_tuasiosia, SuSiaTshoNgoo
 
 
 def tsuanPOJ(bun):
-    si_khinsiann = bun.startswith('--')
+    si_khinsiann = bun.startswith(KHIN_SIANN_HU)
     if si_khinsiann:
-        bun = bun.replace('--', '')
+        bun = bun.replace(KHIN_SIANN_HU, '')
     try:
         siann, un, tiau, tuasiosia = thiah(bun)
     except SuSiaTshoNgoo:

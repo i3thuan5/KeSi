@@ -1,11 +1,12 @@
 import unicodedata
 from kesi.susia.kongke import thiah, tshiau_tuasiosia, SuSiaTshoNgoo
+from kesi.butkian.kongiong import KHIN_SIANN_HU
 
 
 def tsuanTL(bun):
-    si_khinsiann = bun.startswith('--')
+    si_khinsiann = bun.startswith(KHIN_SIANN_HU)
     if si_khinsiann:
-        bun = bun.replace('--', '')
+        bun = bun.replace(KHIN_SIANN_HU, '')
     try:
         siann, un, tiau, tuasiosia = thiah(bun)
     except SuSiaTshoNgoo:
