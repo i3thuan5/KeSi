@@ -11,8 +11,6 @@ class Ji:
         if si_khinsiann:
             self.hanlo = '--{}'.format(hanlo)
         else:
-            if hanlo.startswith(KHIN_SIANN_HU):
-                si_khinsiann = True
             self.hanlo = hanlo
 
         if lomaji and si_khinsiann:
@@ -21,7 +19,6 @@ class Ji:
             self.lomaji = lomaji
         else:
             self.lomaji = self.hanlo
-        self.si_khinsiann = si_khinsiann
 
     @property
     def kiphanlo(self):
@@ -52,3 +49,7 @@ class Ji:
             tsuanTL(hanlo), tsuanTL(lomaji),
             si_khinsiann=self.si_khinsiann
         )
+
+    @property
+    def si_khinsiann(self):
+        return self.hanlo.startswith(KHIN_SIANN_HU)

@@ -1,11 +1,5 @@
 from behave import given, then
-from kesi.butkian.ji import Ji
 from kesi import Ku
-
-
-@given(u'一字 {bun}')
-def 一字(context, bun):
-    context.mih = Ji(bun)
 
 
 @given(u'一句 {bun}')
