@@ -101,6 +101,10 @@ Feature: Tsuán Tâi-gí 轉台語，kā羅馬字轉做其他音標系統
       | āⁿ    | ānn   |
       | OĀI   | UĀI   |
       | ō͘ⁿ   | ōnn   |
+
+    Examples: 頭字大寫較tsē全大寫，而且全大寫ē-tàng ka-tī `upper()`
+      | bun | TL  |
+      | O͘  | Oo  |
     
     Examples: 方言韻
       | bun   | TL   |

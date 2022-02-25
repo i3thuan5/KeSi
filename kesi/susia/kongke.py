@@ -23,12 +23,12 @@ TIAUHO_TIAUHU_PIO = {
 
 def khuann_tuasiosia(bun):
     latin = bun.replace('ⁿ', '')
-    if latin.isupper():
-        return SI_TSUAN_TUASIA
-    elif latin.islower():
+    if latin.islower():
         return SI_TSUAN_SIOSIA
-    else:
+    elif latin[:1].isupper() and not latin[1:].isupper():
         return SI_THAU_TUASIA
+    else:
+        return SI_TSUAN_TUASIA
 
 
 def tshiau_tuasiosia(tuasiosia, bun):
