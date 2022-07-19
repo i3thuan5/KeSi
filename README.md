@@ -27,6 +27,14 @@ Ku("Gâu-tsá").POJ().hanlo        # 'Gâu-chá'
 ```python
 Ku("看--起-來tsiânn媠。").POJ().hanlo     # '看--起-來chiâⁿ媠。'
 ```
+### POJ數字調轉POJ
+```python
+Ku("Gâu5-cha2").POJ().hanlo         # 'Gâu-chá'
+```
+### KIP數字調轉KIP
+```python
+Ku("Gâu5-tsa2").KIP().hanlo         # 'Gâu-tsá'
+```
 ### 算字數
 ```bash
 $ echo '我是Tâi-gí ê ke-si' | python le/sng_jisoo.py
