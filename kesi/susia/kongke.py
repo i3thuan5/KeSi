@@ -41,11 +41,6 @@ def tshiau_tuasiosia(tuasiosia, bun):
 
 
 def thiah(lomaji):
-    if lomaji == '':
-        raise SuSiaTshoNgoo(
-            ''
-        )
-
     siannun, tiau = theh_sianntiau(lomaji)
 
     siannun_n = thong_n(siannun)
