@@ -50,6 +50,8 @@ class Ji:
             si_khinsiann=self.si_khinsiann
         )
 
+    KIP = TL
+
     @property
     def si_khinsiann(self):
         return self.hanlo.startswith(KHIN_SIANN_HU)

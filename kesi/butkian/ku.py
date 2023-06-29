@@ -187,6 +187,8 @@ class Ku:
             sin_ku.thiam(su.TL())
         return sin_ku
 
+    KIP = TL
+
     def _tngsu(self, 字陣列, 輕聲陣列, 佮後一个字無仝一个詞):
         巢狀詞陣列 = []
         巢狀輕聲陣列 = []

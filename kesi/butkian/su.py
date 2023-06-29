@@ -114,3 +114,5 @@ class Su:
         for ji in self:
             sin_su.thiam(ji.TL())
         return sin_su
+
+    KIP = TL

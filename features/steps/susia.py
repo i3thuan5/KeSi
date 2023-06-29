@@ -19,3 +19,4 @@ def 書寫轉TL會生做(context, TL):
     tailo = context.mih.TL()
     assert tailo.hanlo == TL, tailo.hanlo
     assert tailo.lomaji == TL, tailo.lomaji
+    assert tailo == context.mih.KIP()
