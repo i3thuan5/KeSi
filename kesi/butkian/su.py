@@ -14,6 +14,9 @@ class Su:
     def __len__(self):
         return len(self._ji)
 
+    def __eq__(self, other):
+        return self._ji == other._ji
+
     @property
     def hanlo(self):
         """

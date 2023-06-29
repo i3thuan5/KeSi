@@ -20,6 +20,13 @@ class Ji:
         else:
             self.lomaji = self.hanlo
 
+    def __eq__(self, other):
+        return (
+            self.hanlo == other.hanlo
+            and self.lomaji == other.lomaji
+            and self.si_khinsiann == other.si_khinsiann
+        )
+
     @property
     def kiphanlo(self):
         if self.si_khinsiann and not si_lomaji(self.hanlo[2]):

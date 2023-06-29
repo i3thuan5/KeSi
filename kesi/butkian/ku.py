@@ -74,6 +74,9 @@ class Ku:
     def __len__(self):
         return len(self._su)
 
+    def __eq__(self, other):
+        return self._su == other._su
+
     def _bun_tsuan_sutin(self, bun_tin, khinsiann_tin):
         sutin = []
         for tsitsu, khinsiann in zip(bun_tin, khinsiann_tin):
