@@ -13,11 +13,11 @@ pip install KeSi
 
 ### POJ轉KIP
 ```python
-Ku("Gâu-chá").TL().hanlo         # 'Gâu-tsá'
+Ku("Gâu-chá").KIP().hanlo         # 'Gâu-tsá'
 ```
 漢字、連字符、輕聲符lóng會好好留落來。
 ```python
-Ku("看--起-來chiâⁿ媠。").TL().hanlo    # '看--起-來tsiânn媠。'
+Ku("看--起-來chiâⁿ媠。").KIP().hanlo    # '看--起-來tsiânn媠。'
 ```
 ### KIP轉POJ
 ```python

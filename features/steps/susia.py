@@ -14,9 +14,9 @@ def 書寫轉POJ會生做(context, POJ):
     assert poj.lomaji == POJ, poj.lomaji
 
 
-@then(u'書寫轉TL會生做 {TL}')
-def 書寫轉TL會生做(context, TL):
-    tailo = context.mih.TL()
-    assert tailo.hanlo == TL, tailo.hanlo
-    assert tailo.lomaji == TL, tailo.lomaji
+@then(u'書寫轉KIP會生做 {KIP}')
+def 書寫轉KIP會生做(context, KIP):
+    tailo = context.mih.KIP()
+    assert tailo.hanlo == KIP, tailo.hanlo
+    assert tailo.lomaji == KIP, tailo.lomaji
     assert tailo == context.mih.KIP()
