@@ -19,4 +19,4 @@ def 書寫轉KIP會生做(context, KIP):
     tailo = context.mih.KIP()
     assert tailo.hanlo == KIP, tailo.hanlo
     assert tailo.lomaji == KIP, tailo.lomaji
-    assert tailo == context.mih.KIP()
+    assert tailo == context.mih.TL()
