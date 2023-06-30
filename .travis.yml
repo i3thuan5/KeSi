@@ -18,6 +18,8 @@ script:
 jobs:
   include:
     - stage: deploy
+      name: pypi
+      if: branch ~= /\d+\.\d+\.\d+/
       install: skip
       script: skip # skip test scripts
       deploy:
