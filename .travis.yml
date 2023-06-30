@@ -1,12 +1,12 @@
-dist: xenial
+dist: jammy
 language: python
 python:
-- '3.7'
+- '3.8'
 env:
   matrix:
   - TOX_ENV=flake8
   - TOX_ENV=behave
-  - TOX_ENV=tanguan
+  - TOX_ENV=test
 branches:
   only:
   - master
