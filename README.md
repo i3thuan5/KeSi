@@ -104,11 +104,67 @@ POJ數字調轉POJ：
 
 回傳句內下底全部`Ji`ê`iter`。
 
-### TuiBeTse
+### class Su
+
+#### hanji
+
+得tio̍h tshiâu過ê台文。其中若輕聲詞攏有輕聲符。
+
+#### lomaji
+
+得tio̍h tshiâu過ê羅馬字。其中若輕聲詞攏有輕聲符。
+
+#### kiphanlo
+
+得tio̍h tshiâu過ê台文。其中若輕聲詞頭字是漢字，袂有輕聲符。
+
+#### KIP(), TL()
+
+換做正式教育部羅馬字。
+
+修改記錄：1.4.3版以前POJ轉KIP函式號做TL()；1.5.0版以後改號做KIP()，tsit-má兩款函式lóng支援。未來KIP()會取代TL()。
+
+#### POJ()
+
+換做白話字。
+
+#### __iter__()
+
+回傳句內下底全部`Ji`ê`iter`。
+
+#### __len__()
+
+回傳句內下底有幾ê `Ji`。
+
+### class Ji
+
+#### hanji
+
+得tio̍h tshiâu過ê台文。其中若輕聲詞攏有輕聲符。
+
+#### lomaji
+
+得tio̍h tshiâu過ê羅馬字。其中若輕聲詞攏有輕聲符。
+
+#### kiphanlo
+
+得tio̍h tshiâu過ê台文。其中若輕聲詞頭字是漢字，袂有輕聲符。
+
+#### KIP(), TL()
+
+換做正式教育部羅馬字。
+
+修改記錄：1.4.3版以前POJ轉KIP函式號做TL()；1.5.0版以後改號做KIP()，tsit-má兩款函式lóng支援。未來KIP()會取代TL()。
+
+#### POJ()
+
+換做白話字。
+
+### class TuiBeTse
 
 `Ku(hanlo, lomaji)`若`hanlo` kah `lomaji`字數bô-kâng ê時，回傳ê例外。
 
-### normalize_taibun(taibun)
+### def normalize_taibun(taibun)
 
 有tshiâu Unicode NFC、教育部造字碼換做正式Unicode碼。
 
@@ -120,7 +176,7 @@ True
 True
 ```
 
-### kam_haphuat(tsit_ji_lomaji)
+### def kam_haphuat(tsit_ji_lomaji)
 
 判斷`tsit_ji_lomaji`敢是合法教育部羅馬字抑是白話字。若是數字調、調符、教育部傳統版，攏會當做合法。
 
