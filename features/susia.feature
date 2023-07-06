@@ -69,12 +69,12 @@ Feature: Tsuán Tâi-gí 轉台語，kā羅馬字轉做其他音標系統
       | 5     | 5     |
       | 媠    | 媠    |
   
-  Scenario Outline: Kā 書寫轉做TL
+  Scenario Outline: Kā 書寫轉做KIP
     Given 一句 <bun>
-     Then 書寫轉TL會生做 <TL>
+     Then 書寫轉KIP會生做 <KIP>
 
     Examples: Jī
-      | bun     | TL      |
+      | bun     | KIP      |
       | a1      | a       |
       | Sui2    | Suí     |
       | au3     | àu      |
@@ -91,7 +91,7 @@ Feature: Tsuán Tâi-gí 轉台語，kā羅馬字轉做其他音標系統
       | Ná      | Ná      |
     
     Examples: POJ
-      | bun   | TL    |
+      | bun   | KIP    |
       | Chúi  | Tsuí  |
       | PHÊNG | PHÎNG |
       | tek   | tik   |
@@ -103,11 +103,11 @@ Feature: Tsuán Tâi-gí 轉台語，kā羅馬字轉做其他音標系統
       | ō͘ⁿ   | ōnn   |
 
     Examples: 頭字大寫較tsē全大寫，而且全大寫ē-tàng ka-tī `upper()`
-      | bun | TL  |
+      | bun | KIP  |
       | O͘  | Oo  |
     
     Examples: 方言韻
-      | bun   | TL   |
+      | bun   | KIP   |
       | tere5 | terê |
       | terê  | terê |
       | tir5  | tîr  |
@@ -116,16 +116,16 @@ Feature: Tsuán Tâi-gí 轉台語，kā羅馬字轉做其他音標系統
 
 
     Examples: 輕聲
-      | bun       | TL        |
+      | bun       | KIP        |
       | --Súi     | --Suí     |
       | --aih-iah | --aih-iah |
     
     Examples: NFD
-      | bun | TL  |
+      | bun | KIP  |
       | ôa  | uâ  |
 
     Examples: M̄ sī Lô-má-jī
-      | bun   | TL    |
+      | bun   | KIP    |
       | suii  | suii  |
       | súi2  | súi2  |
       | ĀIN   | ĀIN   |

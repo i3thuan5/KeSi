@@ -72,9 +72,9 @@ def 若欲對句仔會發錯誤(context, hanlo, lomaji):
     assert u_tshongoo
 
 
-@then(u'轉出TL句，伊 ê hanlo是 {hanlo}')
-def 轉做TL(context, hanlo):
-    assert context.ku.TL().hanlo == hanlo, context.ku.TL().hanlo
+@then(u'轉出KIP句，伊 ê hanlo是 {hanlo}')
+def 轉做KIP(context, hanlo):
+    assert context.ku.KIP().hanlo == hanlo, context.ku.KIP().hanlo
 
 
 @then(u'轉出POJ句，伊 ê hanlo是 {hanlo}')
@@ -92,6 +92,6 @@ def 轉出POJ句伊lomaji是(context, lomaji):
     assert context.ku.POJ().lomaji == lomaji, context.ku.POJ().lomaji
 
 
-@then(u'轉出TL句，伊 ê lomaji是 {lomaji}')
-def 轉出TL句伊lomaji是(context, lomaji):
-    assert context.ku.TL().lomaji == lomaji, context.ku.TL().lomaji
+@then(u'轉出KIP句，伊 ê lomaji是 {lomaji}')
+def 轉出KIP句伊lomaji是(context, lomaji):
+    assert context.ku.KIP().lomaji == lomaji, context.ku.KIP().lomaji

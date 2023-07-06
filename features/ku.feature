@@ -135,11 +135,11 @@ Scenario Outline: 字數bô-kâng無法度對
 Scenario Outline: 羅馬字 ē-īng-eh kā 轉做其他書寫
     Given 一句 <bun> 建立句仔
     Then 轉出POJ句，伊 ê hanlo是 <POJ>
-    And 轉出TL句，伊 ê hanlo是 <TL>
+    And 轉出KIP句，伊 ê hanlo是 <KIP>
     But 原本ê句仔猶原是 <bun>
 
     Examples: ku
-        | bun              | TL           | POJ          |
+        | bun              | KIP           | POJ          |
         | Guá sī Ke-si     | Guá sī Ke-si | Góa sī Ke-si |
         | Góa sī Ke-si     | Guá sī Ke-si | Góa sī Ke-si |
         | Gua2 si7 Ke1-si1 | Guá sī Ke-si | Góa sī Ke-si |
@@ -149,9 +149,9 @@ Scenario Outline: 羅馬字 ē-īng-eh kā 轉做其他書寫
 Scenario Outline: 漢羅文 kah 羅馬字對照 ē-īng-eh kā 轉做其他書寫
     Given 兩句 <hanlo> kah <lomaji> 做伙建立一 ê 句仔
     Then 轉出POJ句，伊 ê lomaji是 <POJ>
-    And 轉出TL句，伊 ê lomaji是 <TL>
+    And 轉出KIP句，伊 ê lomaji是 <KIP>
 
     Examples: ku
-        | hanlo | lomaji | TL    | POJ   |
+        | hanlo | lomaji | KIP    | POJ   |
         | 一    | tsi̍t  | tsi̍t | chi̍t |
         | 一    | chi̍t  | tsi̍t | chi̍t |
