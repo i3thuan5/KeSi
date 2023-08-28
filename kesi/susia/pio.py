@@ -31,14 +31,13 @@ TL_UNBO = {
     'uai', 'uaih', 'uainn', 'uainnh',
     'm', 'mh', 'ng', 'ngh',
     'ioo', 'iooh',  # 諾 0hioo 0hiooh, 詞目總檔.csv:khan35 jioo51
-    ######
-    'er', 'erh', 'erm', 'ere', 'ereh',  # 泉　鍋
-    'ee', 'eeh', 'uee',  # 漳　家
-    'eng',
+    'iai', 'iaih',  # khiài 起來合音。TJ 2ê攏有修
+    'er', 'erh', 'erm', 'ere', 'ereh',  # 汐止腔
+    'eng',  # 永靖腔
     'ir', 'irh', 'irp', 'irt', 'irk', 'irm', 'irn', 'irng', 'irinn',
     'ie',  # 鹿港偏泉腔
     'or', 'orh', 'ior', 'iorh',  # 蚵
-    'uang',  # 金門偏泉腔　　風　huang1
+    'uang',  # 教典收 嚾
     'oi', 'oih',  # 詞彙方言差.csv:硩⿰落去
 }
 
