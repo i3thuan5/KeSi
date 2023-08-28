@@ -114,6 +114,10 @@ Feature: Tsuán Tâi-gí 轉台語，kā羅馬字轉做其他音標系統
       | ionn5 | iônn |
       | tee5  | têe  |
 
+    Examples: 合音
+      | bun   | KIP   |
+      | khiai3 | khiài |
+      | loih4  | loih |
 
     Examples: 輕聲
       | bun       | KIP        |
