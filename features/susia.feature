@@ -116,6 +116,7 @@ Feature: Tsuán Tâi-gí 轉台語，kā羅馬字轉做其他音標系統
     Examples: 合音
       | bun   | KIP   |
       | khiai3 | khiài |
+      | khiaih4 | khiaih |
       | loih4  | loih |
 
     Examples: 輕聲
