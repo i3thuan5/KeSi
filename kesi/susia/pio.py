@@ -33,7 +33,6 @@ TL_UNBO = {
     'ioo', 'iooh',  # 諾 0hioo 0hiooh, 詞目總檔.csv:khan35 jioo51
     ######
     'er', 'erh', 'erm', 'ere', 'ereh',  # 泉　鍋
-    'ee', 'eeh', 'uee',  # 漳　家
     'eng',
     'ir', 'irh', 'irp', 'irt', 'irk', 'irm', 'irn', 'irng', 'irinn',
     'ie',  # 鹿港偏泉腔
