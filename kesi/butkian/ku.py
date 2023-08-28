@@ -1,6 +1,6 @@
 import re
 
-from kesi.butkian.kongiong import 組字式符號, 聲調符號, 標點符號, 敢是拼音字元,\
+from kesi.butkian.kongiong import 組字式符號, 聲調符號, 標點符號, 敢是拼音字元, \
     敢是注音符號, LIAN_JI_HU, si_lomaji, normalize_taibun
 from kesi.butkian.su import Su
 from kesi.butkian.ji import Ji

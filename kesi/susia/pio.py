@@ -31,10 +31,9 @@ TL_UNBO = {
     'uai', 'uaih', 'uainn', 'uainnh',
     'm', 'mh', 'ng', 'ngh',
     'ioo', 'iooh',  # 諾 0hioo 0hiooh, 詞目總檔.csv:khan35 jioo51
-    'iai', 'iaih',  ## khiài 起來合音。TJ 2ê攏有修
-    ######
+    'iai', 'iaih',  # khiài 起來合音。TJ 2ê攏有修
     'er', 'erh', 'erm', 'ere', 'ereh',  # 汐止腔
-    'eng',  ## 永靖腔
+    'eng',  # 永靖腔
     'ir', 'irh', 'irp', 'irt', 'irk', 'irm', 'irn', 'irng', 'irinn',
     'ie',  # 鹿港偏泉腔
     'or', 'orh', 'ior', 'iorh',  # 蚵
