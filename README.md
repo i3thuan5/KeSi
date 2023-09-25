@@ -1,6 +1,8 @@
 # KeSi
+
 [![PyPI version](https://badge.fury.io/py/KeSi.svg)](https://badge.fury.io/py/KeSi)
 [![Build Status](https://app.travis-ci.com/i3thuan5/KeSi.svg?branch=master)](https://app.travis-ci.com/i3thuan5/KeSi)
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=i3thuan5_KeSi&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=i3thuan5_KeSi)
 
 Tâi-bûn NLP ke-si.
 
