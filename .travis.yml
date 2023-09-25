@@ -1,5 +1,6 @@
 os: linux
 dist: jammy
+jdk: openjdk17
 language: python
 python:
 - '3.8'
@@ -17,7 +18,6 @@ jobs:
     - name: behave
       install:
       - pip install tox
-      jdk: openjdk17
       addons:
         sonarcloud:
           organization: "ithuan"
