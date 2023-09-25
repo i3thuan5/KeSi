@@ -17,6 +17,7 @@ jobs:
     - name: behave
       install:
       - pip install tox
+      jdk: openjdk17
       addons:
         sonarcloud:
           organization: "ithuan"
