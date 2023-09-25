@@ -3,21 +3,27 @@ dist: jammy
 language: python
 python:
 - '3.8'
-env:
-  jobs:
-  - TOX_ENV=flake8
-  - TOX_ENV=behave
-  - TOX_ENV=test
 branches:
   only:
   - master
   - "/\\d+\\.\\d+\\.\\d+/"
-install:
-- pip install tox
-script:
-- tox -e $TOX_ENV
 jobs:
   include:
+    - name: flake8
+      install:
+      - pip install tox
+      script:
+      - tox -e flake8
+    - name: behave
+      install:
+      - pip install tox
+      script:
+      - tox -e behave
+    - name: test
+      install:
+      - pip install tox
+      script:
+      - tox -e test
     - stage: deploy
       name: pypi
       if: branch ~= /\d+\.\d+\.\d+/
