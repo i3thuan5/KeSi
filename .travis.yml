@@ -17,8 +17,13 @@ jobs:
     - name: behave
       install:
       - pip install tox
+      addons:
+        sonarcloud:
+          organization: "ithuan"
+          token: ${SONAR_TOKEN}
       script:
       - tox -e behave
+      - sonar-scanner
     - name: test
       install:
       - pip install tox
