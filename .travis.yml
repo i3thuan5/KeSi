@@ -28,10 +28,10 @@ jobs:
       - tox -e behave
       - >
         docker run --rm
-          -e SONARQUBE_SCANNER_PARAMS
-          -e SONAR_TOKEN="${SONAR_TOKEN}"
-          -v "`pwd`:/usr/src"
-          sonarsource/sonar-scanner-cli
+        -e SONARQUBE_SCANNER_PARAMS
+        -e SONAR_TOKEN="${SONAR_TOKEN}"
+        -v "`pwd`:/usr/src"
+        sonarsource/sonar-scanner-cli
     - name: test
       install:
       - pip install tox
