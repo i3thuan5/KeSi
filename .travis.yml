@@ -18,13 +18,21 @@ jobs:
     - name: behave
       install:
       - pip install tox
+      service:
+      - docker
       addons:
+        # For the `SONARQUBE_SCANNER_PARAMS` variable
         sonarcloud:
           organization: "ithuan"
           token: ${SONAR_TOKEN}
       script:
       - tox -e behave
-      - sonar-scanner
+      - >
+        docker run --rm
+          -e SONARQUBE_SCANNER_PARAMS
+          -e SONAR_TOKEN="${SONAR_TOKEN}"
+          -v "`pwd`:/usr/src"
+          sonarsource/sonar-scanner-cli
     - name: test
       install:
       - pip install tox
