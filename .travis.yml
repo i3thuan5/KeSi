@@ -23,7 +23,6 @@ jobs:
       addons:
         # For the `SONARQUBE_SCANNER_PARAMS` variable
         sonarcloud:
-          organization: "ithuan"
           token: ${SONAR_TOKEN}
       script:
       - tox -e behave
