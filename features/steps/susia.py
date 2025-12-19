@@ -1,5 +1,6 @@
 from behave import given, then
 from kesi import Ku
+from kesi.susia.kongke import tsuan_sooji_tiau
 
 
 @given(u'一句 {bun}')
@@ -20,3 +21,20 @@ def 書寫轉KIP會生做(context, KIP):
     assert tailo.hanlo == KIP, tailo.hanlo
     assert tailo.lomaji == KIP, tailo.lomaji
     assert tailo == context.mih.TL()
+
+
+@given(u'羅馬字 {lomaji}')
+def 羅馬字(context, lomaji):
+    context.lomaji = lomaji
+
+
+@then(u'數字調會生做 {sooji}')
+def 數字調會生做(context, sooji):
+    kiatko = tsuan_sooji_tiau(context.lomaji)
+    assert kiatko == sooji, kiatko
+
+
+@then(u'ASCII 數字調會生做 {sooji}')
+def ASCII數字調會生做(context, sooji):
+    kiatko = tsuan_sooji_tiau(context.lomaji, ascii=True)
+    assert kiatko == sooji, kiatko

@@ -20,6 +20,9 @@ TIAUHO_TIAUHU_PIO = {
     '9': '\u0306',
 }
 
+# 聲調 → 聲調數字
+TIAUHU_TIAUHO_PIO = {v: k for k, v in TIAUHO_TIAUHU_PIO.items() if v}
+
 
 def khuann_tuasiosia(bun):
     latin = bun.replace('ⁿ', '')
@@ -102,3 +105,45 @@ def thiah_siannun(無調號音標):
 
 class SuSiaTshoNgoo(ValueError):
     pass
+
+
+def tsuan_ascii(bun):
+    # ⁿ → nn, o͘ → oo
+    return bun.replace('o͘', 'oo').replace('O͘', 'OO').replace('ⁿ', 'nn')
+
+
+def tsuan_sooji_tiau(lomaji, ascii=False):
+    # 聲調符號轉數字調
+    if not lomaji:
+        return lomaji
+
+    # 輕聲 --
+    if '--' in lomaji:
+        parts = [tsuan_sooji_tiau(p, ascii) for p in lomaji.split('--')]
+        return '--'.join(parts)
+
+    # 逐音節處理
+    kiatko = []
+    for siannun_tiau in lomaji.split('-'):
+        if not siannun_tiau:
+            kiatko.append('')
+            continue
+        siannun, tiau = theh_sianntiau(siannun_tiau)
+        if tiau in TIAUHU_TIAUHO_PIO:
+            kiatko.append(siannun + TIAUHU_TIAUHO_PIO[tiau])
+        elif _si_jipsiann(siannun):
+            # 第4調：尾溜是 -p, -t, -k, -h
+            kiatko.append(siannun + '4')
+        else:
+            kiatko.append(siannun)  # 1 聲無調符
+
+    bun = '-'.join(kiatko)
+    if ascii:
+        bun = tsuan_ascii(bun)
+    return bun
+
+
+def _si_jipsiann(siannun):
+    # 判斷敢是第4調（結尾是 p, t, k, h）
+    siannun_lower = siannun.lower().replace('ⁿ', '').replace('nn', '')
+    return siannun_lower.endswith(('p', 't', 'k', 'h'))

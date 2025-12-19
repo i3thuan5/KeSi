@@ -137,3 +137,66 @@ Feature: Tsuán Tâi-gí 轉台語，kā羅馬字轉做其他音標系統
       | 5     | 5     |
       | 20    | 20    |
       | 媠    | 媠    |
+
+  Scenario Outline: Kā 調符轉做數字調
+    Given 羅馬字 <lomaji>
+     Then 數字調會生做 <sooji>
+
+    Examples: 基本聲調
+      | lomaji | sooji |
+      | a      | a     |
+      | á      | a2    |
+      | à      | a3    |
+      | ah     | ah4   |
+      | â      | a5    |
+      | ǎ      | a6    |
+      | ā      | a7    |
+      | a̍h    | ah8   |
+
+    Examples: POJ 特殊字元
+      | lomaji | sooji  |
+      | hó͘    | ho͘2   |
+      | ō͘     | o͘7    |
+      | āⁿ     | aⁿ7    |
+      | phêng  | pheng5 |
+
+    Examples: KIP
+      | lomaji | sooji  |
+      | hóo    | hoo2   |
+      | ōo     | oo7    |
+      | ānn    | ann7   |
+      | phîng  | phing5 |
+
+    Examples: 多音節
+      | lomaji    | sooji      |
+      | Gâu-tsá   | Gau5-tsa2  |
+      | tsiânn    | tsiann5    |
+      | hó-sè     | ho2-se3    |
+
+    Examples: 輕聲
+      | lomaji       | sooji        |
+      | --lah        | --lah4       |
+      | hó--lah      | ho2--lah4    |
+      | khì--ah      | khi3--ah4    |
+
+    Examples: M̄ sī Lô-má-jī
+      | lomaji | sooji  |
+      | hello  | hello  |
+      | 媠     | 媠     |
+      | 123    | 123    |
+
+  Scenario Outline: Kā 調符轉做 ASCII 數字調
+    Given 羅馬字 <lomaji>
+     Then ASCII 數字調會生做 <sooji>
+
+    Examples: POJ 轉 ASCII
+      | lomaji | sooji  |
+      | hó͘    | hoo2   |
+      | ō͘     | oo7    |
+      | āⁿ     | ann7   |
+      | o͘h    | ooh4   |
+
+    Examples: KIP 轉 ASCII（無變化）
+      | lomaji | sooji  |
+      | hóo    | hoo2   |
+      | ānn    | ann7   |
