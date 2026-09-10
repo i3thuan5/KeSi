@@ -22,3 +22,15 @@ class TestKamHaphuat(TestCase):
 
     def test_空字串(self):
         self.assertFalse(kam_haphuat(''))
+
+    def test_輕聲音節(self):
+        self.assertTrue(kam_haphuat('--a'))
+
+    def test_輕聲音節有調號(self):
+        self.assertTrue(kam_haphuat('--tâi'))
+
+    def test_輕聲符無音節(self):
+        self.assertFalse(kam_haphuat('--'))
+
+    def test_輕聲漢字(self):
+        self.assertFalse(kam_haphuat('--台'))
